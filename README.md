@@ -19,8 +19,9 @@ five-server
 
 ## FiveServer Config
 ```js
+//fiveserver.config.js
 module.exports = {
-    php: "E:\\xampp\\php\\php.exe" // Windows
+    php: "specify the PHP files" // e.g: E:\\xampp\\php\\php.exe
 }
 ```
 
