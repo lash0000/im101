@@ -74,9 +74,6 @@
     color: #1a61ec;
     font-size: 0.857em;
 }
-.divide-wrap span {
-  font-size: 0.857em;
-}
 /* #eye-wrapper {
   position: relative;
   margin-bottom: 1.5rem;
@@ -108,12 +105,8 @@
   color: #fff;
   cursor: pointer;
   margin-bottom: 0.657em;
+  transition: 0.2s;
 }
 .divide-wrap input[type="submit"]:hover {
-  background: linear-gradient(
-    188deg,
-    #fff -117.73%,
-    #c87eab 9.63%,
-    #4c85f3 134.45%
-  );
+  opacity: 0.8;
 }
