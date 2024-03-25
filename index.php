@@ -60,8 +60,9 @@
         </div>
         <div class="divide-wrap">
           <input type="submit" value="Submit">
-          <span></span>
-          <a class="blue-mark" href="">Forgot password?</a>
+          <span>Don't have an account?
+            <a class="blue-mark" href="">Create account</a>
+          </span>
         </div>
         </form>
       </div>

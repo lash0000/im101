@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 75vh;
+  height: 80vh;
 }
 .login-bubble {
   background: url("../../img/aqua-tiling.png");
@@ -73,6 +73,9 @@
 .forgot-password {
     color: #1a61ec;
     font-size: 0.857em;
+}
+.divide-wrap span {
+  font-size: 0.857em;
 }
 /* #eye-wrapper {
   position: relative;
