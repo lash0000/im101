@@ -1,0 +1,42 @@
+@import url("../assets/modules/login.module.css");
+
+* {
+    margin: 0;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+html, body {
+    isolation: isolate;
+    height: 100%;
+}
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Inter', sans-serif;
+}
+ol, ul {
+    padding: 0;
+    list-style: none;
+}
+a, button {
+    text-decoration: none;
+    cursor: pointer;
+}
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+input, button, textarea, select {
+    font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+/* screen below 1000px */
+/* @media (max-width: 319px) and (min-width: 0px) {
+    body {
+        display: none;
+        visibility: hidden;
+    }
+} */
