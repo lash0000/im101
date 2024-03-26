@@ -1,3 +1,44 @@
+<?php
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "im101";
+
+// Create connection
+$connection = mysqli_connect($host, $username, $password, $database);
+
+// Check connection
+if (!$connection) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$query = "SELECT admin_email FROM administrator";
+
+// Execute the query
+$result = mysqli_query($connection, $query);
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+
+    if ($row) {
+        $admin_email = $row['admin_email'];
+        
+        // Close the result set
+        mysqli_free_result($result);
+    } else {
+
+        $admin_email = "No admin email found";
+    }
+} else {
+    // If query fails, handle the error
+    echo "Error: " . mysqli_error($connection);
+}
+
+// Close the database connection
+mysqli_close($connection);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +70,7 @@
         <img src="../../public/img/fern-pout.png" alt="">
       </div>
       <div class="dash-details">
-        <h1>Welcome here, @admin.</h1>
+        <h1>Welcome here, <?php echo $admin_email; ?>.</h1>
         <span>ok u may log out naa!</span>
       </div>
       <a href="../../" class="func-out">
