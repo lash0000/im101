@@ -59,7 +59,7 @@ mysqli_close($connection);
   <link rel="stylesheet" href="../../public/assets/index.css" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-  <title>auth...</title>
+  <title>dashboard...</title>
 
 </head>
 
