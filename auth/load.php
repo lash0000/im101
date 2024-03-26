@@ -1,3 +1,7 @@
+<?php
+header("Refresh: 3; URL=../pages/main/dashboard.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,8 +40,8 @@
                             </svg>
                         </div>
                         <div class="detail">
-                            <h1>Welcome back</h1>
-                            <p>Please enter your credentials to sign in</p>
+                            <h1>Authenticating...</h1>
+                            <p>Getting things setting up.</p>
                         </div>
                     </div>
                     <div class="login-form">
@@ -111,7 +115,7 @@
                 <div class="divide-wrap">
                     <input type="submit" value="Submit" disabled>
                     <span>Having a trouble?
-                        <a class="blue-mark" href="">Reload</a>
+                        <a class="blue-mark" href="../">Reload</a>
                     </span>
                 </div>
             </div>

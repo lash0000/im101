@@ -1,3 +1,54 @@
+<?php
+session_start();
+
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "im101";
+
+$con = mysqli_connect($host, $username, $password, $database);
+
+if (!$con) {
+  echo "no mysql" . mysqli_connect_error();
+  exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  $email = mysqli_real_escape_string($con, $email);
+  $password = mysqli_real_escape_string($con, $password);
+
+  $query = "SELECT * FROM administrator WHERE admin_email = '$email' AND admin_pwd = '$password'";
+  $result = mysqli_query($con, $query);
+
+  if (mysqli_num_rows($result) == 1) {
+    $_SESSION['loggedin'] = true;
+    header("Location: ./auth/load.php");
+
+    $_SESSION['auth_succeed'] = true;
+    $_SESSION['authenticated_email'] = $authenticatedEmail;
+    exit();
+  } else {
+    echo '<div id="auth-failed" style="
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #FF6347;
+      padding: 0.857em;
+      font-size: 0.767em;
+      color: white;
+      border-radius: 4px;
+      ">
+      <span>Authentication failed. Please check your credentials.</span>
+      </div>';
+  }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +92,7 @@
             </div>
           </div>
           <div class="login-form">
-            <form action="" method="get">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
               <div id="email-wrapper">
                 <label for="email">Email address</label>
                 <input type="email" id="email" name="email" required>
@@ -49,7 +100,7 @@
               <div id="pwd-wrap">
                 <label for="password">Password</label>
                 <div id="eye-wrapper">
-                  <input type="password" id="password" name="password" required>
+                  <input type="password" id="password" name="password" required />
                   <!-- <span class="material-symbols-outlined" id="eye">
                   visibility
                 </span> -->
@@ -68,6 +119,14 @@
       </div>
     </aside>
   </section>
+  <script>
+    setTimeout(function() {
+      const authFailed = document.getElementById('auth-failed');
+      if (authFailed) {
+        authFailed.style.display = 'none';
+      }
+    }, 2000);
+  </script>
 </body>
 
 </html>
