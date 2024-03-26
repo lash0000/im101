@@ -9,7 +9,7 @@ $database = "im101";
 $con = mysqli_connect($host, $username, $password, $database);
 
 if (!$con) {
-  echo "no mysql" . mysqli_connect_error();
+  echo "no mysql / xampp" . mysqli_connect_error();
   exit();
 }
 
