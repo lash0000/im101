@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2024 at 02:51 PM
+-- Generation Time: Mar 26, 2024 at 09:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,6 +33,13 @@ CREATE TABLE `administrator` (
   `admin_email` varchar(128) DEFAULT NULL,
   `admin_pwd` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `administrator`
+--
+
+INSERT INTO `administrator` (`userID`, `user_type`, `admin_email`, `admin_pwd`) VALUES
+(1, 'admin', 'admin@test.com', '123');
 
 -- --------------------------------------------------------
 
@@ -85,6 +92,28 @@ ALTER TABLE `representative`
 ALTER TABLE `resident`
   ADD PRIMARY KEY (`resID`),
   ADD KEY `userID` (`userID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `administrator`
+--
+ALTER TABLE `administrator`
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `representative`
+--
+ALTER TABLE `representative`
+  MODIFY `repID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `resident`
+--
+ALTER TABLE `resident`
+  MODIFY `resID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
