@@ -4,17 +4,13 @@ $username = "root";
 $password = "";
 $database = "im101";
 
-// Create connection
 $connection = mysqli_connect($host, $username, $password, $database);
 
-// Check connection
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
 $query = "SELECT admin_email FROM administrator";
-
-// Execute the query
 $result = mysqli_query($connection, $query);
 
 if ($result) {
@@ -22,19 +18,14 @@ if ($result) {
 
     if ($row) {
         $admin_email = $row['admin_email'];
-        
-        // Close the result set
         mysqli_free_result($result);
     } else {
-
         $admin_email = "No admin email found";
     }
 } else {
-    // If query fails, handle the error
     echo "Error: " . mysqli_error($connection);
 }
 
-// Close the database connection
 mysqli_close($connection);
 ?>
 
