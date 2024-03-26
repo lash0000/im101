@@ -114,9 +114,6 @@ header("Refresh: 3; URL=../pages/main/dashboard.php");
                 </div>
                 <div class="divide-wrap">
                     <input type="submit" value="Submit" disabled>
-                    <span>Having a trouble?
-                        <a class="blue-mark" href="../">Reload</a>
-                    </span>
                 </div>
             </div>
         </aside>
