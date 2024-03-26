@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//Missing feature: Save to Session Storage (PHP Form) during Sign In
 $host = "localhost";
 $username = "root";
 $password = "";
