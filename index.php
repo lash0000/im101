@@ -75,22 +75,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-  <section class="login-container">
-    <!-- ayoko sa mobile view -->
-    <div class="lg-hidden">
+  <!-- ayoko sa mobile view -->
+  <div class="lg-hidden">
+    <div class="lg-wrapper">
       <span>204: No Content</span>
-      <div class="status">
-        <p>This website is not applicable to mobile view and lower than 980px monitor screen size
-          kindly adjust the screen size of your browser if you're using mobile then
-          quickly enable desktop site mode feature.</p>
-        <a href="" target="_blank">
-          <span>Learn more</span>
-          <span class="material-symbols-outlined">
-            arrow_forward
-          </span>
-        </a>
-      </div>
+      <p>This website is not applicable to mobile view and lower than 1024px monitor screen size
+        kindly adjust the screen size of your browser if you're using mobile then
+        quickly enable desktop site mode feature.</p>
     </div>
+  </div>
+  <section class="login-container">
     <aside class="login-wrapper">
       <div class="login-bubble">
         <div class="login-divide">
