@@ -1,6 +1,7 @@
 .login-container {
   padding: 2.757em;
 }
+
 .login-wrapper {
   display: flex;
   align-items: center;
@@ -8,6 +9,7 @@
   flex-direction: column;
   height: 80vh;
 }
+
 .login-bubble {
   background: url("../../img/aqua-tiling.png");
   background-repeat: no-repeat;
@@ -15,10 +17,12 @@
   border: 1px solid #b1e1fc;
   border-radius: 12px;
 }
+
 .login-divide,
 .divide-wrap {
   padding: 1.457em;
 }
+
 .login-header {
   display: flex;
   align-items: center;
@@ -26,54 +30,67 @@
   text-align: center;
   margin-bottom: 1em;
 }
+
 .detail h1 {
   font-size: 1.657em;
   margin-bottom: 6px;
 }
+
 .login-form form div {
   display: flex;
   flex-direction: column;
 }
+
 .login-form input {
   width: 480px;
   padding: 0.657em;
   border-radius: 6px;
+  transition: all .2s ease-out;
 }
+
 .divide-wrap input[type="submit"] {
   width: 480px;
   padding: 0.657em;
 }
+
 .login-form input[type="email"],
 .login-form input[type="password"] {
   border: 1px solid #b1e1fc;
 }
+
 .login-form input[type="email"]:focus,
 .login-form input[type="password"]:focus {
   border-color: #007bff;
   outline: none;
 }
+
 .login-form label {
   min-height: 32px;
 }
+
 #email-wrapper,
 #pwd-wrap {
   margin-bottom: 12px;
 }
+
 .brand-logo {
   width: 64px;
   margin-bottom: 6px;
   border-radius: 12px;
   background: linear-gradient(188deg, #eff4f6 -117.73%, #1a61ec 134.45%);
 }
+
 .forgot-password {
   text-decoration: underline;
   text-align: right;
 }
+
 .blue-mark,
 .forgot-password {
-    color: #1a61ec;
-    font-size: 0.857em;
+  color: #1a61ec;
+  font-size: 0.857em;
 }
+
 /* #eye-wrapper {
   position: relative;
   margin-bottom: 1.5rem;
@@ -91,12 +108,13 @@
 } */
 .divide-wrap {
   border-top: 1px solid #b1e1fc;
-  background: rgba(200,240,253, 0.4);
+  background: rgba(200, 240, 253, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
+
 .divide-wrap input[type="submit"] {
   border-radius: 8px;
   border: 1px solid #e1e1e1;
@@ -107,13 +125,16 @@
   margin-bottom: 0.657em;
   transition: 0.2s;
 }
+
 .divide-wrap input[type="submit"]:hover {
   opacity: 0.8;
 }
+
 .divide-wrap input[type="submit"]:disabled {
   cursor: auto;
   background: linear-gradient(188deg, #FFF -117.73%, #DFE1E4 134.45%);
 }
+
 .login-loading {
   display: flex;
   align-items: center;
@@ -121,6 +142,7 @@
   width: 100%;
   height: 160px;
 }
+
 .login-loading svg {
   width: 80px;
 }
