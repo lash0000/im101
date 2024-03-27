@@ -10,7 +10,7 @@ $database = "im101";
 $con = mysqli_connect($host, $username, $password, $database);
 
 if (!$con) {
-  echo "no mysql / xampp" . mysqli_connect_error();
+  echo 'no mysql / xampp' . mysqli_connect_error();
   exit();
 }
 
@@ -76,6 +76,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
   <section class="login-container">
+    <!-- ayoko sa mobile view -->
+    <div class="lg-hidden">
+      <span>204: No Content</span>
+      <div class="status">
+        <p>This website is not applicable to mobile view and lower than 980px monitor screen size
+          kindly adjust the screen size of your browser if you're using mobile then
+          quickly enable desktop site mode feature.</p>
+        <a href="" target="_blank">
+          <span>Learn more</span>
+          <span class="material-symbols-outlined">
+            arrow_forward
+          </span>
+        </a>
+      </div>
+    </div>
     <aside class="login-wrapper">
       <div class="login-bubble">
         <div class="login-divide">
