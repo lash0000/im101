@@ -129,6 +129,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </aside>
   </section>
+  <div class="user-type-wrapper">
+    <div id="dropdown" class="user-content">
+      <div id="select-one" class="drop-selection">
+        <span class="material-symbols-outlined" id="drop-round">
+          group
+        </span>
+        <div class="select-desc">
+          <span>Sign in as Resident</span>
+          <p>Sign in to access your resident portal.</p>
+        </div>
+      </div>
+      <div id="select-two" class="drop-selection">
+        <span class="material-symbols-outlined" id="drop-round">
+          person
+        </span>
+        <div class="select-desc">
+          <span>Sign in as Representative</span>
+          <p>Sign in to access the resident management portal.</p>
+        </div>
+      </div>
+    </div>
+    <div class="user-content user-type">
+      <button>
+        <span>
+          Sign in as Resident
+        </span>
+        <span class="material-symbols-outlined">
+          expand_circle_down
+        </span>
+      </button>
+    </div>
+  </div>
   <script>
     setTimeout(function() {
       const authFailed = document.getElementById('auth-failed');

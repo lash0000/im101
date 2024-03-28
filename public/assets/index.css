@@ -4,39 +4,67 @@
 * {
     margin: 0;
 }
-*, *::before, *::after {
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
-html, body {
+
+html,
+body {
     isolation: isolate;
     height: 100%;
 }
+
 body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     font-family: 'Inter', sans-serif;
 }
-ol, ul {
+
+ol,
+ul {
     padding: 0;
     list-style: none;
 }
-a, button {
+
+a,
+button {
     text-decoration: none;
     cursor: pointer;
 }
-img, picture, video, canvas, svg {
+
+img,
+picture,
+video,
+canvas,
+svg {
     display: block;
     max-width: 100%;
 }
-input, button, textarea, select {
+
+input,
+button,
+textarea,
+select {
     font: inherit;
 }
-p, h1, h2, h3, h4, h5, h6 {
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     overflow-wrap: break-word;
 }
+
 .lg-hidden {
     display: block;
 }
+
 .lg-wrapper {
     background: white;
     position: absolute;
@@ -46,24 +74,68 @@ p, h1, h2, h3, h4, h5, h6 {
     height: 100%;
     transform: translate(-50%, -50%);
     display: flex;
-    align-items: left;
+    align-items: right;
     justify-content: center;
     flex-direction: column;
     max-width: 640px;
     padding: 0.657em;
+    z-index: 99;
 }
+
 .lg-wrapper span {
     font-weight: bold;
     font-size: 3.657em;
 }
+
 .lg-wrapper p {
     font-size: 1.257em;
 }
+
+.user-type-wrapper {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    z-index: -99;
+}
+
+.user-content:first-of-type {
+    margin-bottom: 16px;
+}
+
+#dropdown {
+    background: white;
+    border: 1px solid #E1E1E1;
+    border-radius: 6px;
+}
+
+.user-type button {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0.857em;
+    border-radius: 6px;
+    appearance: none;
+    border: 1px solid #E1E1E1;
+    background: linear-gradient(166deg, #FFF 38.02%, #DFE1E4 199.49%);
+    transition: 0.2s all ease-in;
+    color: #ABABAB;
+}
+
+.user-type button:hover {
+    background: linear-gradient(188deg, #FFF -117.73%, #CDCDCD 134.45%);
+    color: #919191;
+}
+
+.user-type span:first-of-type {
+    margin-right: 0.457em;
+}
+
 /* screen below 1000px */
 @media (min-width: 1024px) {
     .lg-hidden {
         display: none;
     }
+
     .lg-wrapper {
         font-size: 1.257em;
         max-width: 640px;
