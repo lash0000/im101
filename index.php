@@ -129,40 +129,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </aside>
   </section>
-  <div class="user-type-wrapper">
-    <div class="user-content user-type">
-      <button id="drop-select">
-        <span>
-          Sign in as Resident
-        </span>
-        <span class="material-symbols-outlined" id="animate-rotate">
-          expand_circle_down
-        </span>
-      </button>
-    </div>
-  </div>
-  <div id="dropdown" class="user-content" style="opacity: 0; display: none;">
-    <button id="select-one" class="drop-selection">
-      <span class="material-symbols-outlined" id="drop-round">
-        group
-      </span>
-      <div class="select-desc">
-        <span>Sign in as Resident</span>
-        <p>Sign in to access your resident portal.</p>
-      </div>
-    </button>
-    <button id="select-two" class="drop-selection">
-      <span class="material-symbols-outlined" id="drop-round">
-        person
-      </span>
-      <div class="select-desc">
-        <span>Sign in as Representative</span>
-        <p>Sign in to access the resident management portal.</p>
-      </div>
-    </button>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="./public/assets/js/GSAP.js"></script>
   <script>
     setTimeout(function() {
       const authFailed = document.getElementById('auth-failed');
