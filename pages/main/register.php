@@ -23,6 +23,34 @@
 </head>
 
 <body>
+  <!-- ayoko sa mobile view -->
+  <div class="lg-hidden">
+    <div class="lg-wrapper">
+      <span>204: No Content</span>
+      <p>This website is not applicable to mobile view and lower than 1024px monitor screen size
+        kindly adjust the screen size of your browser if you're using mobile then
+        quickly enable desktop site mode feature.</p>
+    </div>
+  </div>
+  <!-- confirmation modal -->
+  <div class="modal-container">
+    <div class="modal-wrapper">
+      <header class="header-modal">
+        <span>Are you sure?</span>
+        <button class="material-symbols-outlined">
+          close
+        </button>
+      </header>
+      <main class="header-body">
+        <span>You are signing up to access these as a resident account?</span>
+        <select id="user-type-selection">
+          <option value="resident">Resident</option>
+          <option value="representative">Representative / Kagawad</option>
+        </select>
+      </main>
+    </div>
+  </div>
+  <!-- signup form -->
   <section class="login-container">
     <aside class="login-wrapper">
       <div class="login-bubble">
@@ -59,7 +87,7 @@
           </div>
         </div>
         <div class="divide-wrap">
-          <input type="submit" value="Submit">
+          <input type="submit" value="Proceed">
           <span>Have an account?
             <a class="blue-mark" href="../../">Sign In</a>
           </span>
