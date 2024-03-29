@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./public/assets/index.css" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
   <title>IM101 - Sign In</title>
 
 </head>
@@ -130,37 +130,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </aside>
   </section>
   <div class="user-type-wrapper">
-    <div id="dropdown" class="user-content">
-      <div id="select-one" class="drop-selection">
-        <span class="material-symbols-outlined" id="drop-round">
-          group
-        </span>
-        <div class="select-desc">
-          <span>Sign in as Resident</span>
-          <p>Sign in to access your resident portal.</p>
-        </div>
-      </div>
-      <div id="select-two" class="drop-selection">
-        <span class="material-symbols-outlined" id="drop-round">
-          person
-        </span>
-        <div class="select-desc">
-          <span>Sign in as Representative</span>
-          <p>Sign in to access the resident management portal.</p>
-        </div>
-      </div>
-    </div>
     <div class="user-content user-type">
-      <button>
+      <button id="drop-select">
         <span>
           Sign in as Resident
         </span>
-        <span class="material-symbols-outlined">
+        <span class="material-symbols-outlined" id="animate-rotate">
           expand_circle_down
         </span>
       </button>
     </div>
   </div>
+  <div id="dropdown" class="user-content" style="opacity: 0; display: none;">
+    <button id="select-one" class="drop-selection">
+      <span class="material-symbols-outlined" id="drop-round">
+        group
+      </span>
+      <div class="select-desc">
+        <span>Sign in as Resident</span>
+        <p>Sign in to access your resident portal.</p>
+      </div>
+    </button>
+    <button id="select-two" class="drop-selection">
+      <span class="material-symbols-outlined" id="drop-round">
+        person
+      </span>
+      <div class="select-desc">
+        <span>Sign in as Representative</span>
+        <p>Sign in to access the resident management portal.</p>
+      </div>
+    </button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="./public/assets/js/GSAP.js"></script>
   <script>
     setTimeout(function() {
       const authFailed = document.getElementById('auth-failed');

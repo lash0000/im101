@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../public/assets/index.css" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
   <title>IM101 - Sign Up</title>
 
 </head>
@@ -68,6 +68,40 @@
       </div>
     </aside>
   </section>
+  <div class="user-type-wrapper">
+    <div class="user-content user-type">
+      <button id="drop-select">
+        <span>
+          Sign Up as Resident
+        </span>
+        <span class="material-symbols-outlined" id="animate-rotate">
+          expand_circle_down
+        </span>
+      </button>
+    </div>
+  </div>
+  <div id="dropdown" class="user-content" style="opacity: 0; display: none;">
+    <button id="select-one" class="drop-selection">
+      <span class="material-symbols-outlined" id="drop-round">
+        group
+      </span>
+      <div class="select-desc">
+        <span>Sign Up as Resident</span>
+        <p>Sign up to access your resident portal.</p>
+      </div>
+    </button>
+    <button id="select-two" class="drop-selection">
+      <span class="material-symbols-outlined" id="drop-round">
+        person
+      </span>
+      <div class="select-desc">
+        <span>Sign up as Representative</span>
+        <p>Sign up to access the resident management portal.</p>
+      </div>
+    </button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="../../public/assets/js/GSAP.js"></script>
 </body>
 
 </html>
