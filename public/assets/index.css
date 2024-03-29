@@ -2,37 +2,37 @@
 @import url("../assets/modules/dash.module.css");
 
 * {
-    margin: 0;
+  margin: 0;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    isolation: isolate;
-    height: 100%;
+  isolation: isolate;
+  height: 100%;
 }
 
 body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Inter", sans-serif;
 }
 
 ol,
 ul {
-    padding: 0;
-    list-style: none;
+  padding: 0;
+  list-style: none;
 }
 
 a,
 button {
-    text-decoration: none;
-    cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 img,
@@ -40,15 +40,15 @@ picture,
 video,
 canvas,
 svg {
-    display: block;
-    max-width: 100%;
+  display: block;
+  max-width: 100%;
 }
 
 input,
 button,
 textarea,
 select {
-    font: inherit;
+  font: inherit;
 }
 
 p,
@@ -58,78 +58,121 @@ h3,
 h4,
 h5,
 h6 {
-    overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
+/* 204: no content page */
+
 .lg-hidden {
-    display: block;
+  background: #ffffff;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 99;
 }
 
 .lg-wrapper {
-    background: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: right;
-    justify-content: center;
-    flex-direction: column;
-    max-width: 640px;
-    padding: 0.657em;
-    z-index: 99;
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 780px;
+  padding: 0.657em;
 }
 
 .lg-wrapper span {
-    font-weight: bold;
-    font-size: 3.657em;
+  font-weight: bold;
+  font-size: 3.657em;
 }
 
 .lg-wrapper p {
-    font-size: 1.257em;
+  font-size: 1.257em;
 }
 
+/* user type dropdown */
+
 .user-type-wrapper {
-    position: absolute;
-    right: 24px;
-    bottom: 24px;
-    z-index: -99;
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  cursor: pointer;
+  z-index: -99;
 }
 
 .user-content:first-of-type {
-    margin-bottom: 16px;
-}
-
-#dropdown {
-    background: white;
-    border: 1px solid #E1E1E1;
-    border-radius: 6px;
+  margin-bottom: 16px;
 }
 
 .user-type button {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    padding: 0.857em;
-    border-radius: 6px;
-    appearance: none;
-    border: 1px solid #E1E1E1;
-    background: linear-gradient(166deg, #FFF 38.02%, #DFE1E4 199.49%);
-    transition: 0.2s all ease-in;
-    color: #ABABAB;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  float: right;
+  padding: 0.857em;
+  border-radius: 6px;
+  appearance: none;
+  border: 1px solid #e1e1e1;
+  background: linear-gradient(166deg, #fff 38.02%, #dfe1e4 199.49%);
+  transition: 0.2s all ease-in;
+  color: #ababab;
+  z-index: 99;
 }
 
 .user-type button:hover {
-    background: linear-gradient(188deg, #FFF -117.73%, #CDCDCD 134.45%);
-    color: #919191;
+  background: linear-gradient(188deg, #fff -117.73%, #cdcdcd 134.45%);
+  color: #919191;
 }
 
 .user-type span:first-of-type {
-    margin-right: 0.457em;
+  margin-right: 0.457em;
 }
 
+#dropdown {
+  background: white;
+  position: absolute;
+  right: 24px;
+  bottom: 96px;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+}
+
+.drop-selection {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    text-align: left;
+    width: 100%;
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 0.857em;
+    transition: 0.2s all;
+}
+.drop-selection:hover {
+  background: #f5f5f5;
+}
+#drop-round {
+    padding: 0.457em;
+    border-radius: 6px;
+    background: linear-gradient(188deg, #eff4f6 -117.73%, #1a61ec 134.45%);
+    margin-right: 0.457em;
+    color: #fff;
+}
+.select-desc span {
+    font-size: 0.857em;
+    font-weight: 500;
+}
+.select-desc p {
+    font-size: 0.657em;
+    color: #A3A3A3;
+}
 /* screen below 1000px */
 @media (min-width: 1024px) {
     .lg-hidden {
