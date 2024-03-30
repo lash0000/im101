@@ -105,6 +105,7 @@ h6 {
   bottom: 24px;
   cursor: pointer;
   z-index: -99;
+  user-select: none;
 }
 
 .user-content:first-of-type {
@@ -142,6 +143,7 @@ h6 {
   bottom: 96px;
   border: 1px solid #e1e1e1;
   border-radius: 6px;
+  user-select: none;
 }
 
 .drop-selection {
