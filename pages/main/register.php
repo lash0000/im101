@@ -43,21 +43,15 @@
       </header>
       <main class="header-body">
         <label>Are you sure you want to sign up for a resident account?
-          This will grant you access to resident-specific features on our platform.</label>
+          This will grant you access to resident-specific features on our platform if ever.</label>
         <select id="user-type-selection">
           <option value="resident">Resident</option>
           <option value="representative">Representative / Kagawad</option>
         </select>
       </main>
       <footer class="header-options">
-        <a href="" class="proceed-active">
-          <button>
-            Proceed
-          </button>
-        </a>
-        <button>
-          Cancel
-        </button>
+        <input type="submit" value="Submit" class="proceed-active">
+        <button>Cancel</button>
       </footer>
     </div>
   </div>

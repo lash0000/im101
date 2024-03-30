@@ -1,6 +1,6 @@
 /* Modal Process for Sign Up */
 .modal-container {
-    display: none;
+    /* display: none; */
     background: rgba(0, 0, 0, 0.9);
     position: absolute;
     top: 0;
@@ -34,7 +34,8 @@
     font-size: 1.657em;
 }
 
-.header-modal button {
+.header-modal button,
+.header-modal input {
     background: transparent;
     border-radius: 9999px;
     border: 1px solid #D2D2D2;
@@ -93,14 +94,17 @@
     user-select: none;
 }
 
-.header-options button:nth-child(1) {
+.proceed-active {
     background: linear-gradient(188deg, #eff4f6 -117.73%, #1a61ec 134.45%);
     color: white;
     border: none;
     margin-bottom: 0.734em;
+    padding: 0.657em;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-.header-options button:nth-child(1):hover {
+.proceed-active:hover {
     opacity: 0.9;
 }
 
