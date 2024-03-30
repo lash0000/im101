@@ -1,5 +1,6 @@
 /* Modal Process for Sign Up */
 .modal-container {
+    display: none;
     background: rgba(0, 0, 0, 0.9);
     position: absolute;
     top: 0;
@@ -8,6 +9,7 @@
     height: 100%;
     padding: 1em;
 }
+
 .modal-wrapper {
     background: white;
     position: absolute;
@@ -15,5 +17,97 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
+    border-radius: 12px;
+}
+
+.header-modal {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    padding: 1.468em;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.header-modal span {
+    font-weight: bold;
+    font-size: 1.657em;
+}
+
+.header-modal button {
+    background: transparent;
+    border-radius: 9999px;
+    border: 1px solid #D2D2D2;
+    appearance: none;
+    user-select: none;
+}
+
+.header-modal button:hover {
+    background: #e2e2e2;
+}
+
+.header-body {
+    padding: 1.468em;
+}
+
+.header-body label {
+    display: block;
+    font-size: 1em;
+    margin-bottom: 0.657em;
+}
+
+.header-body select {
+    width: 100%;
+    padding: 0.657em;
+    appearance: none;
+    border: 1px solid #D2D2D2;
     border-radius: 6px;
+    text-indent: 4px;
+    user-select: none;
+    outline: none;
+}
+
+.header-body select:focus {
+    border: 1px solid #D2D2D2;
+}
+
+.header-body option {
+    appearance: none;
+}
+
+.header-options {
+    border-top: 1px solid #D2D2D2;
+    display: flex;
+    align-items: left;
+    justify-content: baseline;
+    flex-direction: column;
+    padding: 1.468em;
+}
+
+.header-options button {
+    width: 100%;
+    padding: 0.657em;
+    border-radius: 6px;
+    font-weight: 500;
+    outline: none;
+    user-select: none;
+}
+
+.header-options button:nth-child(1) {
+    background: linear-gradient(188deg, #eff4f6 -117.73%, #1a61ec 134.45%);
+    color: white;
+    border: none;
+    margin-bottom: 0.734em;
+}
+
+.header-options button:nth-child(1):hover {
+    opacity: 0.9;
+}
+
+.header-options button:nth-child(2) {
+    background: #F3F3F3;
+    border: 1px solid #D2D2D2;
+}
+.header-options button:nth-child(2):hover {
+    background: #e4e4e4;
 }

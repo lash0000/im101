@@ -42,12 +42,23 @@
         </button>
       </header>
       <main class="header-body">
-        <span>You are signing up to access these as a resident account?</span>
+        <label>Are you sure you want to sign up for a resident account?
+          This will grant you access to resident-specific features on our platform.</label>
         <select id="user-type-selection">
           <option value="resident">Resident</option>
           <option value="representative">Representative / Kagawad</option>
         </select>
       </main>
+      <footer class="header-options">
+        <a href="" class="proceed-active">
+          <button>
+            Proceed
+          </button>
+        </a>
+        <button>
+          Cancel
+        </button>
+      </footer>
     </div>
   </div>
   <!-- signup form -->
@@ -83,7 +94,7 @@
                 </span> -->
                 </div>
               </div>
-              <a class="forgot-password" href="" hx-boost>Suggest password?</a>
+              <button class="suggest-password" href="">Suggest password?</button>
           </div>
         </div>
         <div class="divide-wrap">

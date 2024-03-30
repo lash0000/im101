@@ -87,8 +87,18 @@
   text-align: right;
 }
 
+.suggest-password {
+  background: transparent;
+  outline: none;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  text-align: right;
+}
+
 .blue-mark,
-.forgot-password {
+.forgot-password,
+.suggest-password {
   color: #1a61ec;
   font-size: 0.857em;
 }
