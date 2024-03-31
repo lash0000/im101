@@ -86,9 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </button>
       </header>
       <main class="header-body">
-        <label id="modal-label">Are you sure you want to sign up for a resident account?
-          This will grant you access to resident-specific features on our platform if ever.</label>
-        <select id="user-type-selection">
+        <label id="modal-label">This will grant you access to resident-specific features to our platform if ever.</label>
+        <select id="dropdown" required>
           <option value="resident">Resident</option>
           <option value="representative">Representative / Kagawad</option>
         </select>
@@ -159,7 +158,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="../../public/assets/js/GSAP.js"></script>
-
 </body>
 
 </html>

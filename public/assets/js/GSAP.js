@@ -43,17 +43,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //When changing the option available in Sign Up...
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   const userTypeSelection = document.getElementById("dropdown");
   const modalLabel = document.getElementById("modal-label");
 
-  userTypeSelection.addEventListener("change", function () {
+  userTypeSelection.addEventListener("change", function() {
     if (userTypeSelection.value === "resident") {
       modalLabel.innerText =
-        "Are you sure you want to sign up for a resident account? This will grant you access to resident-specific features to our platform if ever.";
+        "This will grant you access to resident-specific features to our platform if ever.";
     } else if (userTypeSelection.value === "representative") {
       modalLabel.innerText =
-        "Are you sure you want to sign up for a representative account? This will grant you access to representative mode features available to our platform if ever.";
+        "This will grant you access to representative mode features available to our platform if ever.";
     }
   });
 });
