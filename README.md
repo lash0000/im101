@@ -1,7 +1,7 @@
 # im101
 update as of 03/27/24
 - may UI na sa login
-- wip pa sa sign up
+- may UI na sa sign up
 - whole progress: 2/100
 
 # Initial Plans
