@@ -97,93 +97,14 @@ h6 {
   font-size: 1.257em;
 }
 
-/* user type dropdown */
-
-.user-type-wrapper {
-  position: absolute;
-  right: 24px;
-  bottom: 24px;
-  cursor: pointer;
-  z-index: -99;
-  user-select: none;
-}
-
-.user-content:first-of-type {
-  margin-bottom: 16px;
-}
-
-.user-type button {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  float: right;
-  padding: 0.857em;
-  border-radius: 6px;
-  appearance: none;
-  border: 1px solid #e1e1e1;
-  background: linear-gradient(166deg, #fff 38.02%, #dfe1e4 199.49%);
-  transition: 0.2s all ease-in;
-  color: #ababab;
-  z-index: 99;
-}
-
-.user-type button:hover {
-  background: linear-gradient(188deg, #fff -117.73%, #cdcdcd 134.45%);
-  color: #919191;
-}
-
-.user-type span:first-of-type {
-  margin-right: 0.457em;
-}
-
-#dropdown {
-  background: white;
-  position: absolute;
-  right: 24px;
-  bottom: 96px;
-  border: 1px solid #e1e1e1;
-  border-radius: 6px;
-  user-select: none;
-}
-
-.drop-selection {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    text-align: left;
-    width: 100%;
-    appearance: none;
-    border: none;
-    background: transparent;
-    padding: 0.857em;
-    transition: 0.2s all;
-}
-.drop-selection:hover {
-  background: #f5f5f5;
-}
-#drop-round {
-    padding: 0.457em;
-    border-radius: 6px;
-    background: linear-gradient(188deg, #eff4f6 -117.73%, #1a61ec 134.45%);
-    margin-right: 0.457em;
-    color: #fff;
-}
-.select-desc span {
-    font-size: 0.857em;
-    font-weight: 500;
-}
-.select-desc p {
-    font-size: 0.657em;
-    color: #A3A3A3;
-}
 /* screen below 1000px */
 @media (min-width: 1024px) {
-    .lg-hidden {
-        display: none;
-    }
+  .lg-hidden {
+      display: none;
+  }
 
-    .lg-wrapper {
-        font-size: 1.257em;
-        max-width: 640px;
-    }
+  .lg-wrapper {
+      font-size: 1.257em;
+      max-width: 640px;
+  }
 }
