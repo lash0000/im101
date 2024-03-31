@@ -56,12 +56,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //When changing the option available in Sign Up...
-
-document.addEventListener("DOMContentLoaded", function() {
-  const userTypeSelection = document.getElementById("dropdown");
+document.addEventListener("DOMContentLoaded", function () {
+  const userTypeSelection = document.getElementById("signup-dropdown");
   const modalLabel = document.getElementById("modal-label");
 
-  userTypeSelection.addEventListener("change", function() {
+  userTypeSelection.addEventListener("change", function () {
     if (userTypeSelection.value === "resident") {
       modalLabel.innerText =
         "This will grant you access to resident-specific features to our platform if ever.";
