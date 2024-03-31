@@ -10,34 +10,36 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $email = $_POST["email"];
-  $password = $_POST["password"];
-  $userType = $_POST["user-type"];
+// Check if the form is submitted
+// if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["user-type"])) {
+//   // Retrieve form data
+//   $email = $_POST["email"];
+//   $password = $_POST["password"];
+//   $userType = $_POST["user-type"];
 
-  $emailColumn = "";
-  $passwordColumn = "";
+//   $emailColumn = "";
+//   $passwordColumn = "";
 
-  if ($userType === "resident") {
-    $emailColumn = "resident_email";
-    $passwordColumn = "resident_pwd";
-    $table = "resident";
-  } elseif ($userType === "representative") {
-    $emailColumn = "kgwd_email";
-    $passwordColumn = "kgwd_pwd";
-    $table = "representative";
-  }
+//   // Determine the column names based on user type
+//   if ($userType === "resident") {
+//     $emailColumn = "resident_email";
+//     $passwordColumn = "resident_pwd";
+//     $table = "resident";
+//   } elseif ($userType === "representative") {
+//     $emailColumn = "kgwd_email";
+//     $passwordColumn = "kgwd_pwd";
+//     $table = "representative";
+//   }
 
-  $sql = "INSERT INTO $table ($emailColumn, $passwordColumn) VALUES ('$email', '$password')";
+//   // Insert data into the database
+//   $sql = "INSERT INTO $table ($emailColumn, $passwordColumn) VALUES ('$email', '$password')";
 
-  if (mysqli_query($conn, $sql)) {
-    echo 'success';
-  } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-  }
-
-  mysqli_close($conn);
-}
+//   if (mysqli_query($conn, $sql)) {
+//     echo 'Data inserted successfully';
+//   } else {
+//     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+//   }
+// }
 ?>
 
 
@@ -87,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </header>
       <main class="header-body">
         <label id="modal-label">This will grant you access to resident-specific features to our platform if ever.</label>
-        <select id="dropdown" required>
+        <select id="dropdown" name="user-type" required>
           <option value="resident">Resident</option>
           <option value="representative">Representative / Kagawad</option>
         </select>
@@ -131,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </span> -->
                 </div>
               </div>
-              <button class="suggest-password" href="">Suggest password?</button>
+              <a class="suggest-password">Suggest password?</a>
           </div>
         </div>
         <div class="divide-wrap">

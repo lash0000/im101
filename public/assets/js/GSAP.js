@@ -39,6 +39,20 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
+
+  //added keyboard interaction huh...
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      gsap.to(modalContainer, {
+        opacity: 0,
+        display: "none",
+        duration: 0.2,
+      });
+      gsap.to("body", {
+        overflow: "auto",
+      });
+    }
+  })
 });
 
 //When changing the option available in Sign Up...

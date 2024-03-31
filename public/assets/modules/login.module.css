@@ -19,7 +19,6 @@
   border: 1px solid #b1e1fc;
   border-radius: 12px;
   box-shadow: 0 20px 25px -5px rgba(30, 158, 233, 0.1), 0 8px 10px -6px rgb(177 225 252 / 0.1);
-  /* box-shadow: 0 10px 15px -3px rgba(30, 158, 233, 0.1), 0 4px 6px -4px rgb(177 225 252 / 0.1); */
 }
 
 .login-divide,
@@ -52,7 +51,8 @@
   transition: all .2s ease-out;
 }
 
-.divide-wrap input[type="submit"] {
+.divide-wrap input[type="submit"],
+.divide-wrap button {
   width: 480px;
   padding: 0.657em;
 }
@@ -131,7 +131,8 @@
   flex-direction: column;
 }
 
-.divide-wrap input[type="submit"] {
+.divide-wrap input[type="submit"],
+.divide-wrap button {
   border-radius: 8px;
   border: 1px solid #e1e1e1;
   background: linear-gradient(188deg, #eff4f6 -117.73%, #1a61ec 134.45%);
@@ -142,7 +143,8 @@
   transition: 0.2s;
 }
 
-.divide-wrap input[type="submit"]:hover {
+.divide-wrap input[type="submit"]:hover,
+.divide-wrap button:hover {
   opacity: 0.8;
 }
 
