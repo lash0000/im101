@@ -18,6 +18,8 @@
   background-size: cover;
   border: 1px solid #b1e1fc;
   border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(30, 158, 233, 0.1), 0 8px 10px -6px rgb(177 225 252 / 0.1);
+  /* box-shadow: 0 10px 15px -3px rgba(30, 158, 233, 0.1), 0 4px 6px -4px rgb(177 225 252 / 0.1); */
 }
 
 .login-divide,
