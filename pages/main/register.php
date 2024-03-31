@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </button>
       </header>
       <main class="header-body">
-        <label>Are you sure you want to sign up for a resident account?
+        <label id="modal-label">Are you sure you want to sign up for a resident account?
           This will grant you access to resident-specific features on our platform if ever.</label>
         <select id="user-type-selection">
           <option value="resident">Resident</option>
@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="user-type-wrapper">
     <select id="dropdown">
       <option value="resident" id="select-one">
-        Sign Up as Resident
+        Sign Up as Resident Mode
       </option>
       <option value="representative" id="select-two">
         Sign up as Representative
