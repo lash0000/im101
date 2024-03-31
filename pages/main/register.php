@@ -10,39 +10,31 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-// Check if the form is submitted
-// if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["user-type"])) {
-//   // Retrieve form data
-//   $email = $_POST["email"];
-//   $password = $_POST["password"];
-//   $userType = $_POST["user-type"];
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"], $_POST["password"], $_POST["user-type"])) {
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+  $userType = $_POST["user-type"];
 
-//   $emailColumn = "";
-//   $passwordColumn = "";
+  $emailColumn = ($userType === "resident") ? "resident_email" : "kgwd_email";
+  $passwordColumn = ($userType === "resident") ? "resident_pwd" : "kgwd_pwd";
+  $table = ($userType === "resident") ? "resident" : "representative";
 
-//   // Determine the column names based on user type
-//   if ($userType === "resident") {
-//     $emailColumn = "resident_email";
-//     $passwordColumn = "resident_pwd";
-//     $table = "resident";
-//   } elseif ($userType === "representative") {
-//     $emailColumn = "kgwd_email";
-//     $passwordColumn = "kgwd_pwd";
-//     $table = "representative";
-//   }
+  $sql = "INSERT INTO $table ($emailColumn, $passwordColumn, user_type) VALUES (?, ?, ?)";
+  $stmt = mysqli_prepare($conn, $sql);
+  mysqli_stmt_bind_param($stmt, "sss", $email, $password, $userType);
 
-//   // Insert data into the database
-//   $sql = "INSERT INTO $table ($emailColumn, $passwordColumn) VALUES ('$email', '$password')";
+  if (mysqli_stmt_execute($stmt)) {
+    header("Location: ../../auth/confirm.php");
+    exit();
+  } else {
+    echo "Error: " . mysqli_stmt_error($stmt);
+  }
 
-//   if (mysqli_query($conn, $sql)) {
-//     echo 'Data inserted successfully';
-//   } else {
-//     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-//   }
-// }
+  mysqli_stmt_close($stmt);
+}
+
+mysqli_close($conn);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +49,6 @@ if (!$conn) {
   <link rel="mask-icon" href="../../public/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
-  <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -76,28 +67,6 @@ if (!$conn) {
       <p>This website is not applicable to mobile view and lower than 1024px monitor screen size
         kindly adjust the screen size of your browser if you're using mobile then
         quickly enable desktop site mode feature.</p>
-    </div>
-  </div>
-  <!-- confirmation modal -->
-  <div class="modal-container" style="opacity: 0; display: none;">
-    <div class="modal-wrapper">
-      <header class="header-modal">
-        <span>Are you sure?</span>
-        <button class="material-symbols-outlined" id="close-modal">
-          close
-        </button>
-      </header>
-      <main class="header-body">
-        <label id="modal-label">This will grant you access to resident-specific features to our platform if ever.</label>
-        <select id="dropdown" name="user-type" required>
-          <option value="resident">Resident</option>
-          <option value="representative">Representative / Kagawad</option>
-        </select>
-      </main>
-      <footer class="header-options">
-        <input type="submit" value="Submit" class="proceed-active">
-        <button id="close-modal">Cancel</button>
-      </footer>
     </div>
   </div>
   <!-- signup form -->
@@ -158,8 +127,60 @@ if (!$conn) {
     </select>
   </div>
 
+  <!-- confirmation modal -->
+  <div class="modal-container" style="opacity: 0; display: none;">
+    <div class="modal-wrapper">
+      <header class="header-modal">
+        <span>Are you sure?</span>
+        <button class="material-symbols-outlined" id="close-modal">
+          close
+        </button>
+      </header>
+      <main class="header-body">
+        <label id="modal-label">This will grant you access to resident-specific features to our platform if ever.</label>
+        <select id="signup-dropdown" name="user-type" required>
+          <option value="resident">Resident</option>
+          <option value="representative">Representative / Kagawad</option>
+        </select>
+      </main>
+      <footer class="header-options">
+        <button id="submit-modal" class="proceed-active">Submit</button>
+        <button id="close-modal">Cancel</button>
+      </footer>
+    </div>
+  </div>
+
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="../../public/assets/js/GSAP.js"></script>
+  <script>
+    //ayaw kasi ni PHP eh (this is for my modal)
+    const submitButton = document.getElementById('submit-modal');
+
+    submitButton.addEventListener('click', function() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const userType = document.getElementById('signup-dropdown').value;
+
+      fetch('register.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `email=${email}&password=${password}&user-type=${userType}`
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = '../../auth/confirm.php';
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      })
+      .catch(error => {
+        console.error('There was a problem with fetch ops lol:', error);
+      });
+    });
+  </script>
 </body>
 
 </html>
