@@ -1,3 +1,47 @@
+<?php
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "im101";
+
+$conn = mysqli_connect($host, $username, $password, $database);
+
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+  $userType = $_POST["user-type"];
+
+  $emailColumn = "";
+  $passwordColumn = "";
+
+  if ($userType === "resident") {
+    $emailColumn = "resident_email";
+    $passwordColumn = "resident_pwd";
+    $table = "resident";
+  } elseif ($userType === "representative") {
+    $emailColumn = "kgwd_email";
+    $passwordColumn = "kgwd_pwd";
+    $table = "representative";
+  }
+
+  $sql = "INSERT INTO $table ($emailColumn, $passwordColumn) VALUES ('$email', '$password')";
+
+  if (mysqli_query($conn, $sql)) {
+    echo 'success';
+  } else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+  }
+
+  mysqli_close($conn);
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,11 +77,11 @@
     </div>
   </div>
   <!-- confirmation modal -->
-  <div class="modal-container">
+  <div class="modal-container" style="opacity: 0; display: none;">
     <div class="modal-wrapper">
       <header class="header-modal">
         <span>Are you sure?</span>
-        <button class="material-symbols-outlined">
+        <button class="material-symbols-outlined" id="close-modal">
           close
         </button>
       </header>
@@ -51,7 +95,7 @@
       </main>
       <footer class="header-options">
         <input type="submit" value="Submit" class="proceed-active">
-        <button>Cancel</button>
+        <button id="close-modal">Cancel</button>
       </footer>
     </div>
   </div>
@@ -101,40 +145,21 @@
       </div>
     </aside>
   </section>
+  <!-- bottom alignment selection -->
   <div class="user-type-wrapper">
-    <div class="user-content user-type">
-      <button id="drop-select">
-        <span>
-          Sign Up as Resident
-        </span>
-        <span class="material-symbols-outlined" id="animate-rotate">
-          expand_circle_down
-        </span>
-      </button>
-    </div>
+    <select id="dropdown">
+      <option value="resident" id="select-one">
+        Sign Up as Resident
+      </option>
+      <option value="representative" id="select-two">
+        Sign up as Representative
+      </option>
+    </select>
   </div>
-  <div id="dropdown" class="user-content" style="opacity: 0; display: none;">
-    <button id="select-one" class="drop-selection">
-      <span class="material-symbols-outlined" id="drop-round">
-        group
-      </span>
-      <div class="select-desc">
-        <span>Sign Up as Resident</span>
-        <p>Sign up to access your resident portal.</p>
-      </div>
-    </button>
-    <button id="select-two" class="drop-selection">
-      <span class="material-symbols-outlined" id="drop-round">
-        person
-      </span>
-      <div class="select-desc">
-        <span>Sign up as Representative</span>
-        <p>Sign up to access the resident management portal.</p>
-      </div>
-    </button>
-  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="../../public/assets/js/GSAP.js"></script>
+
 </body>
 
 </html>
