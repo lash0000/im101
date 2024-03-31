@@ -101,6 +101,7 @@
 .suggest-password {
   color: #1a61ec;
   font-size: 0.857em;
+  user-select: none;
 }
 
 /* #eye-wrapper {
