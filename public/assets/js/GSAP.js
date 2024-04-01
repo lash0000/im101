@@ -52,13 +52,14 @@ document.addEventListener("DOMContentLoaded", function () {
         overflow: "auto",
       });
     }
-  })
+  });
 });
 
 //When changing the option available in Sign Up...
 document.addEventListener("DOMContentLoaded", function () {
   const userTypeSelection = document.getElementById("signup-dropdown");
   const modalLabel = document.getElementById("modal-label");
+  const bottomAlignmentSelection = document.getElementById("dropdown");
 
   userTypeSelection.addEventListener("change", function () {
     if (userTypeSelection.value === "resident") {
@@ -68,5 +69,10 @@ document.addEventListener("DOMContentLoaded", function () {
       modalLabel.innerText =
         "This will grant you access to representative mode features available to our platform if ever.";
     }
+  });
+
+  bottomAlignmentSelection.addEventListener("change", function () {
+    userTypeSelection.value = bottomAlignmentSelection.value;
+    userTypeSelection.dispatchEvent(new Event("change"));
   });
 });
