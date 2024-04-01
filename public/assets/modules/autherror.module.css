@@ -1,0 +1,171 @@
+/* Copycat of Sign In / Sign Up Design */
+
+.auth-error-container {
+  padding: 2.757em;
+}
+
+.auth-error-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.auth-error-bubble {
+  background: url("../../img/aqua-tiling-err.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid #eac2c2;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(234, 194, 194, 0.2),
+    0 8px 10px -6px rgb(234 194 194 / 0.1);
+}
+
+.auth-error-divide,
+.red-divide-wrap {
+  padding: 1.457em;
+}
+
+.auth-error-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.detail h1 {
+  font-size: 1.657em;
+  margin-bottom: 6px;
+}
+
+.detail p {
+  max-width: 460px;
+  word-wrap: break-word;
+}
+
+.auth-error-form form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-error-form input {
+  width: 480px;
+  padding: 0.657em;
+  border-radius: 6px;
+  transition: all 0.2s ease-out;
+}
+
+.red-divide-wrap input[type="submit"],
+.red-divide-wrap button {
+  width: 480px;
+  padding: 0.657em;
+  user-select: none;
+}
+
+.auth-error-form input[type="email"],
+.auth-error-form input[type="password"] {
+  border: 1px solid #b1e1fc;
+}
+
+.auth-error-form input[type="email"]:focus,
+.auth-error-form input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.auth-error-form label {
+  min-height: 32px;
+}
+
+#email-wrapper,
+#pwd-wrap {
+  margin-bottom: 12px;
+}
+
+.red-brand-logo {
+  width: 64px;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  background: linear-gradient(188deg, #eff4f6 -117.73%, #f15d5d 134.45%);
+}
+
+.forgot-password {
+  text-decoration: underline;
+  text-align: right;
+}
+
+.suggest-password {
+  background: transparent;
+  outline: none;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  text-align: right;
+}
+
+.red-mark {
+  color: #f15d5d;
+  font-size: 0.857em;
+  user-select: none;
+}
+
+/* #eye-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+  }
+  #eye {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      padding-right: 1rem;
+      pointer-events: none;
+  } */
+
+.red-divide-wrap {
+  border-top: 1px solid #b1e1fc;
+  background: rgba(200, 240, 253, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.red-divide-wrap input[type="submit"],
+.red-divide-wrap button {
+  border-radius: 8px;
+  border: 1px solid #e1e1e1;
+  background: linear-gradient(188deg, #eff4f6 -117.73%, #f15d5d 134.45%);
+  appearance: none;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 0.657em;
+  transition: 0.2s;
+}
+
+.red-divide-wrap input[type="submit"]:hover,
+.red-divide-wrap button:hover {
+  opacity: 0.8;
+}
+
+.red-divide-wrap input[type="submit"]:disabled {
+  cursor: auto;
+  background: linear-gradient(188deg, #fff -117.73%, #dfe1e4 134.45%);
+}
+
+.auth-error-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 160px;
+}
+
+.auth-error-loading svg {
+  width: 80px;
+}

@@ -1,6 +1,7 @@
 @import url("../assets/modules/login.module.css");
 @import url("../assets/modules/dash.module.css");
 @import url("../assets/modules/register.module.css");
+@import url("../assets/modules/autherror.module.css");
 
 * {
   margin: 0;

@@ -54,6 +54,7 @@
 .divide-wrap input[type="submit"],
 .divide-wrap button {
   width: 480px;
+  user-select: none;
   padding: 0.657em;
 }
 
