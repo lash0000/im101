@@ -7,23 +7,23 @@ $database = "im101";
 $connection = mysqli_connect($host, $username, $password, $database);
 
 if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
+  die("Connection failed: " . mysqli_connect_error());
 }
 
 $query = "SELECT admin_email FROM administrator";
 $result = mysqli_query($connection, $query);
 
 if ($result) {
-    $row = mysqli_fetch_assoc($result);
+  $row = mysqli_fetch_assoc($result);
 
-    if ($row) {
-        $admin_email = $row['admin_email'];
-        mysqli_free_result($result);
-    } else {
-        $admin_email = "No admin email found";
-    }
+  if ($row) {
+    $admin_email = $row['admin_email'];
+    mysqli_free_result($result);
+  } else {
+    $admin_email = "No admin email found";
+  }
 } else {
-    echo "Error: " . mysqli_error($connection);
+  echo "Error: " . mysqli_error($connection);
 }
 
 mysqli_close($connection);
@@ -55,6 +55,15 @@ mysqli_close($connection);
 </head>
 
 <body>
+  <!-- ayoko sa mobile view -->
+  <div class="lg-hidden">
+    <div class="lg-wrapper">
+      <span>204: No Content</span>
+      <p>This website is not applicable to mobile view and lower than 1024px monitor screen size
+        kindly adjust the screen size of your browser if you're using mobile then
+        quickly enable desktop site mode feature.</p>
+    </div>
+  </div>
   <section class="dash-container">
     <div class="dash-wrapper">
       <div class="dash-logo">
