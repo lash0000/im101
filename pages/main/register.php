@@ -29,6 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"], $_POST["passw
     exit();
   } else {
     echo "Error: " . mysqli_stmt_error($stmt);
+    header("Location: ../../auth/error.php");
+    exit();
   }
 
   mysqli_stmt_close($stmt);
