@@ -21,30 +21,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = mysqli_real_escape_string($con, $email);
   $password = mysqli_real_escape_string($con, $password);
 
-  $query = "SELECT * FROM administrator WHERE admin_email = '$email' AND admin_pwd = '$password'";
-  $result = mysqli_query($con, $query);
+  // Check in the administrator table
+  $query_admin = "SELECT * FROM administrator WHERE admin_email = '$email' AND admin_pwd = '$password'";
+  $result_admin = mysqli_query($con, $query_admin);
 
-  if (mysqli_num_rows($result) == 1) {
+  // Check in the resident table
+  $query_resident = "SELECT * FROM resident WHERE resident_email = '$email' AND resident_pwd = '$password'";
+  $result_resident = mysqli_query($con, $query_resident);
+
+  // Check in the representative table
+  $query_representative = "SELECT * FROM representative WHERE kgwd_email = '$email' AND kgwd_pwd = '$password'";
+  $result_representative = mysqli_query($con, $query_representative);
+
+  if (mysqli_num_rows($result_admin) == 1) {
+    $row = mysqli_fetch_assoc($result_admin);
     $_SESSION['loggedin'] = true;
+    $_SESSION['user_type'] = 'administrator';
+    $_SESSION['user_email'] = $row['admin_email'];
     header("Location: ./auth/load.php");
-
-    $_SESSION['auth_succeed'] = true;
-    $_SESSION['authenticated_email'] = $authenticatedEmail;
+    exit();
+  } elseif (mysqli_num_rows($result_resident) == 1) {
+    $row = mysqli_fetch_assoc($result_resident);
+    $_SESSION['loggedin'] = true;
+    $_SESSION['user_type'] = 'resident';
+    $_SESSION['user_email'] = $row['resident_email'];
+    header("Location: ./auth/load.php");
+    exit();
+  } elseif (mysqli_num_rows($result_representative) == 1) {
+    $row = mysqli_fetch_assoc($result_representative);
+    $_SESSION['loggedin'] = true;
+    $_SESSION['user_type'] = 'representative';
+    $_SESSION['user_email'] = $row['kgwd_email'];
+    header("Location: ./auth/load.php");
     exit();
   } else {
     echo '<div id="auth-failed" style="
-      position: absolute;
-      top: 5%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #FF6347;
-      padding: 0.857em;
-      font-size: 0.767em;
-      color: white;
-      border-radius: 4px;
-      ">
-      <span>Authentication failed. Please check your credentials.</span>
-      </div>';
+          position: absolute;
+          top: 5%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #FF6347;
+          padding: 0.857em;
+          font-size: 0.767em;
+          color: white;
+          border-radius: 4px;
+          ">
+          <span>Authentication failed. Please check your credentials.</span>
+          </div>';
   }
 }
 ?>
