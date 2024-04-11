@@ -6,3 +6,6 @@ update as of 04/09/24
 # Initial Plans
 1. [FigJam - IMIPTHCISE](https://www.figma.com/file/SiEdOnDB9HElAfkJIv1nCo/IMIPTHCISE---Diagrams?type=whiteboard&node-id=0%3A1&t=ZcQ28ss9nmOYs546-1)
 2. Figma - work in progress
+
+# Set tutorial
+- https://youtu.be/KJme5JMxKeo
