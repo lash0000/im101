@@ -6,13 +6,34 @@
 }
 .banner-wrap {
     background: #000; /* fallback bitch */
-    background-image: url('../../../public/login-banner.jpg');
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url('../../../public/login-banner.jpg');
     background-size: cover;
     background-position: center;
     width: 100%;
     height: 100%;
     border-radius: 12px;
     overflow: hidden;
+    position: relative;
+}
+.banner-wrap::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%; 
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+}
+.banner-wrap span {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    color: white;
+    z-index: 99;
+    user-select: none;
+}
+.banner-wrap span:hover {
+    text-decoration: underline;
 }
 .banner-wrap img {
     object-fit: cover;
@@ -26,11 +47,12 @@
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    margin-left: 50px;
+    margin-left: 64px;
 }
 .login-title {
     line-height: 2.575em;
     user-select: none;
+    margin-bottom: 0.856em;
 }
 .login-title label {
     font-size: 3em;
@@ -42,11 +64,13 @@
 #loginForm {
     display: grid;
     grid-auto-flow: row;
+    user-select: none;
+    border-bottom: 1px solid #D9D9D9;
 }
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 0.657em;
+    margin-bottom: 0.857em;
 }
 .form-group label {
     margin-bottom: 0.458em;
@@ -58,12 +82,46 @@
 .form-group input {
     display: block;
     border: 1px solid #D9D9D9;
+    border-radius: 0.24em;
+    transition: 0.2s all ease;
 }
 .form-group input[type="email"]:focus,
 .form-group input[type="password"]:focus {
-  border-color: #007bff;
+  border-color: #F47B37;
   outline: none;
 }
+#loginForm button {
+    background: linear-gradient(190deg, #F47B37 -168.14%, #CC5817 425.2%);
+    outline: none;
+    border: 1px solid #622A0B;
+    border-radius: 0.24em;
+    color: white;
+    transition: 0.2s all ease;
+}
+#loginForm button:hover {
+    box-shadow: 0px 0px 0px 8px #FCCBB0;
+}
 .form-group input {
-    width: 400px;
+    width: 450px;
+}
+.login-options {
+    user-select: none;
+    margin-bottom: 0.757em;
+}
+.login-options a {
+    color: #F47B37;
+}
+.login-info {
+    margin-top: 0.757em;
+    display: flex;
+    align-items: flex-start;
+}
+.login-info svg {
+    margin-right: 12px;
+}
+.login-info span {
+    font-size: 1em;
+    max-width: 400px;
+    word-wrap: normal;
+    color: #969696;
 }
