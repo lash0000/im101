@@ -1,8 +1,13 @@
+/* applicable for sign in and sign up page lmfao */
+
 .login-grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1fr);
     padding: 1.275em;
     height: 100%;
+}
+.login-banner {
+    display: none;
 }
 .banner-wrap {
     background: #000; /* fallback bitch */
@@ -124,4 +129,31 @@
     max-width: 400px;
     word-wrap: normal;
     color: #969696;
+}
+
+@media (max-width: 767px) and (min-width: 480px) {
+    #loginForm {
+        width: 420px;
+    }
+    .login-title label {
+        font-size: 2.25em;
+    }
+    .form-group input {
+        width: 100%;
+    }
+    .login-title p {
+        font-size: 1em;
+    }
+    .login-title {
+        line-height: 2em;
+    }
+}
+
+@media (min-width: 768px) {
+    .login-banner {
+        display: block;
+    }
+    .login-grid-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

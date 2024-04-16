@@ -19,7 +19,7 @@
     <title>Treiven - Sign In</title>
 </head>
 
-<body style="overflow: hidden;">
+<body>
 
     <main class="login-grid-wrapper">
         <section class="login-container">
