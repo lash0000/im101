@@ -14,7 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    //Close your modal automatically lol this good enough.
     window.addEventListener("scroll", function () {
+        closeModal();
+    });
+    window.addEventListener("resize", function () {
         closeModal();
     });
 });
