@@ -30,14 +30,14 @@
                 </header>
                 <form id="loginForm" method="post">
                     <div class="form-group">
-                        <label for="email">Email:</label>
+                        <label for="email">Email address</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password:</label>
+                        <label for="password">Password</label>
                         <input type="password" id="password" name="password" required>
                     </div>
-                    <button type="submit">Sign in</button>
+                    <button type="submit" style="margin-bottom: 12px;">Sign in</button>
                 </form>
                 <aside class="login-options">
                     <span>New to Treiven? <a href="">Sign Up</a></span>

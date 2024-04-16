@@ -40,6 +40,30 @@
     font-size: 1.475em;
 }
 #loginForm {
+    display: grid;
+    grid-auto-flow: row;
+}
+.form-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 0.657em;
+}
+.form-group label {
+    margin-bottom: 0.458em;
+}
+#loginForm button,
+.form-group input {
+    padding: 0.457em;
+}
+.form-group input {
+    display: block;
+    border: 1px solid #D9D9D9;
+}
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+.form-group input {
+    width: 400px;
 }
