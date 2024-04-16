@@ -1,0 +1,45 @@
+.login-grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1.275em;
+    height: 100%;
+}
+.banner-wrap {
+    background: #000; /* fallback bitch */
+    background-image: url('../../../public/login-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.banner-wrap img {
+    object-fit: cover;
+}
+.login-info svg {
+    width: 24px;
+}
+.login-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 50px;
+}
+.login-title {
+    line-height: 2.575em;
+    user-select: none;
+}
+.login-title label {
+    font-size: 3em;
+}
+.login-title p {
+    color: #969696;
+    font-size: 1.475em;
+}
+#loginForm {
+    display: flex;
+    flex-direction: column;
+}
