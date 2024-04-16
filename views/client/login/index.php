@@ -42,7 +42,7 @@
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" required>
                     </div>
-                    <button type="submit" style="margin-bottom: 12px;">Sign in</button>
+                    <button type="submit" style="margin-bottom: 12px;">Proceed</button>
                     <aside class="login-options">
                         <span>New to Treiven? <a href="../../../views/client/register/">Sign Up</a></span>
                     </aside>
