@@ -39,7 +39,7 @@
                     </div>
                     <button type="submit" style="margin-bottom: 12px;">Sign in</button>
                     <aside class="login-options">
-                        <span>New to Treiven? <a href="">Sign Up</a></span>
+                        <span>New to Treiven? <a href="../../../views/client/register/">Sign Up</a></span>
                     </aside>
                 </form>
                 <aside class="login-info">
