@@ -62,13 +62,13 @@
             </div>
             <div class="modal-option-wrapper" style="display: none; opacity: 0;">
                 <li class="modal-links">
-                    <a>Sign up</a>
+                    <a href="./views/client/register/">Sign up</a>
                 </li>
                 <li class="modal-links">
-                    <a>Sign in</a>
+                    <a href="./views/client/login/">Sign in</a>
                 </li>
                 <li class="modal-links">
-                    <a>GitHub Repository</a>
+                    <a href="https://github.com/lash0000/im101" target="_blank">GitHub Repository</a>
                 </li>
             </div>
         </nav>

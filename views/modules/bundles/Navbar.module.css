@@ -30,6 +30,9 @@
 .nav-links .nav-active {
     color: #000;
 }
+.modal-links a {
+    color: #000;
+}
 .nav-links a {
     color: #adadad;
 }
