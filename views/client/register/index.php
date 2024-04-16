@@ -19,10 +19,15 @@
     <title>Treiven - Sign Up</title>
 </head>
 
-<body>
+<body style="overflow: hidden;">
 
     <main class="login-grid-wrapper">
         <section class="login-container">
+            <div class="brand-logo">
+                <a href="../../../">
+                    <img src="../../../public/trieven.svg" alt="" />
+                </a>
+            </div>
             <div class="login-wrapper">
                 <header class="login-title">
                     <label>Sign up</label>

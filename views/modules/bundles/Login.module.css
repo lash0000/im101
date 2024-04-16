@@ -1,5 +1,8 @@
 /* applicable for sign in and sign up page lmfao */
 
+.brand-logo {
+    width: 80px;
+}
 .login-grid-wrapper {
     display: grid;
     grid-template-columns: 100%;
