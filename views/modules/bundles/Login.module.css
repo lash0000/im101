@@ -2,11 +2,12 @@
 
 .login-grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(1fr);
+    grid-template-columns: 100%;
     padding: 1.275em;
     height: 100%;
 }
-.login-banner {
+.login-banner,
+.signup-banner {
     display: none;
 }
 .banner-wrap {
@@ -20,6 +21,26 @@
     overflow: hidden;
     position: relative;
 }
+.signup-banner-wrap {
+    background: #000; /* fallback bitch */
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url('../../../public/signup-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+.signup-banner-wrap::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%; 
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+}
 .banner-wrap::after {
     content: "";
     position: absolute;
@@ -29,7 +50,8 @@
     height: 30%; 
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
 }
-.banner-wrap span {
+.banner-wrap span,
+.signup-banner-wrap span {
     position: absolute;
     bottom: 24px;
     right: 24px;
@@ -37,10 +59,12 @@
     z-index: 99;
     user-select: none;
 }
-.banner-wrap span:hover {
+.banner-wrap span:hover,
+.signup-banner-wrap span:hover {
     text-decoration: underline;
 }
-.banner-wrap img {
+.banner-wrap img,
+.signup-banner-wrap img {
     object-fit: cover;
 }
 .login-info svg {
@@ -52,7 +76,7 @@
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    margin-left: 64px;
+    margin-left: 80px;
 }
 .login-title {
     line-height: 2.575em;
@@ -131,9 +155,9 @@
     color: #969696;
 }
 
-@media (max-width: 767px) and (min-width: 480px) {
+@media (max-width: 479px) and (min-width: 320px) {
     #loginForm {
-        width: 420px;
+        width: 100%;
     }
     .login-title label {
         font-size: 2.25em;
@@ -147,10 +171,43 @@
     .login-title {
         line-height: 2em;
     }
+    .login-wrapper {
+        height: 100%;
+        margin-left: unset;
+    }
+    .login-info span {
+        font-size: 0.85em;
+    }
+    .login-info svg {
+        margin-right: 6px;
+    }
 }
 
-@media (min-width: 768px) {
-    .login-banner {
+@media (max-width: 799px) and (min-width: 480px) {
+    #loginForm {
+        width: 100%;
+    }
+    .login-title label {
+        font-size: 2.25em;
+    }
+    .form-group input {
+        width: 100%;
+    }
+    .login-title p {
+        font-size: 1em;
+    }
+    .login-title {
+        line-height: 2em;
+    }
+    .login-wrapper {
+        height: 100%;
+        margin-left: unset;
+    }
+}
+
+@media (min-width: 800px) {
+    .login-banner,
+    .signup-banner {
         display: block;
     }
     .login-grid-wrapper {
