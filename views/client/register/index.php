@@ -62,7 +62,7 @@
         </section>
         <section class="signup-banner">
             <div class="signup-banner-wrap">
-                <a href="https://www.facebook.com/permalink.php?story_fbid=pfbid02vS4u16zUiLidRixRTpmY7sUajQhKNzkiJT35dS5YsX1nEUv6mjnjQyjtg9ygtZJ7l&id=100091824182246" target="_blank" rel="noopener noreferrer"><span>February Treats by Tréiven</span></a>
+                <a href="https://www.facebook.com/permalink.php?story_fbid=pfbid02vS4u16zUiLidRixRTpmY7sUajQhKNzkiJT35dS5YsX1nEUv6mjnjQyjtg9ygtZJ7l&id=100091824182246" target="_blank" rel="noopener noreferrer"><span>Fresh Bake Brownies by Tréiven</span></a>
             </div>
         </section>
     </main>
