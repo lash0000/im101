@@ -16,6 +16,8 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
     <title>Treiven - Sign Up</title>
 </head>
 
@@ -64,6 +66,25 @@
             </div>
         </section>
     </main>
+
+    <!-- confirmation modal -->
+    <div class="modal-container" style="display: none; opacity: 0;">
+        <div class="modal-wrapper">
+            <header class="header-modal">
+                <span>Are you sure?</span>
+                <button class="material-symbols-outlined" id="close-modal">
+                    close
+                </button>
+            </header>
+            <main class="header-body">
+                <label id="modal-label">This email address and password will be used for future logins and also future transactions.</label>
+            </main>
+            <footer class="header-options">
+                <button id="submit-modal" class="proceed-active">Submit</button>
+                <button id="close-modal">Cancel</button>
+            </footer>
+        </div>
+    </div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>

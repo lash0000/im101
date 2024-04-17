@@ -186,7 +186,7 @@
     }
 }
 
-@media (max-width: 799px) and (min-width: 480px) {
+@media (max-width: 999px) and (min-width: 480px) {
     #loginForm {
         width: 100%;
     }
@@ -208,7 +208,7 @@
     }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1000px) {
     .login-banner,
     .signup-banner {
         display: block;

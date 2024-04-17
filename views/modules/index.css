@@ -1,5 +1,6 @@
 @import url("./bundles/Navbar.module.css");
 @import url("./bundles/Login.module.css");
+@import url("./bundles/Modal.module.css");
 
 * {
     margin: 0;

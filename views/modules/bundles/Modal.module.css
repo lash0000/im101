@@ -1,0 +1,132 @@
+/* Modal Process for Sign Up */
+.modal-container {
+    background: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1em;
+    z-index: 99;
+}
+
+.modal-wrapper {
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    border-radius: 12px;
+}
+
+.header-modal {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    padding: 1.468em;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.header-modal span {
+    font-weight: 900;
+    font-size: 1.657em;
+}
+
+.header-modal button,
+.header-modal input {
+    background: transparent;
+    border-radius: 9999px;
+    border: 1px solid #D2D2D2;
+    appearance: none;
+    user-select: none;
+}
+
+.header-modal button:hover {
+    background: #e2e2e2;
+}
+
+.header-body {
+    padding: 1.468em;
+}
+
+.header-body label {
+    display: block;
+    font-size: 1em;
+}
+
+.header-body select {
+    width: 100%;
+    padding: 0.657em;
+    appearance: none;
+    border: 1px solid #D2D2D2;
+    border-radius: 6px;
+    text-indent: 4px;
+    user-select: none;
+    outline: none;
+}
+
+.header-body select:focus {
+    border: 1px solid #D2D2D2;
+}
+
+.header-body option {
+    appearance: none;
+}
+
+.header-options {
+    border-top: 1px solid #D2D2D2;
+    display: flex;
+    align-items: left;
+    justify-content: baseline;
+    flex-direction: column;
+    padding: 1.468em;
+}
+
+.header-options button {
+    width: 100%;
+    padding: 0.657em;
+    border-radius: 6px;
+    font-weight: 500;
+    outline: none;
+    user-select: none;
+    transition: 0.2s all ease;
+}
+
+.proceed-active {
+    background: linear-gradient(190deg, #F47B37 -168.14%, #CC5817 425.2%);
+    color: white;
+    border: none;
+    margin-bottom: 0.734em;
+    padding: 0.657em;
+    border-radius: 6px;
+    border: 1px solid #622A0B;
+    cursor: pointer;
+}
+
+.proceed-active:hover {
+    box-shadow: 0px 0px 0px 8px #FCCBB0;
+}
+
+.header-options button:nth-child(2) {
+    background: #F3F3F3;
+    border: 1px solid #D2D2D2;
+}
+
+.header-options button:nth-child(2):hover {
+    background: #e4e4e4;
+}
+
+/** **/
+
+@media (max-width: 640px) and (min-width: 320px) {
+    .modal-wrapper {
+        bottom: 0;
+        left: 0%;
+        transform: unset;
+        width: 100%;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+}
