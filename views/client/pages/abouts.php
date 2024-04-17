@@ -23,7 +23,7 @@
     <header class="nav-container">
         <nav class="nav-wrapper">
             <div class="nav-logo">
-                <a href="./">
+                <a href="../../../">
                     <img src="../../../public/trieven.svg" alt="" />
                 </a>
             </div>
