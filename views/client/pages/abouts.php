@@ -85,7 +85,9 @@
                         <path d="M11.486,8.293c-.147-3.672-1.428-6.543-2.986-6.543-1.657,0-3,3.246-3,7.25s1.343,7.25,3,7.25" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
                     </g>
                 </svg>
-                <span>Explore</span>
+                <a href="../../../" class="app-root">
+                    <span>Explore</span>
+                </a>
             </button>
             <button class="app-links">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
@@ -96,7 +98,9 @@
                         <circle cx="14.25" cy="15.75" r="1.25" fill="#212121" data-color="color-2" data-stroke="none" stroke="none"></circle>
                     </g>
                 </svg>
-                <span>Cart Section</span>
+                <a href="./carts.php" class="app-root">
+                    <span>Carts</span>
+                </a>
             </button>
             <button class="app-links">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
@@ -106,7 +110,9 @@
                         <path d="M9,6.75c-.552,0-1-.449-1-1s.448-1,1-1,1,.449,1,1-.448,1-1,1Z" fill="#212121" data-color="color-2" data-stroke="none" stroke="none"></path>
                     </g>
                 </svg>
-                <span>Abouts</span>
+                <a class="app-root app-active">
+                    <span>About</span>
+                </a>
             </button>
         </div>
     </div>
