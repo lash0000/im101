@@ -116,6 +116,9 @@
     margin-right: 16px;
 }
 .app-root {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     color: #ADADAD;
 }
 .app-active {
