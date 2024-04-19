@@ -1,5 +1,6 @@
 .body-content {
     padding-top: 140px;
+    padding-bottom: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -146,10 +147,6 @@
 
 /* Grid Items 4 Column */
 
-.grid-items-container {
-    padding: 1em;
-}
-
 .grid-items-wrapper {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -230,13 +227,15 @@
     }
     .treiven-product span,
     .treiven-product-price span {
-        font-size: 1.257em;
+        font-size: 0.957em;
     }
-    .treiven-product-price p {
-        font-size: 0.975em;
+    .treiven-product-price p,
+    .treiven-product p {
+        font-size: 0.675em;
     }
-    .grid-items-container {
-        padding: 0.575em;
+    .treiven-pics img {
+        width: 640px;
+        height: 240px;
     }
 }
 @media (max-width: 479px) and (min-width: 320px) {
@@ -252,10 +251,12 @@
     .treiven-product-price span {
         font-size: 1.257em;
     }
-    .treiven-product-price p {
-        font-size: 0.975em;
+    .treiven-product-price p,
+    .treiven-product p {
+        font-size: 0.675em;
     }
-    .grid-items-container {
-        padding: 0.575em;
+    .treiven-pics img {
+        width: 640px;
+        height: 240px;
     }
 }
