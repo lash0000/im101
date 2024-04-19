@@ -73,6 +73,10 @@
             </div>
         </nav>
     </header>
+
+    <main>
+        asdkoasdaskodasko
+    </main>
     <!-- applicable for mobile lol -->
     <div class="appbar-container">
         <div class="appbar-wrapper">

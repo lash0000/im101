@@ -39,10 +39,10 @@
     right: 8px;
     transform: translate(-20%, -50%);
     border-radius: 100%;
+    border: 1px solid #622A0B;
     padding: 0.65em;
     appearance: none;
     outline: none;
-    border: none;
     background: linear-gradient(190deg, #F47B37 -168.14%, #CC5817 425.2%);
 }
 
