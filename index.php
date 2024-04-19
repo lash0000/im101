@@ -76,7 +76,7 @@
     <!-- applicable for mobile lol -->
     <div class="appbar-container">
         <div class="appbar-wrapper">
-            <button class="app-links" id="app-active" href="www.google.com">
+            <button class="app-links" id="app-active">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
                     <g fill="#212121" class="nc-icon-wrapper">
                         <path d="M9.926,16.11c-.461,.092-.938,.14-1.426,.14-4.004,0-7.25-3.246-7.25-7.25S4.496,1.75,8.5,1.75s7.25,3.246,7.25,7.25c0,.264-.014,.524-.041,.78" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
@@ -85,7 +85,9 @@
                         <path d="M11.486,8.293c-.147-3.672-1.428-6.543-2.986-6.543-1.657,0-3,3.246-3,7.25s1.343,7.25,3,7.25" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
                     </g>
                 </svg>
-                <span>Explore</span>
+                <a class="app-root app-active" href="">
+                    <span>Explore</span>
+                </a>
             </button>
             <button class="app-links">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
@@ -96,7 +98,9 @@
                         <circle cx="14.25" cy="15.75" r="1.25" fill="#212121" data-color="color-2" data-stroke="none" stroke="none"></circle>
                     </g>
                 </svg>
-                <span>Cart Section</span>
+                <a class="app-root" href="./views/client/pages/carts.php">
+                    <span>Carts</span>
+                </a>
             </button>
             <button class="app-links">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
@@ -106,12 +110,108 @@
                         <path d="M9,6.75c-.552,0-1-.449-1-1s.448-1,1-1,1,.449,1,1-.448,1-1,1Z" fill="#212121" data-color="color-2" data-stroke="none" stroke="none"></path>
                     </g>
                 </svg>
-                <span>Abouts</span>
+                <a class="app-root" href="./views/client/pages/abouts.php">
+                    <span>About</span>
+                </a>
             </button>
         </div>
     </div>
 
-
+    <main class="body-content">
+        <div class="search-wrapper">
+            <input type="text" id="search-input" maxlength="60" placeholder="Search...">
+            <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                    <g fill="#ffffff" class="nc-icon-wrapper">
+                        <line x1="15.25" y1="15.25" x2="11.285" y2="11.285" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" data-color="color-2"></line>
+                        <circle cx="7.75" cy="7.75" r="5" fill="none" stroke="#ffffff " stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
+                    </g>
+                </svg>
+            </button>
+        </div>
+        <div class="tab-wrapper">
+            <div class="tab-group tab-active">
+                <img src="./public/tab-groups/treiven-biscuit.svg" alt="">
+                <span>Cookies</span>
+            </div>
+            <div class="tab-group tab">
+                <img src="./public/tab-groups/treiven-brownie.svg" alt="">
+                <span>Brownies</span>
+            </div>
+            <div class="tab-group tab">
+                <img src="./public/tab-groups/treiven-cake.svg" alt="">
+                <span>Cakes</span>
+            </div>
+            <div class="tab-group tab">
+                <img src="./public/tab-groups/treiven-specialty.svg" alt="">
+                <span>Specialty</span>
+            </div>
+        </div>
+        <div class="grid-items-container">
+            <div class="grid-items-wrapper">
+                <a href="" class="treiven-items">
+                    <div class="treiven-pics">
+                        <img src="./public/login-banner.jpg" alt="">
+                    </div>
+                    <div class="treiven-infos">
+                        <div class="treiven-product">
+                            <span>Lava Biscuit</span>
+                            <p>Cookies</p>
+                        </div>
+                        <div class="treiven-product-price">
+                            <span>₱50.00</span>
+                            <p class="avail-stocks">Available</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="" class="treiven-items">
+                    <div class="treiven-pics">
+                        <img src="./public/login-banner.jpg" alt="">
+                    </div>
+                    <div class="treiven-infos">
+                        <div class="treiven-product">
+                            <span>Lava Biscuit</span>
+                            <p>Cookies</p>
+                        </div>
+                        <div class="treiven-product-price">
+                            <span>₱50.00</span>
+                            <p class="avail-stocks">Available</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="" class="treiven-items">
+                    <div class="treiven-pics">
+                        <img src="./public/login-banner.jpg" alt="">
+                    </div>
+                    <div class="treiven-infos">
+                        <div class="treiven-product">
+                            <span>Lava Biscuit</span>
+                            <p>Cookies</p>
+                        </div>
+                        <div class="treiven-product-price">
+                            <span>₱50.00</span>
+                            <p class="avail-stocks">Available</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="" class="treiven-items">
+                    <div class="treiven-pics">
+                        <img src="./public/login-banner.jpg" alt="">
+                    </div>
+                    <div class="treiven-infos">
+                        <div class="treiven-product">
+                            <span>Lava Biscuit</span>
+                            <p>Cookies</p>
+                        </div>
+                        <div class="treiven-product-price">
+                            <span>₱50.00</span>
+                            <p class="avail-stocks">Available</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="./views/client/responsive.js"></script>
