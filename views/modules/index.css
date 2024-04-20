@@ -2,6 +2,7 @@
 @import url("./bundles/Login.module.css");
 @import url("./bundles/Modal.module.css");
 @import url("./bundles/Content.module.css");
+@import url("./bundles/Product.module.css");
 
 * {
     margin: 0;

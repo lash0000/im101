@@ -149,7 +149,7 @@
         </div>
         <div class="grid-items-container">
             <div class="grid-items-wrapper">
-                <a href="" class="treiven-items">
+                <a href="./views/product/" class="treiven-items">
                     <div class="treiven-pics">
                         <img src="./public/login-banner.jpg" alt="">
                     </div>

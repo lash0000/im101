@@ -23,12 +23,12 @@
     <header class="nav-container">
         <nav class="nav-wrapper">
             <div class="nav-logo">
-                <a href="./">
+                <a href="../../">
                     <img src="../../public/trieven.svg" alt="" />
                 </a>
             </div>
             <div class="nav-search">
-                <input type="text" id="search-input" maxlength="60" placeholder="Search...">
+                <input type="text" id="search-input" maxlength="60" placeholder="Search..." disabled>
                 <button type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
                         <g fill="#ffffff" class="nc-icon-wrapper">
@@ -118,7 +118,26 @@
     </div>
 
     <main class="product-container">
-
+        <div class="product-wrapper">
+            <div class="product-header">
+                <div class="product-title">
+                    <h1>Brownies W/ Walnuts</h1>
+                </div>
+                <div class="product-details">
+                    <div class="product-landscape">
+                        <img src="https://images.pexels.com/photos/9671046/pexels-photo-9671046.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+                    <div class="product-portrait">
+                        <div class="node-one">
+                            <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        </div>
+                        <div class="node-two">
+                            <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
