@@ -9,6 +9,7 @@
     backdrop-filter: blur(8px);
     z-index: 90;
 }
+
 .nav-wrapper {
     display: flex;
     align-items: center;
@@ -17,32 +18,40 @@
     max-width: 1366px;
     position: relative;
 }
+
 .nav-logo,
 .nav-link-wrapper {
     user-select: none;
 }
+
 .nav-logo img {
     width: 128px;
 }
+
 .nav-link-wrapper {
     opacity: 0;
     pointer-events: none;
     display: flex;
     justify-content: center;
 }
+
 .nav-links .nav-active {
     color: #000;
 }
+
 .modal-links a {
     color: #000;
 }
+
 .nav-links a {
     color: #adadad;
 }
+
 .nav-links:nth-child(1),
 .nav-links:nth-child(2) {
     margin-right: 20px;
 }
+
 .right-side-wrapper {
     border: 1px solid #cfcfcf;
     border-radius: 999px;
@@ -52,12 +61,15 @@
     cursor: pointer;
     user-select: none;
 }
+
 .right-side-wrapper:hover {
     background: #ddd;
 }
+
 .right-side-wrapper svg {
     width: 24px;
 }
+
 .modal-info:first-of-type {
     margin-right: 12px;
 }
@@ -75,20 +87,24 @@
     border-radius: 0.475em;
     overflow: hidden;
 }
+
 .modal-option-wrapper li {
     list-style-type: none;
     padding: 0.675em;
     width: 100%;
     user-select: none;
 }
+
 .modal-option-wrapper li:hover {
     background: #F2F2F2;
 }
 
 /* appbar for mobile */
+
 .appbar-container {
     display: block;
 }
+
 .appbar-wrapper {
     background: rgba(255, 255, 255);
     border-top: 1px solid #ddd;
@@ -101,6 +117,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .app-links {
     background: none;
     outline: none;
@@ -111,23 +128,28 @@
     flex-direction: column;
     user-select: none;
 }
+
 .app-links:nth-child(1),
 .app-links:nth-child(2) {
     margin-right: 16px;
 }
+
 .app-root {
     display: flex;
     align-items: center;
     flex-direction: column;
     color: #ADADAD;
 }
+
 .app-active {
     color: #000;
 }
+
 .app-links svg {
     width: 24px;
     margin-bottom: 0.40em;
 }
+
 .app-links span {
     font-size: 0.857em;
 }
@@ -136,21 +158,27 @@
     .nav-logo img {
         width: 100%;
     }
+
     .right-side-wrapper svg {
         width: 100%;
     }
+
     .modal-info:first-of-type {
         margin-right: 8px;
     }
-    
+
 }
 
 @media (min-width: 768px) {
     .appbar-container {
         display: none;
     }
+
     .nav-link-wrapper {
         opacity: 1;
         pointer-events: auto;
     }
 }
+
+/* search for product page */
+
