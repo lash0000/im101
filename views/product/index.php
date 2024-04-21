@@ -16,7 +16,7 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
-    <title>Treiven - Elevate your celebrations with our delicious pastries</title>
+    <title>Treiven - Brownies W/ Walnuts</title>
 </head>
 
 <body>
@@ -123,14 +123,14 @@
                 <div class="product-title">
                     <h1>Brownies W/ Walnuts</h1>
                 </div>
-                <div class="product-portrait">
+                <a href="./img-view/" class="product-portrait">
                     <div class="node-one">
                         <img src="../../public/product-test/brown1.png" alt="">
                     </div>
                     <div class="node-two">
                         <img src="../../public/product-test/brown2.png" alt="">
                     </div>
-                </div>
+                </a>
             </div>
             <div class="product-grid-column">
                 <div class="product-description">
