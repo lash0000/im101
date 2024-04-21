@@ -95,7 +95,7 @@
     font-size: 0.857em;
 }
 
-@media (max-width: 768px) and (min-width: 469px) {
+@media (max-width: 1024px) and (min-width: 469px) {
     .search-wrapper {
         width: 100%;
     }
