@@ -177,6 +177,7 @@
 .treiven-product span,
 .treiven-product-price span {
     font-size: 1.457em;
+    word-wrap: break-word;
     color: #000;
 }
 
