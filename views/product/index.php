@@ -77,7 +77,7 @@
     <div class="appbar-container">
         <div class="appbar-wrapper">
             <button class="app-links" id="app-active">
-                <a class="app-root app-active" href="../../">
+                <a class="app-root" href="../../">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
                         <g fill="#212121" class="nc-icon-wrapper">
                             <path d="M9.926,16.11c-.461,.092-.938,.14-1.426,.14-4.004,0-7.25-3.246-7.25-7.25S4.496,1.75,8.5,1.75s7.25,3.246,7.25,7.25c0,.264-.014,.524-.041,.78" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
