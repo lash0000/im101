@@ -117,6 +117,38 @@
         </div>
     </div>
 
+    <main class="about-container">
+        <div class="about-wrapper">
+            <div class="about-header">
+                <span>Fast facts behind development!</span>
+            </div>
+            <div class="about-grid-wrapper">
+                <div class="about-grid">
+                    <h1>PHP</h1>
+                    <p>is our scripting language.</p>
+                </div>
+                <div class="about-grid">
+                    <h1>Oracle</h1>
+                    <p>is our local database management.</p>
+                </div>
+                <div class="about-grid">
+                    <h1>CSS</h1>
+                    <p>I mean no Tailwind or Bootstrap we died.</p>
+                </div>
+                <div class="about-grid">
+                    <h1>GSAP</h1>
+                    <p>We love animating things with it.</p>
+                </div>
+            </div>
+            <div class="about-space">
+                <span>About Us</span>
+                <p>We're thrilled to have you embark on this exciting journey into the world of e-commerce! This simulated online store provides a platform for you to explore the fundamentals of building and managing a successful e-commerce business. Here, you'll gain valuable hands-on experience in everything from product selection and marketing to order processing and customer service.</p>
+                <p>Within this virtual space, you'll have the opportunity to experiment with different e-commerce strategies, analyze customer behavior, and learn best practices for optimizing your online store's performance. This immersive experience allows you to make real-time decisions with simulated consequences, helping you develop critical thinking and problem-solving skills essential for the e-commerce landscape.</p>
+                <p>Whether you aspire to launch your own online business someday or simply want to gain a deeper understanding of this rapidly growing industry, This shop provides the perfect platform to learn, experiment, and succeed. Dive in, explore the possibilities, and discover the exciting world of e-commerce!</p>
+            </div>
+        </div>
+    </main>
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="../../../views/client/responsive.js"></script>
 </body>

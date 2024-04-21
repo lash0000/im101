@@ -1,0 +1,36 @@
+.about-container {
+    padding: 2em;
+}
+.about-wrapper {
+    max-width: 968px;
+    margin: 0 auto;
+}
+.about-header,
+.about-space span {
+    user-select: none;
+    font-size: 2.466em;
+    display: block;
+    margin-bottom: 0.457em;
+}
+.about-grid-wrapper {
+    display: grid;
+	grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    user-select: none;
+}
+.about-grid {
+    place-items: center;
+    border: 1px solid #ADADAD;
+    border-radius: 8px;
+    padding: 1em;
+    margin-bottom: 0.857em;
+}
+.about-grid h1 {
+    font-size: 2.275em;
+    font-weight: 800;
+}
+.about-space p {
+    font-size: 1.157em;
+    word-break: normal;
+    margin-bottom: 1em;
+}

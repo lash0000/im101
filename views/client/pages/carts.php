@@ -74,8 +74,16 @@
         </nav>
     </header>
 
-    <main>
-        asdkoasdaskodasko
+    <main class="public-cart-container">
+        <div class="public-cart-wrapper">
+            <div class="public-cart-hero">
+                <img src="../../../public/cart-public.png" alt="">
+            </div>
+            <div class="public-cart">
+                <span>Unauthorized Access!</span>
+                <p>Kindly access your account first to proceed.</p>
+            </div>
+        </div>
     </main>
     <!-- applicable for mobile lol -->
     <div class="appbar-container">

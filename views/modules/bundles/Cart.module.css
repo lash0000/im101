@@ -1,0 +1,25 @@
+.public-cart-container {
+    padding: 2em;
+}
+.public-cart-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 80vh; /* if hindi applicable just change it */
+}
+.public-cart-hero {
+    width: 320px;
+}
+.public-cart {
+    user-select: none;
+}
+.public-cart span {
+    font-size: 2em;
+    font-weight: 600;
+}
+.public-cart p {
+    font-size: 1.257em;
+    color: #ADADAD;
+}
