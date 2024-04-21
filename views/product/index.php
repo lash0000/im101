@@ -123,20 +123,64 @@
                 <div class="product-title">
                     <h1>Brownies W/ Walnuts</h1>
                 </div>
-                <div class="product-details">
-                    <div class="product-landscape">
-                        <img src="https://images.pexels.com/photos/9671046/pexels-photo-9671046.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                <div class="product-portrait">
+                    <div class="node-one">
+                        <img src="../../public/product-test/brown1.png" alt="">
                     </div>
-                    <div class="product-portrait">
-                        <div class="node-one">
-                            <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    <div class="node-two">
+                        <img src="../../public/product-test/brown2.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="product-grid-column">
+                <div class="product-description">
+                    <span>The Perfect Bite: Brownies with Walnuts</span>
+                    <p>Brownies, those decadent squares of chocolatey goodness, have been a beloved treat for generations. But what elevates them to pure bliss? The addition of crunchy, toasted walnuts! Our Brownies with Walnuts offer the perfect marriage of textures and flavors, making them an irresistible indulgence.</p>
+                    <p>The exact origin of the brownie is a bit of a mystery, with some stories tracing them back to 19th century American kitchens. Perhaps they were a result of a baker accidentally forgetting to add leavening to a chocolate cake batter. Regardless of their origin, brownies quickly rose to fame, and the addition of walnuts became a popular variation, adding a delightful textural contrast.</p>
+                    <p>Our Brownies with Walnuts are crafted using only the finest ingredients. Rich, dark chocolate forms the base, delivering a deep, satisfying flavor. We then fold in generous amounts of toasted walnuts, their nutty aroma and satisfying crunch perfectly complementing the chocolatey richness. Every bite is a delightful symphony of textures and flavors.</p>
+                    <p>The beauty of our Brownies with Walnuts lies in the perfect balance between the decadent chocolate and the nutty crunch. We use only the finest Belgian chocolate, known for its rich and intense flavor. The toasted walnuts add a delightful textural contrast, creating a truly unforgettable experience.</p>
+                    <p>These brownies are more than just a delicious treat. They are perfect for sharing with loved ones, bringing a touch of joy to any occasion. Whether you're celebrating a special event or simply enjoying a quiet moment of self-care, Treiven's Brownies with Walnuts are the perfect indulgence..</p>
+                    <p>Here at Treiven, we believe in using only the highest quality ingredients and time-tested techniques to create our baked goods. Each brownie is a labor of love, crafted with passion to deliver a taste sensation that will leave you wanting more. Order yours today and experience the difference Treiven makes!</p>
+                </div>
+                <div class="product-option">
+                    <div class="product-first-column">
+                        <div class="product-price">
+                            <span class="pricey">₱50.00</span>
+                            <div class="product-status">
+                                <div class="just-circle"></div>
+                                <span>Avaiable stocks</span>
+                            </div>
                         </div>
-                        <div class="node-two">
-                            <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        <div class="quantity-input">
+                            <label>Quantity</label>
+                            <input type="number" class="quantity" id="quantity" value="1" min="1">
+                        </div>
+                        <button class="add-to-cart">
+                            Add to Cart
+                        </button>
+                    </div>
+                    <div class="product-last-column">
+                        <span class="last-header">Price details</span>
+                        <div class="total-price">
+                            <span>Total price</span>
+                            <span>₱0,000</span>
+                        </div>
+                        <div class="total-price">
+                            <span>VAT fee (12%)</span>
+                            <span>₱0,000</span>
+                        </div>
+                        <div class="total-price">
+                            <span>Promo discount fee</span>
+                            <span>₱0,000</span>
+                        </div>
+                        <div class="total-price">
+                            <span>Total Amount</span>
+                            <span>₱0,000</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </main>
 
