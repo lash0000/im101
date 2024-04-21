@@ -151,12 +151,12 @@
             <div class="grid-items-wrapper">
                 <a href="./views/product/" class="treiven-items">
                     <div class="treiven-pics">
-                        <img src="./public/login-banner.jpg" alt="">
+                        <img src="./public/signup-banner.jpg" alt="">
                     </div>
                     <div class="treiven-infos">
                         <div class="treiven-product">
-                            <span>Lava Biscuit</span>
-                            <p>Cookies</p>
+                            <span>Brownies W/ Walnuts</span>
+                            <p>Brownies</p>
                         </div>
                         <div class="treiven-product-price">
                             <span>₱50.00</span>
@@ -179,36 +179,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="./public/login-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Lava Biscuit</span>
-                            <p>Cookies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="./public/login-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Lava Biscuit</span>
-                            <p>Cookies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
+                
             </div>
         </div>
     </main>
