@@ -26,14 +26,14 @@
                 <li class="usr-links">
                     <a href="../onboard.php">Explore</a>
                 </li>
-                <li class="usr-links usr-active">
-                    <a>Cart Section</a>
+                <li class="usr-links">
+                    <a href="./carts.php">Cart Section</a>
                 </li>
                 <li class="usr-links">
                     <a href="">Orders</a>
                 </li>
-                <li class="usr-links">
-                    <a href="./about.php">Abouts</a>
+                <li class="usr-links usr-active">
+                    <a>Abouts</a>
                 </li>
             </ul>
             <div class="nav-logo">
@@ -71,55 +71,36 @@
         </div>
     </header>
 
-    <main class="main-content">
-        <form action="" class="main-wrapper" method="post">
-            <div class="cart-checkout-progress">
-                <div class="cart-mode">
-                    <div class="cart-logo session-active"></div>
-                    <label>Carts</label>
-                </div>
-                <div class="cart-mode">
-                    <div class="cart-logo"></div>
-                    <label>Shipment</label>
-                </div>
-                <div class="cart-mode">
-                    <div class="cart-logo"></div>
-                    <label>Place Order</label>
-                </div>
+    <main class="about-container">
+        <div class="about-wrapper">
+            <div class="about-header">
+                <span>Fast facts behind development!</span>
             </div>
-            <div class="cart-catalog">
-                <!-- 
-                    // IF EXISTIED JUST ADD    
-                    <div class="cart-items">
-                        <div class="cart-quantity">
-                            <input type="number" id="" value="1" />
-                        </div>
-                        <div class="cart-image-hero">
-                            <img src="../../../public/login-banner.jpg" alt="">
-                        </div>
-                        <div class="cart-details">
-                            <span>Brownies W/ Walnut</span>
-                            <div class="cart-divided">
-                                <p>Quantity: 1</p>
-                                <p>(Half Dozen / Price per head: ₱199)</p>
-                            </div>
-                            <span>Total Amount: ₱38.00 (from ₱199.00)</span>
-                        </div>
-                    </div> 
-                -->
-                <div class="cart-notice-empty">
-                    <span>All of the items will be added here once you cart it.</span>
+            <div class="about-grid-wrapper">
+                <div class="about-grid">
+                    <h1>PHP</h1>
+                    <p>is our scripting language.</p>
+                </div>
+                <div class="about-grid">
+                    <h1>Oracle</h1>
+                    <p>is our local database management.</p>
+                </div>
+                <div class="about-grid">
+                    <h1>CSS</h1>
+                    <p>I mean no Tailwind or Bootstrap we died.</p>
+                </div>
+                <div class="about-grid">
+                    <h1>GSAP</h1>
+                    <p>We love animating things with it.</p>
                 </div>
             </div>
-            <div class="cart-total-amount">
-                <span>Total Amount: ₱0.00 (0% discount applied)</span>
+            <div class="about-space">
+                <span>About Us</span>
+                <p>We're thrilled to have you embark on this exciting journey into the world of e-commerce! This simulated online store provides a platform for you to explore the fundamentals of building and managing a successful e-commerce business. Here, you'll gain valuable hands-on experience in everything from product selection and marketing to order processing and customer service.</p>
+                <p>Within this virtual space, you'll have the opportunity to experiment with different e-commerce strategies, analyze customer behavior, and learn best practices for optimizing your online store's performance. This immersive experience allows you to make real-time decisions with simulated consequences, helping you develop critical thinking and problem-solving skills essential for the e-commerce landscape.</p>
+                <p>Whether you aspire to launch your own online business someday or simply want to gain a deeper understanding of this rapidly growing industry, This shop provides the perfect platform to learn, experiment, and succeed. Dive in, explore the possibilities, and discover the exciting world of e-commerce!</p>
             </div>
-            <div class="cart-checkout">
-                <button class="cart-proceed" type="submit">
-                    Checkout
-                </button>
-            </div>
-        </form>
+        </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>

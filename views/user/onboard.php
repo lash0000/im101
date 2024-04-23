@@ -33,7 +33,7 @@
                     <a href="">Orders</a>
                 </li>
                 <li class="usr-links">
-                    <a href="">Abouts</a>
+                    <a href="./pages/about.php">Abouts</a>
                 </li>
             </ul>
             <div class="nav-logo">
