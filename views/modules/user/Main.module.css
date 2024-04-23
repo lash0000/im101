@@ -1,0 +1,36 @@
+/** MAIN CONTENT **/
+
+.main-content {
+    margin: 0 auto;
+    max-width: 1140px;
+}
+
+.category-wrapper {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    place-items: center;
+    padding-top: 4em;
+    padding-bottom: 2em;
+}
+
+.category-btn {
+    border: 1px solid #DDDDDD;
+    padding: 0.658em;
+    border-radius: 6px;
+}
+
+.category-tabs {
+    display: flex;
+    flex-direction: row;
+    user-select: none;
+}
+
+.category {
+    padding: 0.867em;
+    border-radius: 999px;
+}
+
+.category-active {
+    background: #eeeeee;
+    border: 1px solid #e8e8e8;
+}

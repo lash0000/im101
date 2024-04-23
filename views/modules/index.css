@@ -1,3 +1,4 @@
+/** APPLICABLE FOR PUBLIC SIDE **/
 @import url("./bundles/Navbar.module.css");
 @import url("./bundles/Login.module.css");
 @import url("./bundles/Modal.module.css");
@@ -6,6 +7,10 @@
 @import url("./bundles/Cart.module.css");
 @import url("./bundles/About.module.css");
 @import url("./Glider.module.css");
+
+/** APPLICABLE FOR USER SIDE **/
+@import url("./user/Appbar.module.css");
+@import url("./user/Main.module.css");
 
 * {
     margin: 0;
