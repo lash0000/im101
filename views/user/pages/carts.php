@@ -16,17 +16,17 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
-    <title>Treiven - Onboarding</title>
+    <title>Treiven - Cart Section</title>
 </head>
 
 <body>
     <header class="user-nav-container">
         <div class="user-nav-wrapper">
             <ul class="user-link-wrapper">
-                <li class="usr-links usr-active">
+                <li>
                     <a>Explore</a>
                 </li>
-                <li class="usr-links">
+                <li class="usr-links usr-active">
                     <a href="">Cart Section</a>
                 </li>
                 <li class="usr-links">
@@ -72,92 +72,7 @@
     </header>
 
     <main class="main-content">
-        <div class="category-wrapper">
-            <div class="category-btn">
-                Categories
-            </div>
-            <div class="category-tabs">
-                <a class="category category-active">
-                    Cookies
-                </a>
-                <a class="category">
-                    Brownies
-                </a>
-                <a class="category">
-                    Cakes
-                </a>
-                <a class="category">
-                    Specialty
-                </a>
-            </div>
-            <div class="category-btn">
-                Filters
-            </div>
-        </div>
-        <div class="grid-items-container">
-            <div class="grid-items-wrapper">
-                <a href="./product/" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="../../public/signup-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Brownies W/ Walnuts</span>
-                            <p>Brownies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="../../public/signup-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Brownies W/ Walnuts</span>
-                            <p>Brownies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="../../public/signup-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Brownies W/ Walnuts</span>
-                            <p>Brownies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="../../public/signup-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Brownies W/ Walnuts</span>
-                            <p>Brownies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
+        
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
