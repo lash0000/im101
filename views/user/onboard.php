@@ -27,7 +27,7 @@
                     <a>Explore</a>
                 </li>
                 <li class="usr-links">
-                    <a href="">Cart Section</a>
+                    <a href="./pages/carts.php">Cart Section</a>
                 </li>
                 <li class="usr-links">
                     <a href="">Orders</a>
