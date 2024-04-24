@@ -12,6 +12,7 @@
 @import url("./user/Appbar.module.css");
 @import url("./user/Main.module.css");
 @import url("./user/Carts.module.css");
+@import url("./user/Orders.module.css");
 
 * {
   margin: 0;
