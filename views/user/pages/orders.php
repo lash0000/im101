@@ -71,8 +71,75 @@
         </div>
     </header>
 
-    <main class="main-content">
-        dasodasdkoasd
+    <main class="orders-container">
+        <div class="orders-wrapper">
+            <div class="my-orders-wrapper">
+                <header class="orders">
+                    <span>My Orders</span>
+                </header>
+                <section class="order-items">
+                    <!-- <div class="item-list">
+                        <div class="order-item-hero">
+                            <img src="../../../public/login-banner.jpg" alt="">
+                        </div>
+                        <div class="order-details">
+                            <span>Brownies W/ Walnut</span>
+                            <div class="order-divide">
+                                <p>Quantity: 12</p>
+                                <p>(Half Dozen / Price per head: ₱199)</p>
+                            </div>
+                            <p>Total Amount: ₱1194.00 (from ₱2388.00)</p>
+                        </div>
+                    </div> -->
+                    <div class="item-empty">
+                        <span>The items will be added here once you've done to checkout.</span>
+                    </div>
+                </section>
+            </div>
+            <div class="my-order-status">
+                <header class="status">
+                    <span>Shipping Status</span>
+                    <p>Ref: N/A</p>
+                </header>
+                <section class="timeline">
+                    <!-- <div class="timeline-status">
+                        <div class="circle-small circle-active"></div>
+                        <div class="timeline-message">
+                            <span>Order recieved</span>
+                            <p>On DD/MM/YYYY (October 25, 2023)</p>
+                        </div>
+                    </div>
+                    <div class="timeline-status">
+                        <div class="circle-long circle-active"></div>
+                        <div class="timeline-message">
+                            <label class="timeline-current">In progress</label>
+                            <span>Waiting to be shipped by the seller</span>
+                            <p>The seller has until October 28, 2023 to ship the item. Otherwise, if it didn't come on time then you will gonna have to wait after all.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-status">
+                        <div class="circle-small circle-unactive"></div>
+                        <div class="timeline-message">
+                            <span>Delivery</span>
+                            <p>Starts within 2-3 days.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-status">
+                        <div class="circle-small circle-unactive"></div>
+                        <div class="timeline-message">
+                            <span>Item recieved</span>
+                            <p>Starts within 2-3 days.</p>
+                        </div>
+                    </div> -->
+                    <div class="timeline-status end">
+                        <div class="circle-end"></div>
+                    </div>
+                    <div class="item-empty">
+                        <span>Same goes here brr brr.</span>
+                    </div>
+                </section>
+            </div>
+        </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
