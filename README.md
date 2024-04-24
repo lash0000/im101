@@ -1,6 +1,7 @@
 # im101
-update as of 04/22/24
+update as of 04/25/24
 - user based nextttt
+- pota ka gumana kana sana orakel pls.
 
 ## Starting Command PHP idk?
 ```bash
