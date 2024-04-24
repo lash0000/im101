@@ -102,7 +102,7 @@
                     <p>Ref: N/A</p>
                 </header>
                 <section class="timeline">
-                    <!-- <div class="timeline-status">
+                    <div class="timeline-status">
                         <div class="circle-small circle-active"></div>
                         <div class="timeline-message">
                             <span>Order recieved</span>
@@ -130,13 +130,13 @@
                             <span>Item recieved</span>
                             <p>Starts within 2-3 days.</p>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="timeline-status end">
                         <div class="circle-end"></div>
                     </div>
-                    <div class="item-empty">
+                    <!-- <div class="item-empty">
                         <span>Same goes here brr brr.</span>
-                    </div>
+                    </div> -->
                 </section>
             </div>
         </div>
