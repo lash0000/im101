@@ -89,8 +89,7 @@
             </div>
             <div class="cart-catalog">
 
-
-                    <div class="cart-items">
+                    <!-- <div class="cart-items">
                         <div class="cart-quantity">
                             <input type="number" id="" value="1" />
                         </div>
@@ -105,11 +104,11 @@
                             </div>
                             <span>Total Amount: ₱38.00 (from ₱199.00)</span>
                         </div>
-                    </div> 
+                    </div>  -->
 
-                <!-- <div class="cart-notice-empty">
+                <div class="cart-notice-empty">
                     <span>All of the items will be added here once you cart it.</span>
-                </div> -->
+                </div>
             </div>
             <div class="cart-total-amount">
                 <span>Total Amount: ₱0.00 (0% discount applied)</span>
