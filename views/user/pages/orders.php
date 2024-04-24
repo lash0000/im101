@@ -26,11 +26,11 @@
                 <li class="usr-links">
                     <a href="../onboard.php">Explore</a>
                 </li>
-                <li class="usr-links usr-active">
-                    <a>Cart Section</a>
-                </li>
                 <li class="usr-links">
-                    <a href="./orders.php">Orders</a>
+                    <a href="./carts.php">Cart Section</a>
+                </li>
+                <li class="usr-links usr-active">
+                    <a>Orders</a>
                 </li>
                 <li class="usr-links">
                     <a href="./about.php">Abouts</a>

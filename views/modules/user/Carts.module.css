@@ -8,7 +8,7 @@
   flex-direction: column;
   margin: 0 auto;
   max-width: 1140px;
-  padding-top: 3em;
+  padding-top: 1.257em;
 }
 .cart-logo {
   outline: 2px solid #dddddd;
@@ -46,7 +46,7 @@
   border-radius: 12px;
   padding: 1em;
   width: 920px;
-  height: 480px;
+  height: 400px;
   overflow-y: auto;
   margin-bottom: 1em;
 }
