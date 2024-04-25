@@ -16,6 +16,9 @@
 
 /** APPLICABLE FOR ADMIN SIDE **/
 @import url("./admin/Landing.module.css");
+@import url("./admin/ProductManage.module.css");
+@import url("./admin/OrderManage.module.css");
+@import url("./admin/UserManage.module.css");
 
 * {
   margin: 0;
