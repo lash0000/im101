@@ -1,0 +1,55 @@
+.admin-page {
+    padding: 1em;
+}
+.admin-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 84.75vh;
+    position: relative;
+}
+.admin-header {
+    font-size: 2.475em;
+    font-weight: 800;
+    margin-bottom: 0.475em;
+}
+.admin-options {
+    display: grid;
+    grid-template-columns: minmax(400px, 1fr);
+    gap: 12px;
+}
+.option {
+    border: 1px solid #cacaca;
+    padding: 1em;
+    background: white;
+    border-radius: 6px;
+    color: #000;
+    overflow: hidden;
+    transition: 0.1s all ease;
+}
+.option:hover {
+    background: linear-gradient(256deg, #F47B37 44.85%, #CC5817 145.26%), #FFF;
+    color: white;
+}
+.admin-session {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    z-index: 99;
+    border: 1px solid #cacaca;
+    padding: 1em;
+    background: white;
+    border-radius: 6px;
+    color: #000;
+    overflow: hidden;
+    transition: 0.1s all ease;
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+    width: 100px;
+}
+.admin-session:hover {
+    background: #cacaca;
+}

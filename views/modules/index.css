@@ -14,6 +14,9 @@
 @import url("./user/Carts.module.css");
 @import url("./user/Orders.module.css");
 
+/** APPLICABLE FOR ADMIN SIDE **/
+@import url("./admin/Landing.module.css");
+
 * {
   margin: 0;
 }
