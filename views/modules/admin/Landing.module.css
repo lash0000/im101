@@ -44,7 +44,6 @@
     border-radius: 6px;
     color: #000;
     overflow: hidden;
-    transition: 0.1s all ease;
     user-select: none;
     cursor: pointer;
     text-align: center;
