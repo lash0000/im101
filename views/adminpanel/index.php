@@ -37,8 +37,10 @@
                 </a>
             </div>
         </div>
-        <div class="admin-session">
-            log out
+        <div class="admin-session-wrapper">
+            <div class="admin-session">
+                log out
+            </div>
         </div>
     </main>
 
