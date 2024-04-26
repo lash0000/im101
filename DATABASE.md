@@ -73,4 +73,9 @@ docker ps -a # This will show all installed containers even the server is not ru
 ```shell
 docker exec -u 0 -it mycontainer bash # This will give you an root access to the container that protects file directory to change everything lol.
 ```
-   
+```shell
+yum update
+```   
+```shell
+yum install nano -y # this should enough to install missing packages for centOS/fedora based
+```   
