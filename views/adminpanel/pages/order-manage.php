@@ -55,7 +55,7 @@
                     <div class="product-right-side">
                         <span>Status: Waiting to be shipped...</span>
                         <button class="view-item" style="color: black;">
-                            Delete Item
+                            View Item
                         </button>
                     </div>
                 </div>
@@ -70,6 +70,95 @@
             </div>
         </div>
     </main>
+
+    <!-- View Modal -->
+    <div class="view-item-wrapper" style="opacity: 0; pointer-events: none;">
+        <div class="view-item-container">
+            <header class="view-item-header">
+                <div class="view-item-detail">
+                    <span>View Item</span>
+                    <p>Here are the following details.</p>
+                </div>
+                <div class="order-close-modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                        <g fill="#212121" class="nc-icon-wrapper">
+                            <line x1="14" y1="4" x2="4" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" data-color="color-2"></line>
+                            <line x1="4" y1="4" x2="14" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></line>
+                        </g>
+                    </svg>
+                </div>
+            </header>
+            <ul class="view-details">
+                <li class="generated-number">
+                    <span>Order number</span>
+                    <p style="color: #8e8e8e;">#1234567890</p>
+                </li>
+                <li class="generated-number">
+                    <span>Reference tracking number</span>
+                    <p style="color: #8e8e8e;">#1234567890</p>
+                </li>
+                <li class="generated-number">
+                    <span>Date ordered</span>
+                    <p style="color: #8e8e8e;">DD/MM/YYYY at TIMESTAMP</p>
+                </li>
+            </ul>
+            <div class="view-item-options">
+                <a href="" class="update-item">
+                    <button>Update Item</button>
+                </a>
+                <a href="" class="cancel">
+                    <button>Cancel</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Another Modal lool -->
+
+    <div class="view-item-wrapper" style="pointer-events: none; opacity: 0;">
+        <div class="view-item-container">
+            <header class="view-item-header">
+                <div class="view-item-detail">
+                    <span>Update Item</span>
+                    <p>Tell us what's going in...</p>
+                </div>
+                <div class="order-close-modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                        <g fill="#212121" class="nc-icon-wrapper">
+                            <line x1="14" y1="4" x2="4" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" data-color="color-2"></line>
+                            <line x1="4" y1="4" x2="14" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></line>
+                        </g>
+                    </svg>
+                </div>
+            </header>
+            <form class="view-details">
+                <div class="view-form-group">
+                    <label for="order-status">Order Status</label>
+                    <select id="order-status" name="order-status" required>
+                        <option value="order-recieved">Order recieved</option>
+                        <option value="wait-shipping">Waiting to be shipped</option>
+                        <option value="delivery">Delivery</option>
+                        <option value="item-recieved">Item recieved</option>
+                    </select>
+                </div>
+                <div class="view-form-group">
+                    <label for="order-status">Ready to ship?</label>
+                    <select id="order-status" name="order-status" required>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="view-item-options">
+                    <a href="" class="update-item">
+                        <button>Proceed</button>
+                    </a>
+                    <a href="" class="cancel">
+                        <button>Cancel</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 </body>

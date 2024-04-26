@@ -139,8 +139,8 @@
     width: 920px;
     border-radius: 12px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 24px; /* Gap between items */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
     overflow: hidden;
     place-items: center;
 }
