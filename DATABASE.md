@@ -65,3 +65,9 @@ docker ps #just check there if the oracle container is running properly.
 - The `-p` means server port.
 - The `--shm-size="8g"` is the recommendation base on given guidelines by Oracle
 - The `-d` means detachment mode.
+====================================================================================================
+## Quick Tutorial (honest btw)
+
+1. docker ps -a - This will show all installed containers even the server is not running.
+2. docker exec -u 0 -it mycontainer bash - This will give you an root access to the container that protects file directory to change everything lol
+   
