@@ -1,6 +1,7 @@
 .product-manage-page {
     padding: 2em;
 }
+
 .product-manage-wrapper {
     display: flex;
     align-items: center;
@@ -10,6 +11,7 @@
     max-width: 800px;
     height: 80vh;
 }
+
 .manage-head {
     display: flex;
     justify-content: space-between;
@@ -18,12 +20,15 @@
     flex-direction: row;
     margin-bottom: 0.657em;
 }
+
 .manage-head svg {
     width: 36px;
 }
+
 .right-head {
     cursor: pointer;
 }
+
 .product-items-wrapper {
     border: 1px solid #cacaca;
     background: white;
@@ -33,10 +38,12 @@
     border-radius: 6px;
     overflow: auto;
 }
+
 .left-head {
     font-size: 2em;
     font-weight: 800;
 }
+
 .product-hero {
     width: 80px;
     height: 80px;
@@ -44,11 +51,13 @@
     overflow: hidden;
     margin-right: 0.657em;
 }
+
 .product-hero img {
     width: 100%;
     height: auto;
     object-fit: cover;
 }
+
 .product-item {
     display: flex;
     align-items: center;
@@ -59,13 +68,16 @@
     margin-bottom: 0.657em;
     user-select: none;
 }
+
 .product-item:hover {
     background: #f3f3f3;
 }
+
 .product-left-side {
     display: flex;
     align-items: flex-start;
 }
+
 .edit-item,
 .delete-item {
     border: none;
@@ -74,14 +86,64 @@
     border-radius: 4px;
     color: white;
 }
+
 .edit-item:hover,
 .delete-item:hover {
     opacity: 0.8;
 }
+
 .edit-item {
     background: #2563eb;
     margin-right: 0.257em;
 }
+
 .delete-item {
     background: #dc2626;
+}
+
+/** CREATE FUNC MODAL **/
+.create-item-wrapper {
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 200;
+    display: grid;
+    place-items: center;
+}
+.create-item-container {
+    background: white;
+    height: 600px;
+    width: 920px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    overflow: hidden;
+}
+.left-align {
+    padding: 2em;
+    background: #f4f4f4;
+    height: 100%;
+    overflow: auto;
+}
+.create-item-header span {
+    font-size: 1.757em;
+    font-weight: 800;
+}
+.form-create-group {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.form-create-group input[type="text"],
+.form-create-group input[type="number"],
+.form-create-group select {
+    width: 100%;
+}
+.form-create {
+    width: 100%;
 }

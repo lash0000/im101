@@ -68,6 +68,53 @@
         </div>
     </main>
 
+    <!-- Create / Add item modal -->
+    <div class="create-item-wrapper">
+        <div class="create-item-container">
+            <div class="left-align">
+                <header class="create-item-header">
+                    <span>Create / Add New Item</span>
+                    <p>Provide the input needed below...</p>
+                </header>
+                <form action="" class="form-create">
+                    <div class="form-create-group">
+                        <label for="product-category">Product Category</label>
+                        <select id="product-category" name="product-category">
+                            <option value="brownies">Brownies</option>
+                            <option value="cakes">Cakes</option>
+                        </select>
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" id="product-name" name="product-name">
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-price">Product Price</label>
+                        <input type="number" id="product-price" name="product-price" step="0.01">
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-quantity">Product Quantity / Stocks</label>
+                        <input type="number" id="product-quantity" name="product-quantity">
+                    </div>
+                    <div class="form-create-group">
+                        <label>Is the product still had some or had many stocks?</label>
+                        <div>
+                            <input type="radio" id="product-available-yes" name="product-available" value="yes">
+                            <label for="product-available-yes">Yes</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="product-available-no" name="product-available" value="no">
+                            <label for="product-available-no">No</label>
+                        </div>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="right-align">
+                
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 </body>
 
