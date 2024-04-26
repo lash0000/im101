@@ -80,7 +80,7 @@
                     <p>Here are the following details.</p>
                 </div>
                 <div class="order-close-modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" class="close-icon">
                         <g fill="#212121" class="nc-icon-wrapper">
                             <line x1="14" y1="4" x2="4" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" data-color="color-2"></line>
                             <line x1="4" y1="4" x2="14" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></line>
@@ -103,10 +103,10 @@
                 </li>
             </ul>
             <div class="view-item-options">
-                <a href="" class="update-item">
+                <a class="update-item">
                     <button>Update Item</button>
                 </a>
-                <a href="" class="cancel">
+                <a class="view-cancel">
                     <button>Cancel</button>
                 </a>
             </div>
@@ -115,7 +115,7 @@
 
     <!-- Another Modal lool -->
 
-    <div class="view-item-wrapper" style="pointer-events: none; opacity: 0;">
+    <div class="update-item-wrapper" style="pointer-events: none; opacity: 0;">
         <div class="view-item-container">
             <header class="view-item-header">
                 <div class="view-item-detail">
@@ -123,7 +123,7 @@
                     <p>Tell us what's going in...</p>
                 </div>
                 <div class="order-close-modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" class="close-icon">
                         <g fill="#212121" class="nc-icon-wrapper">
                             <line x1="14" y1="4" x2="4" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" data-color="color-2"></line>
                             <line x1="4" y1="4" x2="14" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></line>
@@ -152,7 +152,7 @@
                     <a href="" class="update-item">
                         <button>Proceed</button>
                     </a>
-                    <a href="" class="cancel">
+                    <a href="" class="update-item-cancel">
                         <button>Cancel</button>
                     </a>
                 </div>
@@ -161,6 +161,62 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const viewItemButton = document.querySelector(".view-item");
+            const viewItemWrapper = document.querySelector(".view-item-wrapper");
+            const updateItemWrapper = document.querySelector(".update-item-wrapper");
+
+            function toggleModal(modalWrapper) {
+                if (modalWrapper.style.pointerEvents === "none") {
+                    gsap.to(modalWrapper, {
+                        duration: 0.2,
+                        pointerEvents: "auto",
+                        opacity: 1
+                    });
+                } else {
+                    gsap.to(modalWrapper, {
+                        duration: 0.2,
+                        pointerEvents: "none",
+                        opacity: 0
+                    });
+                }
+            }
+
+            viewItemButton.addEventListener("click", function() {
+                toggleModal(viewItemWrapper);
+            });
+
+            const closeIcons = document.querySelectorAll(".close-icon");
+            closeIcons.forEach(function(closeIcon) {
+                closeIcon.addEventListener("click", function() {
+                    // Determine which modal is associated with the close icon
+                    const modalWrapper = closeIcon.closest('.view-item-wrapper') || closeIcon.closest('.update-item-wrapper');
+                    toggleModal(modalWrapper);
+                });
+            });
+
+            const updateButton = document.querySelector(".update-item");
+            updateButton.addEventListener("click", function() {
+                toggleModal(updateItemWrapper);
+                toggleModal(viewItemWrapper);
+            });
+
+            const viewCancelButton = document.querySelector(".view-cancel");
+            viewCancelButton.addEventListener("click", function() {
+                toggleModal(viewItemWrapper);
+            });
+
+            const updateCancelButton = document.querySelector(".update-item-cancel");
+            updateCancelButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                toggleModal(updateItemWrapper);
+
+                const form = updateItemWrapper.querySelector("form");
+                form.reset();
+            });
+        });
+    </script>
 </body>
 
 </html>
