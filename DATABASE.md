@@ -67,7 +67,10 @@ docker ps #just check there if the oracle container is running properly.
 - The `-d` means detachment mode.
 ====================================================================================================
 ## Quick Tutorial (honest btw)
-
-1. docker ps -a - This will show all installed containers even the server is not running.
-2. docker exec -u 0 -it mycontainer bash - This will give you an root access to the container that protects file directory to change everything lol
+```shell
+docker ps -a # This will show all installed containers even the server is not running.
+```
+```shell
+docker exec -u 0 -it mycontainer bash # This will give you an root access to the container that protects file directory to change everything lol.
+```
    
