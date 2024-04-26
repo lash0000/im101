@@ -59,6 +59,10 @@ Expected Output: Just giving long alphanumeric string (ID number)
 docker ps #just check there if the oracle container is running properly.
 ```
 
+```shell
+find / -name tnsnames.ora # just find some important bitch
+```
+
 ## Note: 
 
 - The `./Documents/ora_db_env.dat` could be find base on what your terminal directory guess.
@@ -78,4 +82,4 @@ yum update
 ```   
 ```shell
 yum install nano -y # this should enough to install missing packages for centOS/fedora based
-```   
+```
