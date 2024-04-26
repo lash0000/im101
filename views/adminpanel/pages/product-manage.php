@@ -36,7 +36,7 @@
                 </div>
             </header>
             <section class="product-items-wrapper">
-                <div class="product-item">
+                <!-- <div class="product-item">
                     <div class="product-left-side">
                         <div class="product-hero">
                             <img src="../../../public/product-test/brown1.png" alt="" />
@@ -55,7 +55,7 @@
                             Delete Item
                         </button>
                     </div>
-                </div>
+                </div> -->
             </section>
             <div class="admin-session-wrapper">
                 <a class="admin-session admin-option" href="../index.php">

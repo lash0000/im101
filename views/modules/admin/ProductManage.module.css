@@ -79,8 +79,22 @@
     align-items: flex-start;
 }
 
+.product-right-side {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.product-right-side span {
+    font-size: 0.657em;
+    display: block;
+    margin-right: 1em;
+    font-weight: bold;
+}
+
 .edit-item,
-.delete-item {
+.delete-item,
+.view-item {
     border: none;
     appearance: none;
     padding: 0.667em;
@@ -89,7 +103,8 @@
 }
 
 .edit-item:hover,
-.delete-item:hover {
+.delete-item:hover,
+.view-item:hover {
     opacity: 0.8;
 }
 
@@ -100,6 +115,10 @@
 
 .delete-item {
     background: #dc2626;
+}
+
+.view-item {
+    background: #FCD34D;
 }
 
 /** CREATE FUNC MODAL **/
