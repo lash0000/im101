@@ -121,11 +121,8 @@ $result = mysqli_query($conn, $sql);
         <div class="grid-items-container">
             <div class="grid-items-wrapper">
                 <?php
-                // Check if there are products to display
                 if ($result && mysqli_num_rows($result) > 0) {
-                    // Loop through each product
                     while ($row = mysqli_fetch_assoc($result)) {
-                        // Extract product data
                         $productName = $row['trv_product_name'];
                         $productPrice = $row['trv_product_price'];
                         $categoryName = $row['trv_category_name'];
@@ -133,7 +130,6 @@ $result = mysqli_query($conn, $sql);
                 ?>
                         <a href="./product/" class="treiven-items">
                             <div class="treiven-pics">
-                                <!-- Display the product image -->
                                 <img src="../adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
                             </div>
                             <div class="treiven-infos">
@@ -150,7 +146,6 @@ $result = mysqli_query($conn, $sql);
                 <?php
                     }
                 } else {
-                    // No products found
                     echo "No products found.";
                 }
                 ?>
