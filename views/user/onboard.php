@@ -1,3 +1,27 @@
+<?php
+// Establish a connection to the database
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+// Check if the connection is successful
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Query to retrieve product data
+$sql = "SELECT p.trv_product_name, p.trv_product_price, c.trv_category_name, p.trv_product_image 
+        FROM treiven_products p
+        INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
+$result = mysqli_query($conn, $sql);
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,66 +120,41 @@
         </div>
         <div class="grid-items-container">
             <div class="grid-items-wrapper">
-                <a href="./product/" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="../../public/signup-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Brownies W/ Walnuts</span>
-                            <p>Brownies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="../../public/signup-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Brownies W/ Walnuts</span>
-                            <p>Brownies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="../../public/signup-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Brownies W/ Walnuts</span>
-                            <p>Brownies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="../../public/signup-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Brownies W/ Walnuts</span>
-                            <p>Brownies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
+                <?php
+                // Check if there are products to display
+                if ($result && mysqli_num_rows($result) > 0) {
+                    // Loop through each product
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        // Extract product data
+                        $productName = $row['trv_product_name'];
+                        $productPrice = $row['trv_product_price'];
+                        $categoryName = $row['trv_category_name'];
+                        $productImage = $row['trv_product_image'];
+                ?>
+                        <a href="./product/" class="treiven-items">
+                            <div class="treiven-pics">
+                                <!-- Display the product image -->
+                                <img src="../adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
+                            </div>
+                            <div class="treiven-infos">
+                                <div class="treiven-product">
+                                    <span><?php echo $productName; ?></span>
+                                    <p>Category / <?php echo $categoryName; ?></p>
+                                </div>
+                                <div class="treiven-product-price">
+                                    <span><?php echo '₱' . $productPrice; ?></span>
+                                    <p class="avail-stocks">Available</p>
+                                </div>
+                            </div>
+                        </a>
+                <?php
+                    }
+                } else {
+                    // No products found
+                    echo "No products found.";
+                }
+                ?>
+
             </div>
         </div>
     </main>
