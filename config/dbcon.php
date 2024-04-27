@@ -1,13 +1,14 @@
 <?php
-$oracle_dbname = "im101";
-$oracle_pass = "Eyelashmelon01";
-$oracle_host = "localhost/orcl";
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
 
-$conn = oci_connect($oracle_dbname, $oracle_pass, $oracle_host);
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
 if (!$conn) {
-    $e = oci_error();
-    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+    die("Connection failed: " . mysqli_connect_error());
 } else {
-    echo "Connected to Oracle database!";
+    echo "Connected to MySQL!";
 }
 ?>
