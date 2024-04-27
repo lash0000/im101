@@ -1,3 +1,41 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    //query1
+    $user_query = "SELECT * FROM treiven_user_accounts WHERE trv_user_email = '$email' AND trv_user_pwd = '$password'";
+    $user_result = mysqli_query($conn, $user_query);
+    //query2
+    $admin_query = "SELECT * FROM treiven_adminpanel WHERE trv_admin_email = '$email' AND trv_admin_pwd = '$password'";
+    $admin_result = mysqli_query($conn, $admin_query);
+
+    if (mysqli_num_rows($user_result) > 0) {
+        session_start();
+        $_SESSION['user_role'] = 'user';
+        header("Location: ../../auth/index.php");
+        exit();
+    }
+    elseif (mysqli_num_rows($admin_result) > 0) {
+        session_start();
+        $_SESSION['user_role'] = 'admin';
+        header("Location: ../../auth/index.php");
+        exit();
+    } else {
+        echo "Invalid email or password. Please try again.";
+    }
+
+    mysqli_close($conn);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +104,6 @@
     </main>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src=""></script>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 </html>

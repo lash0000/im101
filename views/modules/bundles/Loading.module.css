@@ -1,0 +1,13 @@
+.auth-container {
+    padding: 2em;
+}
+.auth-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+}
+.loader svg {
+    width: 256px;
+}

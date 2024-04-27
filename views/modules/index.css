@@ -7,6 +7,7 @@
 @import url("./bundles/Cart.module.css");
 @import url("./bundles/About.module.css");
 @import url("./Glider.module.css");
+@import url("./bundles/Loading.module.css");
 
 /** APPLICABLE FOR USER SIDE **/
 @import url("./user/Appbar.module.css");
