@@ -44,7 +44,7 @@
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" required>
                     </div>
-                    <button type="submit" style="margin-bottom: 12px;">Proceed</button>
+                    <button id="proceed-button" type="submit" style="margin-bottom: 12px;">Proceed</button>
                     <aside class="login-options">
                         <span>Already have an account? <a href="../login/">Sign In</a></span>
                     </aside>
@@ -88,6 +88,46 @@
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src=""></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const proceedButton = document.getElementById("proceed-button");
+        const confirmationModal = document.querySelector(".modal-container");
+        const closeButtons = document.querySelectorAll("#close-modal");
+
+        function toggleModal() {
+            if (confirmationModal.style.display === "none") {
+                gsap.to(confirmationModal, {
+                    duration: 0.3,
+                    display: "block",
+                    opacity: 1
+                });
+            } else {
+                gsap.to(confirmationModal, {
+                    duration: 0.3,
+                    display: "none",
+                    opacity: 0
+                });
+            }
+        }
+
+        proceedButton.addEventListener("click", function(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById("email");
+            const passwordInput = document.getElementById("password");
+
+            if (emailInput.value !== "" && passwordInput.value !== "") {
+                toggleModal();
+            } else {
+                alert("Please fill in both email and password fields.");
+            }
+        });
+
+        closeButtons.forEach(function(closeButton) {
+            closeButton.addEventListener("click", function() {
+                toggleModal();
+            });
+        });
+    });
+</script>
 
 </html>
