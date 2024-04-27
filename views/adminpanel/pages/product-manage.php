@@ -88,7 +88,7 @@ if ($result) {
     }
 }
 
-// Check if the product ID is provided in the URL
+// BASTA WIP PA 
 if (isset($_GET['trv_product_id'])) {
     $product_id = mysqli_real_escape_string($conn, $_GET['trv_product_id']); // Sanitize input
 
@@ -114,6 +114,30 @@ if (isset($_GET['trv_product_id'])) {
     $product_quantity = '';
     $product_available = '';
     $product_info = '';
+}
+
+if (isset($_POST['delete-product'])) {
+    $product_id = isset($_POST['product-id']) ? $_POST['product-id'] : '';
+
+    if (!empty($product_id)) {
+        $sql = "DELETE FROM treiven_products WHERE trv_product_id = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "i", $product_id);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+            // Provide feedback to the user that the product has been successfully deleted
+        } else {
+            echo '<div class="product-added-success">
+            The item has been deleted successfully!
+        </div>';
+        }
+    } else {
+        echo '<div class="product-added-error">
+                Error: Unable to delete the item. Please try again later.
+            </div>';
+    }
 }
 ?>
 
@@ -168,7 +192,7 @@ if (isset($_GET['trv_product_id'])) {
                             </div>
                         </div>
                         <div class="product-right-side">
-                            <button class="edit-item" onclick="editProduct(<?php echo $product_id; ?>)">
+                            <button class="edit-item">
                                 Edit Item
                             </button>
                             <button class="delete-item">
@@ -345,6 +369,7 @@ if (isset($_GET['trv_product_id'])) {
                     </div>
                     <div class="form-create-group">
                         <input type="file" id="fileInput" name="fileInput" required>
+
                     </div>
                 </div>
             </div>
@@ -354,7 +379,6 @@ if (isset($_GET['trv_product_id'])) {
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
-        
         document.addEventListener("DOMContentLoaded", function() {
             const successMessage = document.querySelector(".product-added-success");
             const errorMessage = document.querySelector(".product-added-error");
@@ -385,6 +409,14 @@ if (isset($_GET['trv_product_id'])) {
             const editItemButton = document.querySelectorAll(".edit-item");
             const editItemWrapper = document.querySelector(".edit-item-wrapper");
 
+            // Function to update the URL
+            function updateURL(productID) {
+                const url = new URL(window.location.href);
+                url.searchParams.set('trv_product_id', productID);
+                history.pushState(null, '1', url.toString());
+            }
+
+            // Function to toggle the modal
             function toggleModal(modalWrapper) {
                 if (modalWrapper.style.pointerEvents === "none") {
                     gsap.to(modalWrapper, {
@@ -392,12 +424,16 @@ if (isset($_GET['trv_product_id'])) {
                         pointerEvents: "auto",
                         opacity: 1
                     });
+                    // Get the product ID from the modal
+                    const productID = modalWrapper.querySelector('[name="trv_product_id"]').value;
+                    updateURL(productID);
                 } else {
                     gsap.to(modalWrapper, {
                         duration: 0.3,
                         pointerEvents: "none",
                         opacity: 0
                     });
+                    history.pushState(null, '', window.location.pathname); // Reset the URL
                 }
             }
 
