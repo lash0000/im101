@@ -1,6 +1,6 @@
 -- lagay mo thru initialization tooollll
 
--- Create treiven_adminpanel table
+-- 1. Create treiven_adminpanel table
 CREATE TABLE treiven_adminpanel (
     retrieval_id INT PRIMARY KEY,
     trv_admin_email VARCHAR(255),
@@ -18,6 +18,14 @@ CREATE TABLE treiven_user_accounts (
     trv_user_active CHAR(1),
     trv_registration_date DATE
 );
+
+-- 2. Initialize their relationships
+
+ALTER TABLE treiven_user_accounts
+ADD CONSTRAINT FK_treiven_user_accounts_retrieval_id
+FOREIGN KEY (retrieval_id)
+REFERENCES treiven_adminpanel(retrieval_id);
+
 
 -- Create treiven_orders table
 CREATE TABLE treiven_orders (
