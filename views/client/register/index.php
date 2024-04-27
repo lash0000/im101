@@ -1,3 +1,43 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $registration_date = date('Y-m-d');
+
+    $sql = "INSERT INTO treiven_user_accounts (retrieval_id, trv_user_email, trv_user_pwd, trv_user_active, trv_registration_date) VALUES (1, '$email', '$password', 'T', '$registration_date')";
+
+    if (mysqli_query($conn, $sql)) {
+        echo '<div class="modal-container">
+                <div class="modal-wrapper">
+                    <header class="header-modal">
+                        <span>Account Creation Success</span>
+                    </header>
+                    <main class="header-body">
+                        <label id="modal-label">You may now proceed to sign in.</label>
+                    </main>
+                </div>
+            </div>';
+
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "../login/";
+            }, 3000); // 3000 milliseconds delay
+        </script>';
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+    mysqli_close($conn);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +75,7 @@
                     <label>Sign up</label>
                     <p>Please enter your details to sign up</p>
                 </header>
-                <form id="loginForm" method="post">
+                <form id="loginForm" method="post" action="">
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" id="email" name="email" required>
@@ -92,17 +132,19 @@
     document.addEventListener("DOMContentLoaded", function() {
         const proceedButton = document.getElementById("proceed-button");
         const confirmationModal = document.querySelector(".modal-container");
+        const successModal = document.querySelector(".success-modal-container");
         const closeButtons = document.querySelectorAll("#close-modal");
+        const submitFormButton = document.getElementById("submit-modal");
 
-        function toggleModal() {
-            if (confirmationModal.style.display === "none") {
-                gsap.to(confirmationModal, {
+        function toggleModal(modal) {
+            if (modal.style.display === "none") {
+                gsap.to(modal, {
                     duration: 0.3,
                     display: "block",
                     opacity: 1
                 });
             } else {
-                gsap.to(confirmationModal, {
+                gsap.to(modal, {
                     duration: 0.3,
                     display: "none",
                     opacity: 0
@@ -116,15 +158,22 @@
             const passwordInput = document.getElementById("password");
 
             if (emailInput.value !== "" && passwordInput.value !== "") {
-                toggleModal();
+                toggleModal(confirmationModal);
             } else {
                 alert("Please fill in both email and password fields.");
             }
         });
 
+        // Event listener for the submit button inside the modal
+        submitFormButton.addEventListener("click", function() {
+            // Here you can trigger the form submission
+            document.getElementById("loginForm").submit();
+        });
+
         closeButtons.forEach(function(closeButton) {
             closeButton.addEventListener("click", function() {
-                toggleModal();
+                toggleModal(confirmationModal);
+                toggleModal(successModal); // Hide the success modal if open
             });
         });
     });

@@ -59,7 +59,7 @@
     bottom: 24px;
     right: 24px;
     color: white;
-    z-index: 99;
+    z-index: 2;
     user-select: none;
 }
 .banner-wrap span:hover,
