@@ -1,3 +1,6 @@
 fiveserver.config.js
 composer.lock
 vendor/
+
+# just add it there inside this is for CRUD hehe.
+views/adminpanel/pages/uploads

@@ -26,9 +26,46 @@ ADD CONSTRAINT FK_treiven_user_accounts_retrieval_id
 FOREIGN KEY (retrieval_id)
 REFERENCES treiven_adminpanel(retrieval_id);
 
+-- 3. Create treiven_category table
+CREATE TABLE treiven_category (
+    trv_category_id INT PRIMARY KEY,
+    trv_category_name ENUM('Brownies', 'Cakes', 'Cookies', 'Specials') UNIQUE KEY,
+    trv_category_info VARCHAR(4000)
+);
 
-------------------------- NOT YET DONE -------------------------
+CREATE TABLE treiven_products (
+    trv_product_id INT PRIMARY KEY,
+    trv_category_id INT,
+    trv_product_name VARCHAR(255),
+    trv_product_info VARCHAR(4000),
+    trv_product_price DECIMAL(10,2),
+    trv_product_qty INT,
+    trv_product_qty_stock ENUM('Yes', 'No'),
+    trv_product_image LONGBLOB,
+);
 
+-- 4. ...........
+ALTER TABLE treiven_products
+ADD CONSTRAINT fk_category_id
+FOREIGN KEY (trv_category_id) REFERENCES treiven_category(trv_category_id);
+
+-- 5. for trv_category_name
+ALTER TABLE treiven_products
+ADD COLUMN trv_category_name ENUM('Brownies', 'Cakes', 'Cookies', 'Specials');
+
+ALTER TABLE treiven_products
+ADD CONSTRAINT fk_category
+FOREIGN KEY (trv_category_id) REFERENCES treiven_category(trv_category_id);
+
+UPDATE treiven_products AS p
+JOIN treiven_category AS c ON p.trv_category_id = c.trv_category_id
+SET p.trv_category_name = c.trv_category_name;
+
+ALTER TABLE treiven_products
+ADD CONSTRAINT fk_category_name
+FOREIGN KEY (trv_category_name) REFERENCES treiven_category(trv_category_name);
+
+------------------------------- NOT YET DONE ---------------------------------
 
 -- Create treiven_orders table
 CREATE TABLE treiven_orders (
@@ -42,24 +79,6 @@ CREATE TABLE treiven_orders (
     shipping_method VARCHAR(255), -- Changed column name
     payment_method VARCHAR(255), -- Changed column name
     trv_createdAt TIMESTAMP
-);
-
--- Create treiven_products table
-CREATE TABLE treiven_products (
-    trv_product_id INT PRIMARY KEY,
-    trv_category_id INT,
-    trv_product_name VARCHAR(255),
-    trv_product_info VARCHAR(4000),
-    trv_product_price INT,
-    trv_product_qty INT,
-    trv_product_qty_stock CHAR(1)
-);
-
--- Create treiven_category table
-CREATE TABLE treiven_category (
-    trv_category_id INT PRIMARY KEY,
-    trv_category_name VARCHAR(255),
-    trv_category_info VARCHAR(4000)
 );
 
 -- Create treiven_order_items table

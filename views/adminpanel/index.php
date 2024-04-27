@@ -38,9 +38,9 @@
             </div>
         </div>
         <div class="admin-session-wrapper">
-            <div class="admin-session">
+            <a href="../client/login/" class="admin-session">
                 log out
-            </div>
+            </a>
         </div>
     </main>
 

@@ -1,3 +1,63 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $product_category_id = isset($_POST['product-category']) ? $_POST['product-category'] : 0;
+    $product_name = isset($_POST['product-name']) ? mysqli_real_escape_string($conn, $_POST['product-name']) : '';
+    $product_price = isset($_POST['product-price']) ? $_POST['product-price'] : 0;
+    $product_quantity = isset($_POST['product-quantity']) ? $_POST['product-quantity'] : 0;
+    $product_available = isset($_POST['product-available']) ? $_POST['product-available'] : '';
+    $product_info = isset($_POST['product-info']) ? mysqli_real_escape_string($conn, $_POST['product-info']) : '';
+
+    $targetDir = "uploads/";
+    $fileName = basename($_FILES["fileInput"]["name"]);
+    $targetFilePath = $targetDir . $fileName;
+    $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+
+    $allowedTypes = array('jpg', 'jpeg', 'png', 'gif');
+
+    if (in_array($fileType, $allowedTypes)) {
+        if (move_uploaded_file($_FILES["fileInput"]["tmp_name"], $targetFilePath)) {
+            $category_sql = "SELECT trv_category_name FROM treiven_category WHERE trv_category_id = '$product_category_id'";
+            $category_result = mysqli_query($conn, $category_sql);
+            $category_row = mysqli_fetch_assoc($category_result);
+            $product_category_name = $category_row ? $category_row['trv_category_name'] : '';
+
+            // Inserting product data into the database
+            $sql = "INSERT INTO treiven_products (trv_category_id, trv_category_name, trv_product_name, trv_product_price, trv_product_qty, trv_product_qty_stock, trv_product_info, trv_product_image) 
+                    VALUES ('$product_category_id', '$product_category_name', '$product_name', '$product_price', '$product_quantity', '$product_available', '$product_info', '$fileName')";
+
+            if (mysqli_query($conn, $sql)) {
+                echo '<div class="product-added-success">
+                    The item has been added successfully!
+                </div>';
+            } else {
+                echo '<div class="product-added-error">
+                    Error: Unable to add the item. Please try again later.
+                </div>';
+            }
+        } else {
+            echo '<div class="product-added-error">
+                Sorry, there was an error uploading your file.
+            </div>';
+        }
+    } else {
+        echo '<div class="product-added-error">
+            Sorry, only JPG, JPEG, PNG & GIF files are allowed.
+        </div>';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,14 +136,15 @@
                     <span>Create / Add New Item</span>
                     <p>Provide the input needed below...</p>
                 </header>
-                <form action="" class="form-create">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-create" method="post" enctype="multipart/form-data">
                     <div class="form-create-group">
                         <label for="product-category">Product Category</label>
                         <select id="product-category" name="product-category">
-                            <option value="brownies">Brownies</option>
-                            <option value="cakes">Cakes</option>
-                            <option value="cakes">Cookies</option>
-                            <option value="cakes">Specials</option>
+                            <option>Please specify:</option>
+                            <option value="1">Brownies</option>
+                            <option value="2">Cakes</option>
+                            <option value="3">Cookies</option>
+                            <option value="4">Specials</option>
                         </select>
                     </div>
                     <div class="form-create-group">
@@ -108,6 +169,10 @@
                             <input type="radio" id="product-available-no" name="product-available" value="no" required>
                             <label for="product-available-no">No</label>
                         </div>
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-info">Product Information</label>
+                        <textarea id="product-info" name="product-info" maxlength="4000" required></textarea>
                     </div>
                     <button type="submit">Submit</button>
             </div>
@@ -139,9 +204,44 @@
             </form>
         </div>
     </div>
+
+    <!-- Product added success -->
+    <!-- <div class="product-added-success">
+        The item has been added successfully!
+    </div> -->
+    <!-- 
+    <div class="product-added-error">
+        The item has been added successfully!
+    </div> -->
+
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            const successMessage = document.querySelector(".product-added-success");
+            const errorMessage = document.querySelector(".product-added-error");
+
+            function hideElement(element) {
+                gsap.to(element, {
+                    duration: 0.003,
+                    opacity: 0,
+                    display: "none",
+                    onComplete: function() {
+                        element.style.display = "none";
+                    }
+                });
+            }
+
+            if (successMessage) {
+                setTimeout(function() {
+                    hideElement(successMessage);
+                }, 3000);
+            } else if (errorMessage) {
+                setTimeout(function() {
+                    hideElement(errorMessage);
+                }, 3000);
+            }
+
             const rightHead = document.querySelector(".right-head");
             const createItemWrapper = document.querySelector(".create-item-wrapper");
 
@@ -171,6 +271,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>
