@@ -27,6 +27,9 @@ FOREIGN KEY (retrieval_id)
 REFERENCES treiven_adminpanel(retrieval_id);
 
 
+------------------------- NOT YET DONE -------------------------
+
+
 -- Create treiven_orders table
 CREATE TABLE treiven_orders (
     trv_order_id INT PRIMARY KEY,
