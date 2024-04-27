@@ -56,6 +56,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>';
     }
 }
+
+// Fetch data to my product_items_wrapper
+$query = "SELECT p.trv_product_image, p.trv_product_name, c.trv_category_name, p.trv_product_price FROM treiven_products p INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
+$result = mysqli_query($conn, $query);
+
+$products = [];
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $products[] = $row;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -96,26 +107,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </header>
             <section class="product-items-wrapper">
-                <!-- <div class="product-item">
-                    <div class="product-left-side">
-                        <div class="product-hero">
-                            <img src="../../../public/product-test/brown1.png" alt="" />
+                <?php foreach ($products as $product) : ?>
+                    <div class="product-item">
+                        <div class="product-left-side">
+                            <div class="product-hero">
+                                <img src="./uploads/<?= $product['trv_product_image'] ?>" alt="" />
+                            </div>
+                            <div class="product-first-detail">
+                                <span><?= $product['trv_product_name'] ?></span>
+                                <p style="color: #A6A6A6;">Category / <?= $product['trv_category_name'] ?></p>
+                                <p>Price: ₱<?= $product['trv_product_price'] ?></p>
+                            </div>
                         </div>
-                        <div class="product-first-detail">
-                            <span>Brownies W/ Walnuts</span>
-                            <p style="color: #A6A6A6;">Category / Special Treats</p>
-                            <p>Price: ₱50.00 (discount applied: FALSE)</p>
+                        <div class="product-right-side">
+                            <button class="edit-item">
+                                Edit Item
+                            </button>
+                            <button class="delete-item">
+                                Delete Item
+                            </button>
                         </div>
                     </div>
-                    <div class="product-right-side">
-                        <button class="edit-item">
-                            Edit Item
-                        </button>
-                        <button class="delete-item">
-                            Delete Item
-                        </button>
-                    </div>
-                </div> -->
+                <?php endforeach; ?>
             </section>
             <div class="admin-session-wrapper">
                 <a class="admin-session admin-option" href="../index.php">
@@ -205,6 +218,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
+    <!-- Product Edit Modal (Retrieve / GET ofcourse) -->
+
+    <div class="edit-item-wrapper" style="pointer-events: none; opacity: 0;">
+        <div class="edit-item-container">
+            <div class="left-align">
+                <header class="create-item-header">
+                    <span>Update Item</span>
+                    <p>Change the input needed field below.</p>
+                </header>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-create" method="post" enctype="multipart/form-data">
+                    <div class="form-create-group">
+                        <label for="product-category">Product Category</label>
+                        <select id="product-category" name="product-category">
+                            <option>Please specify:</option>
+                            <option value="1">Brownies</option>
+                            <option value="2">Cakes</option>
+                            <option value="3">Cookies</option>
+                            <option value="4">Specials</option>
+                        </select>
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" id="product-name" name="product-name" required>
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-price">Product Price</label>
+                        <input type="number" id="product-price" name="product-price" step="0.01" required>
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-quantity">Product Quantity / Stocks</label>
+                        <input type="number" id="product-quantity" name="product-quantity" required>
+                    </div>
+                    <div class="form-create-group">
+                        <label>Is the product still had some or had many stocks?</label>
+                        <div class="">
+                            <input type="radio" id="product-available-yes" name="product-available" value="yes" required>
+                            <label for="product-available-yes">Yes</label>
+                        </div>
+                        <div class="m">
+                            <input type="radio" id="product-available-no" name="product-available" value="no" required>
+                            <label for="product-available-no">No</label>
+                        </div>
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-info">Product Information</label>
+                        <textarea id="product-info" name="product-info" maxlength="4000" required></textarea>
+                    </div>
+                    <button type="submit">Submit</button>
+            </div>
+            <div class="right-align">
+                <div class="close-edit-modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                        <g fill="#212121" class="nc-icon-wrapper">
+                            <line x1="14" y1="4" x2="4" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" data-color="color-2"></line>
+                            <line x1="4" y1="4" x2="14" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></line>
+                        </g>
+                    </svg>
+                </div>
+                <div class="text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                        <g fill="#212121" class="nc-icon-wrapper">
+                            <path d="M13.194,8.384c-1.072-1.072-2.816-1.072-3.889,0L3.196,14.494c.367,.457,.923,.756,1.554,.756H13.25c1.105,0,2-.896,2-2v-2.811l-2.056-2.056Z" fill="#212121" data-color="color-2"></path>
+                            <circle cx="6.25" cy="7.25" r="1.25" fill="#212121" data-color="color-2"></circle>
+                            <path d="M13.25,16H4.75c-1.517,0-2.75-1.233-2.75-2.75V4.75c0-1.517,1.233-2.75,2.75-2.75H13.25c1.517,0,2.75,1.233,2.75,2.75V13.25c0,1.517-1.233,2.75-2.75,2.75ZM4.75,3.5c-.689,0-1.25,.561-1.25,1.25V13.25c0,.689,.561,1.25,1.25,1.25H13.25c.689,0,1.25-.561,1.25-1.25V4.75c0-.689-.561-1.25-1.25-1.25H4.75Z" fill="#212121"></path>
+                        </g>
+                    </svg>
+                    <div class="text-content">
+                        Provide the product image below.
+                    </div>
+                    <div class="form-create-group">
+                        <input type="file" id="fileInput" name="fileInput" required>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Product added success -->
     <!-- <div class="product-added-success">
         The item has been added successfully!
@@ -223,7 +314,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             function hideElement(element) {
                 gsap.to(element, {
-                    duration: 0.003,
+                    duration: 0.3,
                     opacity: 0,
                     display: "none",
                     onComplete: function() {
@@ -244,33 +335,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             const rightHead = document.querySelector(".right-head");
             const createItemWrapper = document.querySelector(".create-item-wrapper");
+            const editItemButton = document.querySelector(".edit-item");
+            const editItemWrapper = document.querySelector(".edit-item-wrapper");
 
-            function toggleModal() {
-                if (createItemWrapper.style.pointerEvents === "none") {
-                    gsap.to(createItemWrapper, {
+            function toggleModal(modalWrapper) {
+                if (modalWrapper.style.pointerEvents === "none") {
+                    gsap.to(modalWrapper, {
                         duration: 0.3,
-                        pointerEvents: "auto", // Enable pointer events
+                        pointerEvents: "auto",
                         opacity: 1
                     });
                 } else {
-                    gsap.to(createItemWrapper, {
+                    gsap.to(modalWrapper, {
                         duration: 0.3,
-                        pointerEvents: "none", // Disable pointer events
+                        pointerEvents: "none",
                         opacity: 0
                     });
                 }
             }
+
             rightHead.addEventListener("click", function() {
-                toggleModal();
+                toggleModal(createItemWrapper);
             });
 
             const closeModalButton = document.querySelector(".close-modal");
+            const closeEditButton = document.querySelector(".close-edit-modal");
 
             closeModalButton.addEventListener("click", function() {
-                toggleModal();
+                toggleModal(createItemWrapper);
+            });
+
+            editItemButton.addEventListener("click", function() {
+                toggleModal(editItemWrapper);
+            });
+
+            closeEditButton.addEventListener("click", function() {
+                toggleModal(editItemWrapper);
             });
         });
     </script>
+
 
 </body>
 

@@ -5,7 +5,11 @@ update as of 04/25/24
 
 ## Starting Command PHP idk?
 ```bash
-php -S localhost:1234
+composer install
+```
+
+```bash
+
 ```
 
 ## References to work with
