@@ -82,7 +82,7 @@
                     <p>is our scripting language.</p>
                 </div>
                 <div class="about-grid">
-                    <h1>Oracle</h1>
+                    <h1>SQL</h1>
                     <p>is our local database management.</p>
                 </div>
                 <div class="about-grid">
