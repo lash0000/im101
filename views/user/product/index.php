@@ -7,39 +7,14 @@ $mysql_database = "im101-pastry";
 
 $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
 
-// Check if product ID is provided in the URL
-if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $productId = $_GET['id'];
-    // Retrieve product details from the database
-    $query = "SELECT * FROM treiven_products WHERE trv_product_id = $productId";
-    $result = mysqli_query($conn, $query);
-
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $productName = $row['trv_product_name'];
-        $productInfo = $row['trv_product_info'];
-        $productPrice = $row['trv_product_price'];
-        $productQty = $row['trv_product_qty'];
-        $categoryName = $row['trv_category_name'];
-        $productImage = $row['trv_product_image'];
-        // Retrieve category_id from the product details
-        $categoryId = $row['trv_category_id'];
-    } else {
-        echo "Product not found.";
-        exit;
-    }
-} else {
-    echo "Invalid product ID.";
-    exit;
-}
-
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['product_id']) && !empty($_POST['product_id'])) {
         $productId = $_POST['product_id'];
         $quantity = $_POST['quantity'];
         $treivenId = 10;
-        
+
+        // Retrieve category_id from the product details
         $query = "SELECT trv_category_id FROM treiven_products WHERE trv_product_id = $productId";
         $result = mysqli_query($conn, $query);
 
@@ -47,7 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row = mysqli_fetch_assoc($result);
             $categoryId = $row['trv_category_id'];
             $query = "INSERT INTO treiven_cart_items (trv_product_id, trv_category_id, trv_item_qty, trv_total_amount, trv_discount_amount, treiven_id)
-                      VALUES ('$productId', '$categoryId', '$quantity', '0', '20', '$treivenId')";
+            VALUES ('$productId', '$categoryId', '$quantity', '0', '20', '$treivenId')";
+
             $result = mysqli_query($conn, $query);
 
             if ($result) {
@@ -61,7 +37,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $productId = $_GET['id'];
+    $query = "SELECT * FROM treiven_products WHERE trv_product_id = $productId";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $productName = $row['trv_product_name'];
+        $productInfo = $row['trv_product_info'];
+        $productPrice = $row['trv_product_price'];
+        $productQty = $row['trv_product_qty'];
+        $categoryName = $row['trv_category_name'];
+        $productImage = $row['trv_product_image'];
+        $categoryId = $row['trv_category_id'];
+    } else {
+        header("Location: invalid_product.php");
+        exit;
+    }
+}
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

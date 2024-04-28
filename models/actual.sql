@@ -70,6 +70,7 @@ FOREIGN KEY (trv_category_name) REFERENCES treiven_category(trv_category_name);
 
 CREATE TABLE treiven_cart_items (
     trv_cart_id INT AUTO_INCREMENT PRIMARY KEY,
+    trv_product_id INT,
     treiven_id INT,
     trv_category_id INT,
     trv_category_name ENUM('Brownies', 'Cakes', 'Cookies', 'Specials'),
