@@ -1,3 +1,35 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $productId = $_GET['id'];
+    $query = "SELECT * FROM treiven_products WHERE trv_product_id = $productId";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $productName = $row['trv_product_name'];
+        $productInfo = $row['trv_product_info'];
+        $productPrice = $row['trv_product_price'];
+        $productQty = $row['trv_product_qty'];
+        $categoryName = $row['trv_category_name'];
+        $productImage = $row['trv_product_image']; // Added this line to retrieve the product image filename
+    } else {
+        echo "Product not found.";
+        exit;
+    }
+} else {
+    echo "Invalid product ID.";
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +48,11 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
-    <title>Treiven - Brownies W/ Walnuts</title>
+    <title>Treiven - <?php echo $productName; ?></title>
 </head>
 
 <body>
+
     <header class="user-nav-container">
         <div class="user-nav-wrapper">
             <ul class="user-link-wrapper">
@@ -70,39 +103,35 @@
             </div>
         </div>
     </header>
-    
+
     <main class="product-container">
         <div class="product-wrapper">
             <div class="product-header">
                 <div class="product-title">
-                    <h1>Brownies W/ Walnuts</h1>
+                    <h1><?php echo $productName; ?></h1>
                 </div>
-                <a href="./img-view/" class="product-portrait">
+                <a href="./img-view/?id=<?php echo $productId; ?>" class="product-portrait">
                     <div class="node-one">
-                        <img src="../../../public/product-test/brown1.png" alt="">
+                        <img src="../../adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
                     </div>
+                    <!-- Assuming you have multiple product images -->
                     <div class="node-two">
-                        <img src="../../../public/product-test/brown2.png" alt="">
+                    <img src="../../adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
                     </div>
                 </a>
             </div>
             <div class="product-grid-column">
                 <div class="product-description">
-                    <span>The Perfect Bite: Brownies with Walnuts</span>
-                    <p>Brownies, those decadent squares of chocolatey goodness, have been a beloved treat for generations. But what elevates them to pure bliss? The addition of crunchy, toasted walnuts! Our Brownies with Walnuts offer the perfect marriage of textures and flavors, making them an irresistible indulgence.</p>
-                    <p>The exact origin of the brownie is a bit of a mystery, with some stories tracing them back to 19th century American kitchens. Perhaps they were a result of a baker accidentally forgetting to add leavening to a chocolate cake batter. Regardless of their origin, brownies quickly rose to fame, and the addition of walnuts became a popular variation, adding a delightful textural contrast.</p>
-                    <p>Our Brownies with Walnuts are crafted using only the finest ingredients. Rich, dark chocolate forms the base, delivering a deep, satisfying flavor. We then fold in generous amounts of toasted walnuts, their nutty aroma and satisfying crunch perfectly complementing the chocolatey richness. Every bite is a delightful symphony of textures and flavors.</p>
-                    <p>The beauty of our Brownies with Walnuts lies in the perfect balance between the decadent chocolate and the nutty crunch. We use only the finest Belgian chocolate, known for its rich and intense flavor. The toasted walnuts add a delightful textural contrast, creating a truly unforgettable experience.</p>
-                    <p>These brownies are more than just a delicious treat. They are perfect for sharing with loved ones, bringing a touch of joy to any occasion. Whether you're celebrating a special event or simply enjoying a quiet moment of self-care, Treiven's Brownies with Walnuts are the perfect indulgence..</p>
-                    <p>Here at Treiven, we believe in using only the highest quality ingredients and time-tested techniques to create our baked goods. Each brownie is a labor of love, crafted with passion to deliver a taste sensation that will leave you wanting more. Order yours today and experience the difference Treiven makes!</p>
+                    <span>The Perfect Bite: <?php echo $productName; ?></span>
+                    <p><?php echo $productInfo; ?></p>
                 </div>
                 <div class="product-option">
                     <div class="product-first-column">
                         <div class="product-price">
-                            <span class="pricey">₱50.00</span>
+                            <span class="pricey">₱<?php echo $productPrice; ?></span>
                             <div class="product-status">
                                 <div class="just-circle"></div>
-                                <span>Avaiable stocks</span>
+                                <span>Available stocks: <?php echo $productQty; ?></span>
                             </div>
                         </div>
                         <div class="quantity-input">
@@ -134,7 +163,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </main>
 

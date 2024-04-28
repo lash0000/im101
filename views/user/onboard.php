@@ -1,5 +1,4 @@
 <?php
-// Establish a connection to the database
 $mysql_hostname = "localhost";
 $mysql_username = "root";
 $mysql_password = "";
@@ -7,13 +6,11 @@ $mysql_database = "im101-pastry";
 
 $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
 
-// Check if the connection is successful
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Query to retrieve product data
-$sql = "SELECT p.trv_product_name, p.trv_product_price, c.trv_category_name, p.trv_product_image 
+$sql = "SELECT p.trv_product_id, p.trv_product_name, p.trv_product_price, c.trv_category_name, p.trv_product_image 
         FROM treiven_products p
         INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
 $result = mysqli_query($conn, $sql);
@@ -123,12 +120,14 @@ $result = mysqli_query($conn, $sql);
                 <?php
                 if ($result && mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
+                        // var_dump($row);
+                        $productId = $row['trv_product_id'];
                         $productName = $row['trv_product_name'];
                         $productPrice = $row['trv_product_price'];
                         $categoryName = $row['trv_category_name'];
                         $productImage = $row['trv_product_image'];
                 ?>
-                        <a href="./product/" class="treiven-items">
+                        <a href="./product?id=<?php echo $productId; ?>" class="treiven-items">
                             <div class="treiven-pics">
                                 <img src="../adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
                             </div>
@@ -149,12 +148,31 @@ $result = mysqli_query($conn, $sql);
                     echo "No products found.";
                 }
                 ?>
-
             </div>
         </div>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const productLinks = document.querySelectorAll('.treiven-items');
+            productLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const productURL = this.getAttribute('href');
+                    fetch(productURL)
+                        .then(response => response.text())
+                        .then(html => {
+                            document.body.innerHTML = html;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching product details:', error);
+                        });
+                });
+            });
+        });
+    </script> -->
 </body>
 
 </html>
