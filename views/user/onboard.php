@@ -89,6 +89,14 @@ $result = mysqli_query($conn, $sql);
                     </div>
                 </div>
             </div>
+            <div class="modal-option-wrapper" style="display: none; opacity: 0;">
+                <li class="modal-links">
+                    <a href="../client/login/index.php">Sign Out</a>
+                </li>
+                <li class="modal-links">
+                    <a href="https://github.com/lash0000/im101" target="_blank">GitHub Repository</a>
+                </li>
+            </div>
         </div>
     </header>
 
@@ -154,25 +162,40 @@ $result = mysqli_query($conn, $sql);
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const productLinks = document.querySelectorAll('.treiven-items');
-            productLinks.forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const productURL = this.getAttribute('href');
-                    fetch(productURL)
-                        .then(response => response.text())
-                        .then(html => {
-                            document.body.innerHTML = html;
-                        })
-                        .catch(error => {
-                            console.error('Error fetching product details:', error);
-                        });
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const modalInfo = document.querySelector(".user-wrapper");
+            const modalOptions = document.querySelector(".modal-option-wrapper");
+
+            function closeModal() {
+                gsap.to(modalOptions, {
+                    duration: 0.1,
+                    display: "none",
+                    opacity: 0
                 });
+            }
+
+            modalInfo.addEventListener("click", function() {
+                if (modalOptions.style.display === "none") {
+                    gsap.to(modalOptions, {
+                        duration: 0.1,
+                        display: "block",
+                        opacity: 1
+                    });
+                } else {
+                    closeModal();
+                }
+            });
+
+            //Close your modal automatically lol this good enough.
+            window.addEventListener("scroll", function() {
+                closeModal();
+            });
+            window.addEventListener("resize", function() {
+                closeModal();
             });
         });
-    </script> -->
+    </script>
 </body>
 
 </html>

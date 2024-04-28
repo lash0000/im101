@@ -65,6 +65,37 @@ ALTER TABLE treiven_products
 ADD CONSTRAINT fk_category_name
 FOREIGN KEY (trv_category_name) REFERENCES treiven_category(trv_category_name);
 
+
+--6. initialize my table for handling cart list
+
+CREATE TABLE treiven_cart_items (
+    trv_cart_id INT AUTO_INCREMENT PRIMARY KEY,
+    treiven_id INT,
+    trv_category_id INT,
+    trv_category_name ENUM('Brownies', 'Cakes', 'Cookies', 'Specials'),
+    trv_item_name VARCHAR(255),
+    trv_item_qty INT,
+    trv_total_amount INT,
+    trv_discount_amount INT
+);
+
+--7. alter the cart_id together
+ALTER TABLE treiven_cart_items AUTO_INCREMENT=100000;
+
+--8. had their relationship together
+
+ALTER TABLE treiven_cart_items
+ADD CONSTRAINT fk_treiven_user_accounts
+FOREIGN KEY (treiven_id) REFERENCES treiven_user_accounts(treiven_id);
+
+ALTER TABLE treiven_cart_items
+ADD CONSTRAINT fk_treiven_category_id
+FOREIGN KEY (trv_category_id) REFERENCES treiven_category(trv_category_id);
+
+ALTER TABLE treiven_cart_items
+ADD CONSTRAINT fk_treiven_category_name
+FOREIGN KEY (trv_category_name) REFERENCES treiven_category(trv_category_name);
+
 ------------------------------- NOT YET DONE ---------------------------------
 
 -- Create treiven_orders table

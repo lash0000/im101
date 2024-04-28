@@ -1,4 +1,5 @@
 <?php
+// Database connection
 $mysql_hostname = "localhost";
 $mysql_username = "root";
 $mysql_password = "";
@@ -6,8 +7,10 @@ $mysql_database = "im101-pastry";
 
 $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
 
+// Check if product ID is provided in the URL
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $productId = $_GET['id'];
+    // Retrieve product details from the database
     $query = "SELECT * FROM treiven_products WHERE trv_product_id = $productId";
     $result = mysqli_query($conn, $query);
 
@@ -18,7 +21,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $productPrice = $row['trv_product_price'];
         $productQty = $row['trv_product_qty'];
         $categoryName = $row['trv_category_name'];
-        $productImage = $row['trv_product_image']; // Added this line to retrieve the product image filename
+        $productImage = $row['trv_product_image'];
+        // Retrieve category_id from the product details
+        $categoryId = $row['trv_category_id'];
     } else {
         echo "Product not found.";
         exit;
@@ -28,6 +33,34 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     exit;
 }
 
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['product_id']) && !empty($_POST['product_id'])) {
+        $productId = $_POST['product_id'];
+        $quantity = $_POST['quantity'];
+        $treivenId = 10;
+        
+        $query = "SELECT trv_category_id FROM treiven_products WHERE trv_product_id = $productId";
+        $result = mysqli_query($conn, $query);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $categoryId = $row['trv_category_id'];
+            $query = "INSERT INTO treiven_cart_items (trv_product_id, trv_category_id, trv_item_qty, trv_total_amount, trv_discount_amount, treiven_id)
+                      VALUES ('$productId', '$categoryId', '$quantity', '0', '20', '$treivenId')";
+            $result = mysqli_query($conn, $query);
+
+            if ($result) {
+                echo "<script>alert('Product added to cart successfully');</script>";
+            } else {
+                echo "<script>alert('Error adding product to cart');</script>";
+            }
+        } else {
+            echo "Product not found.";
+            exit;
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,11 +73,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="../../public/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../public/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../public/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../../public/favicon/site.webmanifest">
-    <link rel="mask-icon" href="../../public/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../public/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../public/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../public/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../../../public/favicon/site.webmanifest">
+    <link rel="mask-icon" href="../../../public/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
@@ -101,6 +134,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     </div>
                 </div>
             </div>
+            <div class="modal-option-wrapper" style="display: none; opacity: 0;">
+                <li class="modal-links">
+                    <a href="../../client/login/index.php">Sign Out</a>
+                </li>
+                <li class="modal-links">
+                    <a href="https://github.com/lash0000/im101" target="_blank">GitHub Repository</a>
+                </li>
+            </div>
         </div>
     </header>
 
@@ -114,9 +155,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     <div class="node-one">
                         <img src="../../adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
                     </div>
-                    <!-- Assuming you have multiple product images -->
                     <div class="node-two">
-                    <img src="../../adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
+                        <img src="../../adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
                     </div>
                 </a>
             </div>
@@ -126,22 +166,24 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     <p><?php echo $productInfo; ?></p>
                 </div>
                 <div class="product-option">
-                    <div class="product-first-column">
-                        <div class="product-price">
-                            <span class="pricey">₱<?php echo $productPrice; ?></span>
-                            <div class="product-status">
-                                <div class="just-circle"></div>
-                                <span>Available stocks: <?php echo $productQty; ?></span>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <div class="product-first-column">
+                            <div class="product-price">
+                                <span class="pricey">₱<?php echo $productPrice; ?></span>
+                                <div class="product-status">
+                                    <div class="just-circle"></div>
+                                    <span>Available stocks: <?php echo $productQty; ?></span>
+                                </div>
                             </div>
+                            <div class="quantity-input">
+                                <label>Quantity</label>
+                                <input type="number" class="quantity" id="quantity" name="quantity" value="0" min="0">
+                            </div>
+                            <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+                            <input type="hidden" name="category_id" value="<?php echo $categoryId; ?>">
+                            <button class="add-to-cart" type="submit" onclick="return confirm('Are you sure you want to add this product to your cart?')">Add to Cart</button>
                         </div>
-                        <div class="quantity-input">
-                            <label>Quantity</label>
-                            <input type="number" class="quantity" id="quantity" value="1" min="1">
-                        </div>
-                        <button class="add-to-cart">
-                            Add to Cart
-                        </button>
-                    </div>
+                    </form>
                     <div class="product-last-column">
                         <span class="last-header">Price details</span>
                         <div class="total-price">
@@ -167,7 +209,81 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="../../views/client/responsive.js"></script>
+    <script src="../../client/responsive.js"></script>
+    <script>
+        const quantityInput = document.getElementById('quantity');
+        const totalPriceElement = document.querySelector('.total-price span:nth-child(2)');
+        const vatFeeElement = document.querySelectorAll('.total-price span')[3];
+        const promoDiscountElement = document.querySelectorAll('.total-price span')[5];
+        const totalAmountElement = document.querySelectorAll('.total-price span')[7];
+
+        function updatePriceDetails() {
+            const quantity = parseInt(quantityInput.value);
+            const productPrice = <?php echo $productPrice; ?>;
+
+            const totalPrice = productPrice * quantity;
+            totalPriceElement.textContent = '₱' + totalPrice.toLocaleString();
+
+            const vatFee = totalPrice * 0.12;
+            vatFeeElement.textContent = '₱' + vatFee.toLocaleString();
+
+            const promoDiscount = totalPrice * 0.20;
+            promoDiscountElement.textContent = '₱' + promoDiscount.toLocaleString();
+
+            const totalAmount = totalPrice - promoDiscount;
+            totalAmountElement.textContent = '₱' + totalAmount.toLocaleString();
+        }
+
+        quantityInput.addEventListener('input', updatePriceDetails);
+
+        function validateForm() {
+            var quantity = document.getElementById("quantity").value;
+            if (quantity <= 0) {
+                alert("Please specify a valid quantity.");
+                return false;
+            }
+
+            var selectedCategoryId = "";
+            document.getElementById("category_id").value = selectedCategoryId;
+            alert("Product will be added to cart.");
+
+            return true;
+        }
+
+        //FOR GSAP LOOL
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const modalInfo = document.querySelector(".user-wrapper");
+            const modalOptions = document.querySelector(".modal-option-wrapper");
+
+            function closeModal() {
+                gsap.to(modalOptions, {
+                    duration: 0.1,
+                    display: "none",
+                    opacity: 0
+                });
+            }
+
+            modalInfo.addEventListener("click", function() {
+                if (modalOptions.style.display === "none") {
+                    gsap.to(modalOptions, {
+                        duration: 0.1,
+                        display: "block",
+                        opacity: 1
+                    });
+                } else {
+                    closeModal();
+                }
+            });
+
+            window.addEventListener("scroll", function() {
+                closeModal();
+            });
+            window.addEventListener("resize", function() {
+                closeModal();
+            });
+        });
+    </script>
 </body>
 
 </html>

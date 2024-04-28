@@ -1,16 +1,5 @@
 <?php
-session_start();
-
-if(isset($_SESSION['user_role'])) {
-    if($_SESSION['user_role'] == 'user') {
-        header("Location: ../user/onboard.php");
-        exit();
-    } elseif($_SESSION['user_role'] == 'admin') {
-        header("Location: ../adminpanel/index.php");
-        exit();
-    }
-    
-}
+header("Refresh: 3; URL=../client/login/index.php");
 ?>
 
 <!DOCTYPE html>
