@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-04-28T06:56:28.737Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="O2KVy6D7-1G4fdf9LLtk" version="24.3.1" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-28T07:54:39.285Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="s80f2iG2OdDTjCmz8BxK" version="24.3.1" type="github">
   <diagram name="Page-1" id="SSkZm6qotCP18NsifbuJ">
-    <mxGraphModel dx="794" dy="724" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1588" dy="1448" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1807,9 +1807,6 @@
             <mxPoint x="1393" y="355" as="sourcePoint" />
             <mxPoint x="1357" y="395" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="TARa9_yq2kAphCu6u2j1-50" value="&lt;span style=&quot;font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; background-color: rgb(255, 255, 255); display: inline !important;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot; color=&quot;#171717&quot;&gt;So for the system progress na naka-rely na muna sa SQL / XAMPP again here are follows (kasama dyan yung WIP pa)&lt;br&gt;&lt;br&gt;In the video here are follows as of this time:&lt;br&gt;Admin Side&lt;br&gt;========================&lt;br&gt;Product Management - /&lt;br&gt;Order Management - X&lt;br&gt;User Management - X &lt;br&gt;&lt;br&gt;User Side (dito pa ako nagwo-work as of now)&lt;br&gt;========================&lt;br&gt;Explore Page - / (dynamic to display product)&lt;br&gt;Product Page - /&lt;br&gt;Cart Section - X&lt;br&gt; Add to Cart - X&lt;br&gt; Shipment - X &lt;br&gt; Place Order - X&lt;br&gt;Orders Page - X&lt;br&gt; My Orders - X&lt;br&gt; Shipping Status - X&lt;br&gt;Abouts - /&lt;br&gt;Searching Process - X&lt;/font&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1763" y="644" width="550" height="457" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
