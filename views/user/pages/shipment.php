@@ -101,7 +101,7 @@
                         <label>Full Address</label>
                         <input type="text" id="recipent-address" class="char-field" required />
                     </div>
-                    <div class="cart-input">
+                    <!-- <div class="cart-input">
                         <div class="quick-guide">
                             <label>Landmark Address</label>
                             <div class="quick-btn">
@@ -123,7 +123,7 @@
                             <label>Longtitude</label>
                             <input type="number" id="latitude" class="char-field" min="-90" max="90" step="any">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="cart-input">
                         <label>Contact Number (PH)</label>
                         <div class="cart-input-absolute">
