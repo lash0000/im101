@@ -78,7 +78,7 @@
                     <span>My Orders</span>
                 </header>
                 <section class="order-items">
-                    <!-- <div class="item-list">
+                    <div class="item-list">
                         <div class="order-item-hero">
                             <img src="../../../public/login-banner.jpg" alt="">
                         </div>
@@ -90,10 +90,10 @@
                             </div>
                             <p>Total Amount: ₱1194.00 (from ₱2388.00)</p>
                         </div>
-                    </div> -->
-                    <div class="item-empty">
-                        <span>The items will be added here once you've done to checkout.</span>
                     </div>
+                    <!-- <div class="item-empty">
+                        <span>The items will be added here once you've done to checkout.</span>
+                    </div> -->
                 </section>
             </div>
             <div class="my-order-status">
@@ -102,7 +102,7 @@
                     <p>Ref: N/A</p>
                 </header>
                 <section class="timeline">
-                    <!-- <div class="timeline-status">
+                    <div class="timeline-status">
                         <div class="circle-small circle-active"></div>
                         <div class="timeline-message">
                             <span>Order recieved</span>
@@ -133,10 +133,10 @@
                     </div>
                     <div class="timeline-status end">
                         <div class="circle-end"></div>
-                    </div> -->
-                    <div class="item-empty">
-                        <span>Same goes here brr brr.</span>
                     </div>
+                    <!-- <div class="item-empty">
+                        <span>Same goes here brr brr.</span>
+                    </div> -->
                 </section>
             </div>
         </div>
