@@ -7,37 +7,6 @@ $mysql_database = "im101-pastry";
 
 $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
 
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['product_id']) && !empty($_POST['product_id'])) {
-        $productId = $_POST['product_id'];
-        $quantity = $_POST['quantity'];
-        $treivenId = 10;
-
-        // Retrieve category_id from the product details
-        $query = "SELECT trv_category_id FROM treiven_products WHERE trv_product_id = $productId";
-        $result = mysqli_query($conn, $query);
-
-        if ($result && mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
-            $categoryId = $row['trv_category_id'];
-            $query = "INSERT INTO treiven_cart_items (trv_product_id, trv_category_id, trv_item_qty, trv_total_amount, trv_discount_amount, treiven_id)
-            VALUES ('$productId', '$categoryId', '$quantity', '0', '20', '$treivenId')";
-
-            $result = mysqli_query($conn, $query);
-
-            if ($result) {
-                echo "<script>alert('Product added to cart successfully');</script>";
-            } else {
-                echo "<script>alert('Error adding product to cart');</script>";
-            }
-        } else {
-            echo "Product not found.";
-            exit;
-        }
-    }
-}
-
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $productId = $_GET['id'];
     $query = "SELECT * FROM treiven_products WHERE trv_product_id = $productId";
@@ -53,7 +22,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $productImage = $row['trv_product_image'];
         $categoryId = $row['trv_category_id'];
     } else {
-        header("Location: invalid_product.php");
+        echo "basta error";
         exit;
     }
 }
@@ -164,24 +133,22 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     <p><?php echo $productInfo; ?></p>
                 </div>
                 <div class="product-option">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <div class="product-first-column">
-                            <div class="product-price">
-                                <span class="pricey">₱<?php echo $productPrice; ?></span>
-                                <div class="product-status">
-                                    <div class="just-circle"></div>
-                                    <span>Available stocks: <?php echo $productQty; ?></span>
-                                </div>
+                    <div class="product-first-column">
+                        <div class="product-price">
+                            <span class="pricey">₱<?php echo $productPrice; ?></span>
+                            <div class="product-status">
+                                <div class="just-circle"></div>
+                                <span>Available stocks: <?php echo $productQty; ?></span>
                             </div>
-                            <div class="quantity-input">
-                                <label>Quantity</label>
-                                <input type="number" class="quantity" id="quantity" name="quantity" value="0" min="0">
-                            </div>
-                            <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
-                            <input type="hidden" name="category_id" value="<?php echo $categoryId; ?>">
-                            <button class="add-to-cart" type="submit" onclick="return confirm('Are you sure you want to add this product to your cart?')">Add to Cart</button>
                         </div>
-                    </form>
+                        <div class="quantity-input">
+                            <label>Quantity</label>
+                            <input type="number" class="quantity" id="quantity" name="quantity" value="0" min="0">
+                        </div>
+                        <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+                        <input type="hidden" name="category_id" value="<?php echo $categoryId; ?>">
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
                     <div class="product-last-column">
                         <span class="last-header">Price details</span>
                         <div class="total-price">
