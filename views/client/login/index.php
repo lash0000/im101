@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     elseif (mysqli_num_rows($admin_result) > 0) {
         session_start();
         $_SESSION['user_role'] = 'admin';
-        header("Location: ../../auth/index.php");
+        header("Location: ../../adminpanel/index.php");
         exit();
     } else {
         echo "Invalid email or password. Please try again.";
