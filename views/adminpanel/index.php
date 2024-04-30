@@ -27,7 +27,7 @@
             </header>
             <div class="admin-options">
                 <a href="./pages/product-manage.php" class="option">
-                    Product Management
+                    POS / Product Management
                 </a>
                 <a href="./pages/order-manage.php" class="option">
                     Ordering Management

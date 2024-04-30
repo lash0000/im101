@@ -10,7 +10,6 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Initialize variables with default values
 $product_name = '';
 $product_price = '';
 $product_qty = '';
@@ -40,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $category_row = mysqli_fetch_assoc($category_result);
             $product_category_name = $category_row ? $category_row['trv_category_name'] : '';
 
-            // Inserting product data into the database
             $sql = "INSERT INTO treiven_products (trv_category_id, trv_category_name, trv_product_name, trv_product_price, trv_product_qty, trv_product_qty_stock, trv_product_info, trv_product_image) 
                     VALUES ('$product_category_id', '$product_category_name', '$product_name', '$product_price', '$product_quantity', '$product_available', '$product_info', '$fileName')";
 
@@ -64,8 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>';
     }
 } else if (isset($_GET['trv_product_id'])) {
-    // Retrieve the product details from the database based on the product ID
-    // Assign the category name to $category_name variable
     $product_id = mysqli_real_escape_string($conn, $_GET['trv_product_id']);
     $sql = "SELECT trv_category_name FROM treiven_products WHERE trv_product_id = '$product_id'";
     $result = mysqli_query($conn, $sql);
@@ -77,7 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Fetch data to my product_items_wrapper
 $query = "SELECT p.trv_product_image, p.trv_product_name, c.trv_category_name, p.trv_product_price FROM treiven_products p INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
 $result = mysqli_query($conn, $query);
 
@@ -90,7 +85,7 @@ if ($result) {
 
 // BASTA WIP PA 
 if (isset($_GET['trv_product_id'])) {
-    $product_id = mysqli_real_escape_string($conn, $_GET['trv_product_id']); // Sanitize input
+    $product_id = mysqli_real_escape_string($conn, $_GET['trv_product_id']);
 
     $sql = "SELECT * FROM treiven_products WHERE trv_product_id = $product_id";
     $result = mysqli_query($conn, $sql);
@@ -103,10 +98,8 @@ if (isset($_GET['trv_product_id'])) {
         $product_quantity = $row['trv_product_qty'];
         $product_available = $row['trv_product_qty_stock'];
         $product_info = $row['trv_product_info'];
-        // You can fetch other fields similarly
     }
 } else {
-    // Initialize variables if product ID is not provided
     $product_id = '';
     $product_category = '';
     $product_name = '';
@@ -127,11 +120,10 @@ if (isset($_POST['delete-product'])) {
             mysqli_stmt_bind_param($stmt, "i", $product_id);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
-            // Provide feedback to the user that the product has been successfully deleted
         } else {
             echo '<div class="product-added-success">
             The item has been deleted successfully!
-        </div>';
+            </div>';
         }
     } else {
         echo '<div class="product-added-error">
@@ -369,7 +361,6 @@ if (isset($_POST['delete-product'])) {
                     </div>
                     <div class="form-create-group">
                         <input type="file" id="fileInput" name="fileInput" required>
-
                     </div>
                 </div>
             </div>
@@ -424,16 +415,13 @@ if (isset($_POST['delete-product'])) {
                         pointerEvents: "auto",
                         opacity: 1
                     });
-                    // Get the product ID from the modal
-                    const productID = modalWrapper.querySelector('[name="trv_product_id"]').value;
-                    updateURL(productID);
                 } else {
                     gsap.to(modalWrapper, {
                         duration: 0.3,
                         pointerEvents: "none",
                         opacity: 0
                     });
-                    history.pushState(null, '', window.location.pathname); // Reset the URL
+                    history.pushState(null, '', window.location.pathname);
                 }
             }
 
