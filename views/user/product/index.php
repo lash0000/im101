@@ -1,5 +1,4 @@
 <?php
-// Database connection
 $mysql_hostname = "localhost";
 $mysql_username = "root";
 $mysql_password = "";
@@ -17,7 +16,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $productName = $row['trv_product_name'];
         $productInfo = $row['trv_product_info'];
         $productPrice = $row['trv_product_price'];
-        $productQty = $row['trv_product_qty'];
+        $productQty = $row['trv_minimum_stock'];
+        $productMaxQty = $row['trv_maximum_stock'];
         $categoryName = $row['trv_category_name'];
         $productImage = $row['trv_product_image'];
         $categoryId = $row['trv_category_id'];
@@ -138,7 +138,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             <span class="pricey">₱<?php echo $productPrice; ?></span>
                             <div class="product-status">
                                 <div class="just-circle"></div>
-                                <span>Available stocks: <?php echo $productQty; ?></span>
+                                <span>Minimum stock: <?php echo $productQty; ?></span>
+                            </div>
+                            <div class="product-status">
+                                <div class="just-circle"></div>
+                                <span>Maximum stock: <?php echo $productMaxQty; ?></span>
                             </div>
                         </div>
                         <div class="quantity-input">
@@ -147,7 +151,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         </div>
                         <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
                         <input type="hidden" name="category_id" value="<?php echo $categoryId; ?>">
-                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="add-to-cart">Proceed</button>
                     </div>
                     <div class="product-last-column">
                         <span class="last-header">Price details</span>

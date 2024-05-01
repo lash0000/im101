@@ -81,7 +81,8 @@
 
 .product-price {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
 .pricey {
@@ -92,6 +93,7 @@
 .product-status {
     display: inline-flex;
     align-items: center;
+    margin-bottom: 0.257em;
 }
 
 .just-circle {
@@ -132,6 +134,10 @@
     color: #fff;
     padding: 0.857em;
     margin-bottom: 0.757em;
+    transition: all 0.2s ease;
+}
+.add-to-cart:hover {
+    box-shadow: 0px 0px 0px 8px #FCCBB0;
 }
 
 .product-last-column {

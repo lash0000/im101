@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 //Display my gutss...
 
-$query = "SELECT p.trv_product_image, p.trv_product_name, c.trv_category_name, p.trv_product_price, p.trv_product_qty FROM treiven_products p INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
+$query = "SELECT p.trv_product_image, p.trv_product_name, c.trv_category_name, p.trv_product_price, p.trv_minimum_stock FROM treiven_products p INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
 $result = mysqli_query($conn, $query);
 
 $products = [];
@@ -97,7 +97,7 @@ if (isset($_GET['trv_product_id'])) {
         $product_category = $row['trv_category_id'];
         $product_name = $row['trv_product_name'];
         $product_price = $row['trv_product_price'];
-        $product_quantity = $row['trv_product_qty'];
+        $product_quantity = $row['trv_minimum_stock'];
         $product_available = $row['trv_product_qty_stock'];
         $product_info = $row['trv_product_info'];
     }
