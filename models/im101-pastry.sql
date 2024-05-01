@@ -107,7 +107,6 @@ CREATE TABLE `treiven_orders` (
   `trv_total_amounts` varchar(255) DEFAULT NULL,
   `trv_order_status` varchar(255) DEFAULT NULL,
   `shipping_address` varchar(255) DEFAULT NULL,
-  `shipping_longtitude` varchar(255) DEFAULT NULL,
   `shipping_method` varchar(255) DEFAULT NULL,
   `payment_method` varchar(255) DEFAULT NULL,
   `trv_createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()

@@ -48,6 +48,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
     <title>Treiven - <?php echo $productName; ?></title>
 </head>
 
@@ -173,8 +175,31 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         </div>
     </main>
 
+    <!-- Add to Cart Modal again -->
+
+    <div class="cart-modal-container">
+        <div class="cart-modal-wrapper">
+            <header class="header-modal">
+                <span>Are you sure?</span>
+                <button class="material-symbols-outlined" id="close-modal">
+                    close
+                </button>
+            </header>
+            <form class="header-body">
+                <label id="modal-label">Specify Boxes</label>
+                <div class="cart-input-field">
+                    <input type="radio" id="box1" name="box" value="box1">
+                    <label for="box1">Box 1</label>
+                </div>
+                <div class="cart-input-field">
+                    <input type="radio" id="box2" name="box" value="box2">
+                    <label for="box2">Box 2</label>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="../../client/responsive.js"></script>
     <script>
         const quantityInput = document.getElementById('quantity');
         const totalPriceElement = document.querySelector('.total-price span:nth-child(2)');

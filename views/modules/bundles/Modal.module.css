@@ -1,5 +1,6 @@
 /* Modal Process for Sign Up */
-.modal-container {
+.modal-container,
+.cart-modal-container {
     background: rgba(0, 0, 0, 0.9);
     position: absolute;
     top: 0;
@@ -10,7 +11,8 @@
     z-index: 99;
 }
 
-.modal-wrapper {
+.modal-wrapper,
+.cart-modal-wrapper {
     background: white;
     position: absolute;
     top: 50%;
@@ -117,6 +119,8 @@
 /* .header-options button:nth-child(2):hover {
     background: #e4e4e4;
 } */
+
+
 
 /** **/
 
