@@ -97,8 +97,6 @@ ALTER TABLE treiven_cart_items
 ADD CONSTRAINT fk_treiven_category_name
 FOREIGN KEY (trv_category_name) REFERENCES treiven_category(trv_category_name);
 
-------------------------------- NOT YET DONE ---------------------------------
-
 -- Create treiven_orders table
 CREATE TABLE treiven_orders (
     trv_order_id INT PRIMARY KEY,
@@ -123,3 +121,16 @@ CREATE TABLE treiven_order_items (
     trv_status_title VARCHAR(255),
     trv_status_details VARCHAR(4000)
 );
+
+ALTER TABLE treiven_order_items
+ADD COLUMN trv_order_id INT,
+ADD CONSTRAINT fk_order_items_order_id
+FOREIGN KEY (trv_order_id)
+REFERENCES treiven_orders(trv_order_id);
+
+ALTER TABLE treiven_orders
+ADD CONSTRAINT fk_orders_user_id
+FOREIGN KEY (treiven_id)
+REFERENCES treiven_user_accounts(treiven_id);
+
+------------------------------- DONE (include nalangs) ---------------------------------
