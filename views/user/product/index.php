@@ -53,7 +53,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <title>Treiven - <?php echo $productName; ?></title>
 </head>
 
-<body>
+<body style="overflow: hidden;">
 
     <header class="user-nav-container">
         <div class="user-nav-wrapper">
@@ -177,7 +177,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
     <!-- Add to Cart Modal again -->
 
-    <!-- <div class="cart-modal-container">
+    <div class="cart-modal-container">
         <div class="cart-modal-wrapper">
             <header class="header-modal">
                 <span>Are you sure?</span>
@@ -188,16 +188,35 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <form class="header-body">
                 <label id="modal-label">Specify Boxes</label>
                 <div class="cart-input-field">
-                    <input type="radio" id="box1" name="box" value="box1">
-                    <label for="box1">Box 1</label>
+                    <div class="cart-field">
+                        <input type="radio" id="box1" name="box" value="box1">
+                        <label for="box1">Half Dozen</label>
+                    </div>
+                    <div class="dozen-price">
+                        <span>₱100.00</span>
+                    </div>
                 </div>
                 <div class="cart-input-field">
-                    <input type="radio" id="box2" name="box" value="box2">
-                    <label for="box2">Box 2</label>
+                    <div class="cart-field">
+                        <input type="radio" id="box1" name="box" value="box1">
+                        <label for="box1">One Dozen</label>
+                    </div>
+                    <div class="dozen-price">
+                        <span>₱100.00</span>
+                    </div>
+                </div>
+                <div class="cart-qty-field">
+                    <div class="cart-field">
+                        <label for="box1">One Dozen</label>
+                        <input type="number" id="box1" name="box" value="box1">
+                    </div>
+                    <div class="dozen-price">
+                        <span>₱100.00</span>
+                    </div>
                 </div>
             </form>
         </div>
-    </div> -->
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
