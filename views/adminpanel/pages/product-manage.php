@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-//Display my gutss...
+//Display my products...
 
 $query = "SELECT p.trv_product_image, p.trv_product_name, c.trv_category_name, p.trv_product_price, p.trv_minimum_stock, p.trv_maximum_stock FROM treiven_products p INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
 $result = mysqli_query($conn, $query);
@@ -87,19 +87,6 @@ if ($result) {
         $products[] = $row;
     }
 }
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_product_id'])) {
-    $product_id = mysqli_real_escape_string($conn, $_POST['delete_product_id']);
-    $delete_query = "DELETE FROM treiven_products WHERE trv_product_id = '$product_id'";
-    if (mysqli_query($conn, $delete_query)) {
-        echo json_encode(["success" => true]);
-        exit;
-    } else {
-        echo json_encode(["success" => false, "error" => "Unable to delete the item."]);
-        exit;
-    }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -158,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_product_id'])) 
                             <button class="edit-item">
                                 Edit Item
                             </button>
-                            <button class="delete-item" data-product-id="<?= $product['trv_product_id'] ?>">
+                            <button class="delete-item">
                                 Delete Item
                             </button>
                         </div>
@@ -276,16 +263,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_product_id'])) 
         </div>
     </div>
 
-    <!-- Product added success -->
-    <!-- <div class="product-added-success">
-        The item has been added successfully!
-    </div> -->
-    <!-- 
-    <div class="product-added-error">
-        The item has been added successfully!
-    </div> -->
-
-    <!-- <div class="edit-item-wrapper" style="pointer-events: none; opacity: 0;">
+    <div class="edit-item-wrapper" style="pointer-events: none; opacity: 0;">
         <div class="edit-item-container">
             <div class="left-align">
                 <header class="create-item-header">
@@ -359,7 +337,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_product_id'])) 
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -452,6 +430,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_product_id'])) 
             const deleteConfirmModal = document.getElementById("delete-confirm");
             const closeModalButtons = document.querySelectorAll("#close-modal");
             const submitModalButton = document.getElementById("submit-modal");
+            const deleteProductIdInput = document.getElementById("delete_product_id");
 
             function toggleModal() {
                 if (deleteConfirmModal.style.display === "none" || deleteConfirmModal.style.opacity === "0") {
