@@ -177,7 +177,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
     <!-- Add to Cart Modal again -->
 
-    <div class="cart-modal-container">
+    <!-- <div class="cart-modal-container">
         <div class="cart-modal-wrapper">
             <header class="header-modal">
                 <span>Are you sure?</span>
@@ -197,7 +197,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
