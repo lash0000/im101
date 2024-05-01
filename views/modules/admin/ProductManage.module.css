@@ -264,3 +264,13 @@
     padding: 1em;
     border-radius: 12px;
 }
+.product-flex {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+    font-size: 0.857em;
+}
+.product-flex p:nth-child(1),
+.product-flex p:nth-child(2) {
+    margin-right: 0.5em;
+}

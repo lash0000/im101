@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Display my products...
+// Display my products (MY DELETE FUNCTIONALITY CAN BE FIND DIFFERENTLY LOOOL)...
 $query = "SELECT p.trv_product_id, p.trv_product_image, p.trv_product_name, c.trv_category_name, p.trv_product_price, p.trv_minimum_stock, p.trv_maximum_stock FROM treiven_products p INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
 $result = mysqli_query($conn, $query);
 
@@ -86,6 +86,17 @@ if ($result) {
         $products[] = $row;
     }
 }
+
+//
+$product_id = isset($product['trv_product_id']) ? $product['trv_product_id'] : '';
+$product_name = isset($product['trv_product_name']) ? $product['trv_product_name'] : '';
+$product_price = isset($product['trv_product_price']) ? $product['trv_product_price'] : '';
+$product_min_qty = isset($product['trv_minimum_stock']) ? $product['trv_minimum_stock'] : '';
+$product_max_qty = isset($product['trv_maximum_stock']) ? $product['trv_maximum_stock'] : '';
+$product_info = isset($product['trv_product_info']) ? $product['trv_product_info'] : '';
+$product_category_id = isset($product['trv_category_id']) ? $product['trv_category_id'] : '';
+$product_image = isset($product['trv_product_image']) ? $product['trv_product_image'] : '';
+$product_available = '';
 
 ?>
 
@@ -138,7 +149,11 @@ if ($result) {
                             <div class="product-first-detail">
                                 <span><?= $product['trv_product_name'] ?></span>
                                 <p style="color: #A6A6A6;">Category / <?= $product['trv_category_name'] ?></p>
-                                <p>Price: ₱<?= $product['trv_product_price'] ?></p>
+                                <div class="product-flex">
+                                    <p>Price: ₱<?= $product['trv_product_price'] ?></p>
+                                    <p>Min Stock: <?= $product['trv_minimum_stock'] ?></p>
+                                    <p>Max Stock: <?= $product['trv_maximum_stock'] ?></p>
+                                </div>
                             </div>
                         </div>
                         <div class="product-right-side">
@@ -272,42 +287,46 @@ if ($result) {
                     <p>Change the input needed field below.</p>
                 </header>
                 <form action="" class="form-create" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="trv_product_id" value="<?php echo isset($product_id) ? $product_id : ''; ?>">
+                    <input type="hidden" name="trv_product_id" value="<?php echo htmlspecialchars($product_id); ?>">
                     <div class="form-create-group">
                         <label for="product-category">Product Category</label>
                         <select id="product-category" name="product-category">
-                            <option value="1" <?php echo ($product_category == 1) ? 'selected' : ''; ?>>Brownies</option>
-                            <option value="2" <?php echo ($product_category == 2) ? 'selected' : ''; ?>>Cakes</option>
-                            <option value="3" <?php echo ($product_category == 3) ? 'selected' : ''; ?>>Cookies</option>
-                            <option value="4" <?php echo ($product_category == 4) ? 'selected' : ''; ?>>Specials</option>
+                            <option value="1" <?php echo ($product_category_id == 1) ? 'selected' : ''; ?>>Brownies</option>
+                            <option value="2" <?php echo ($product_category_id == 2) ? 'selected' : ''; ?>>Cakes</option>
+                            <option value="3" <?php echo ($product_category_id == 3) ? 'selected' : ''; ?>>Cookies</option>
+                            <option value="4" <?php echo ($product_category_id == 4) ? 'selected' : ''; ?>>Specials</option>
                         </select>
                     </div>
                     <div class="form-create-group">
                         <label for="product-name">Product Name</label>
-                        <input type="text" id="product-name" name="product-name" value="<?php echo isset($product_name) ? $product_name : ''; ?>" required>
+                        <input type="text" id="product-name" name="product-name" value="<?php echo htmlspecialchars($product_name); ?>" required>
                     </div>
                     <div class="form-create-group">
                         <label for="product-price">Product Price</label>
-                        <input type="number" id="product-price" name="product-price" step="0.01" value="<?php echo isset($product_price) ? $product_price : ''; ?>" required>
+                        <input type="number" id="product-price" name="product-price" step="0.01" value="<?php echo htmlspecialchars($product_price); ?>" required>
                     </div>
                     <div class="form-create-group">
-                        <label for="product-quantity">Product Quantity / Stocks</label>
-                        <input type="number" id="product-quantity" name="product-quantity" value="<?php echo isset($product_quantity) ? $product_quantity : ''; ?>" required>
+                        <label for="product-min-quantity">Product Quantity / Minimum Stocks</label>
+                        <input type="number" id="product-min-quantity" name="product-min-quantity" value="<?php echo htmlspecialchars($product_min_qty); ?>" required>
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-max-quantity">Product Quantity / Maximum Stocks</label>
+                        <input type="number" id="product-max-quantity" name="product-max-quantity" value="<?php echo htmlspecialchars($product_max_qty); ?>" required>
                     </div>
                     <div class="form-create-group">
                         <label>Is the product still had some or had many stocks?</label>
-                        <div class="">
-                            <input type="radio" id="product-available-yes" name="product-available" value="yes" <?php echo (isset($product_available) && $product_available == 'yes') ? 'checked' : ''; ?> required>
+                        <div>
+                            <input type="radio" id="product-available-yes" name="product-available" value="yes" <?php echo ($product_available == 'yes') ? 'checked' : ''; ?> required>
                             <label for="product-available-yes">Yes</label>
                         </div>
-                        <div class="m">
-                            <input type="radio" id="product-available-no" name="product-available" value="no" <?php echo (isset($product_available) && $product_available == 'no') ? 'checked' : ''; ?> required>
+                        <div>
+                            <input type="radio" id="product-available-no" name="product-available" value="no" <?php echo ($product_available == 'no') ? 'checked' : ''; ?> required>
                             <label for="product-available-no">No</label>
                         </div>
                     </div>
                     <div class="form-create-group">
                         <label for="product-info">Product Information</label>
-                        <textarea id="product-info" name="product-info" maxlength="4000" required><?php echo isset($product_info) ? $product_info : ''; ?></textarea>
+                        <textarea id="product-info" name="product-info" maxlength="4000" required><?php echo htmlspecialchars($product_info); ?></textarea>
                     </div>
                     <button type="submit">Submit</button>
                 </form>
@@ -339,7 +358,6 @@ if ($result) {
             </div>
         </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>

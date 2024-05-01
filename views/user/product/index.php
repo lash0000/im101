@@ -138,11 +138,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             <span class="pricey">₱<?php echo $productPrice; ?></span>
                             <div class="product-status">
                                 <div class="just-circle"></div>
-                                <span>Minimum stock: <?php echo $productQty; ?></span>
-                            </div>
-                            <div class="product-status">
-                                <div class="just-circle"></div>
-                                <span>Maximum stock: <?php echo $productMaxQty; ?></span>
+                                <span>Minimum Stock: <?php echo $productQty; ?> (Available)</span>
                             </div>
                         </div>
                         <div class="quantity-input">
