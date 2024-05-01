@@ -76,9 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-//Display my products...
-
-$query = "SELECT p.trv_product_image, p.trv_product_name, c.trv_category_name, p.trv_product_price, p.trv_minimum_stock, p.trv_maximum_stock FROM treiven_products p INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
+// Display my products...
+$query = "SELECT p.trv_product_id, p.trv_product_image, p.trv_product_name, c.trv_category_name, p.trv_product_price, p.trv_minimum_stock, p.trv_maximum_stock FROM treiven_products p INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
 $result = mysqli_query($conn, $query);
 
 $products = [];
@@ -87,6 +86,7 @@ if ($result) {
         $products[] = $row;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +145,7 @@ if ($result) {
                             <button class="edit-item">
                                 Edit Item
                             </button>
-                            <button class="delete-item">
+                            <button class="delete-item" data-product-id="<?= $product['trv_product_id'] ?>">
                                 Delete Item
                             </button>
                         </div>
@@ -175,10 +175,11 @@ if ($result) {
             <main class="header-body">
                 <label id="modal-label">Are you sure? You're about to delete this item?</label>
             </main>
-            <footer class="header-options">
-                <button id="submit-modal" class="proceed-active">Proceed</button>
+            <form action="delete_product.php" class="header-options" method="post">
+                <input type="hidden" name="delete_product_id" id="delete_product_id" value="">
+                <button id="submit-modal" class="proceed-active" type="submit">Proceed</button>
                 <button id="close-modal">Cancel</button>
-            </footer>
+            </form>
         </div>
     </div>
 
@@ -451,6 +452,8 @@ if ($result) {
             // Event listener for clicking delete buttons
             deleteButtons.forEach(function(button) {
                 button.addEventListener("click", function() {
+                    const productID = this.getAttribute("data-product-id");
+                    deleteProductIdInput.value = productID;
                     toggleModal();
                 });
             });
