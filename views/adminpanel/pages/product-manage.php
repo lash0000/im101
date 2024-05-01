@@ -87,7 +87,7 @@ if ($result) {
     }
 }
 
-//
+//For edit what???
 $product_id = isset($product['trv_product_id']) ? $product['trv_product_id'] : '';
 $product_name = isset($product['trv_product_name']) ? $product['trv_product_name'] : '';
 $product_price = isset($product['trv_product_price']) ? $product['trv_product_price'] : '';
@@ -148,7 +148,7 @@ $product_available = '';
                             </div>
                             <div class="product-first-detail">
                                 <span><?= $product['trv_product_name'] ?></span>
-                                <p style="color: #A6A6A6;">Category / <?= $product['trv_category_name'] ?></p>
+                                <p style="color: #A6A6A6;">Category / <?= $product['trv_category_name'] ?> / Item ID: <?= $product['trv_product_id'] ?></p>
                                 <div class="product-flex">
                                     <p>Price: ₱<?= $product['trv_product_price'] ?></p>
                                     <p>Min Stock: <?= $product['trv_minimum_stock'] ?></p>
@@ -279,6 +279,8 @@ $product_available = '';
         </div>
     </div>
 
+    <!-- Edit Item A$$ -->
+    
     <div class="edit-item-wrapper" style="pointer-events: none; opacity: 0;">
         <div class="edit-item-container">
             <div class="left-align">
@@ -286,7 +288,7 @@ $product_available = '';
                     <span>Update Item</span>
                     <p>Change the input needed field below.</p>
                 </header>
-                <form action="" class="form-create" method="post" enctype="multipart/form-data">
+                <form action="edit_product.php" class="form-create" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="trv_product_id" value="<?php echo htmlspecialchars($product_id); ?>">
                     <div class="form-create-group">
                         <label for="product-category">Product Category</label>
