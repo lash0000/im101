@@ -45,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "INSERT INTO treiven_products (trv_category_id, trv_category_name, trv_product_name, trv_product_price, trv_minimum_stock, trv_maximum_stock, trv_product_qty_stock, trv_product_info, trv_product_image) 
             VALUES ('$product_category_id', '$product_category_name', '$product_name', '$product_price', '$product_min_qty', '$product_max_qty', '$product_available', '$product_info', '$fileName')";
 
-
             if (mysqli_query($conn, $sql)) {
                 echo '<div class="product-added-success">
                     The item has been added successfully!
@@ -89,32 +88,16 @@ if ($result) {
     }
 }
 
-// BASTA WIP PA 
-if (isset($_GET['trv_product_id'])) {
-    $product_id = mysqli_real_escape_string($conn, $_GET['trv_product_id']);
-
-    $sql = "SELECT * FROM treiven_products WHERE trv_product_id = $product_id";
-    $result = mysqli_query($conn, $sql);
-
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $product_category = $row['trv_category_id'];
-        $product_name = $row['trv_product_name'];
-        $product_price = $row['trv_product_price'];
-        $product_min_qty = $row['trv_minimum_stock'];
-        $product_max_qty = $row['trv_maximum_stock'];
-        $product_available = $row['trv_product_qty_stock'];
-        $product_info = $row['trv_product_info'];
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_product_id'])) {
+    $product_id = mysqli_real_escape_string($conn, $_POST['delete_product_id']);
+    $delete_query = "DELETE FROM treiven_products WHERE trv_product_id = '$product_id'";
+    if (mysqli_query($conn, $delete_query)) {
+        echo json_encode(["success" => true]);
+        exit;
+    } else {
+        echo json_encode(["success" => false, "error" => "Unable to delete the item."]);
+        exit;
     }
-} else {
-    $product_id = '';
-    $product_category = '';
-    $product_name = '';
-    $product_price = '';
-    $product_min_qty = '';
-    $product_max_qty = '';
-    $product_available = '';
-    $product_info = '';
 }
 
 ?>
@@ -169,14 +152,14 @@ if (isset($_GET['trv_product_id'])) {
                                 <p>Price: ₱<?= $product['trv_product_price'] ?></p>
                             </div>
                         </div>
-                        <div class="product-right-side">
+                        <form method="post" class="product-right-side">
                             <button class="edit-item">
                                 Edit Item
                             </button>
                             <button class="delete-item">
                                 Delete Item
                             </button>
-                        </div>
+                        </form>
                     </div>
                 <?php endforeach; ?>
             </section>
@@ -281,7 +264,81 @@ if (isset($_GET['trv_product_id'])) {
         The item has been added successfully!
     </div> -->
 
-
+    <!-- <div class="edit-item-wrapper" style="pointer-events: none; opacity: 0;">
+        <div class="edit-item-container">
+            <div class="left-align">
+                <header class="create-item-header">
+                    <span>Update Item</span>
+                    <p>Change the input needed field below.</p>
+                </header>
+                <form action="" class="form-create" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="trv_product_id" value="<?php echo isset($product_id) ? $product_id : ''; ?>">
+                    <div class="form-create-group">
+                        <label for="product-category">Product Category</label>
+                        <select id="product-category" name="product-category">
+                            <option value="1" <?php echo ($product_category == 1) ? 'selected' : ''; ?>>Brownies</option>
+                            <option value="2" <?php echo ($product_category == 2) ? 'selected' : ''; ?>>Cakes</option>
+                            <option value="3" <?php echo ($product_category == 3) ? 'selected' : ''; ?>>Cookies</option>
+                            <option value="4" <?php echo ($product_category == 4) ? 'selected' : ''; ?>>Specials</option>
+                        </select>
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" id="product-name" name="product-name" value="<?php echo isset($product_name) ? $product_name : ''; ?>" required>
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-price">Product Price</label>
+                        <input type="number" id="product-price" name="product-price" step="0.01" value="<?php echo isset($product_price) ? $product_price : ''; ?>" required>
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-quantity">Product Quantity / Stocks</label>
+                        <input type="number" id="product-quantity" name="product-quantity" value="<?php echo isset($product_quantity) ? $product_quantity : ''; ?>" required>
+                    </div>
+                    <div class="form-create-group">
+                        <label>Is the product still had some or had many stocks?</label>
+                        <div class="">
+                            <input type="radio" id="product-available-yes" name="product-available" value="yes" <?php echo (isset($product_available) && $product_available == 'yes') ? 'checked' : ''; ?> required>
+                            <label for="product-available-yes">Yes</label>
+                        </div>
+                        <div class="m">
+                            <input type="radio" id="product-available-no" name="product-available" value="no" <?php echo (isset($product_available) && $product_available == 'no') ? 'checked' : ''; ?> required>
+                            <label for="product-available-no">No</label>
+                        </div>
+                    </div>
+                    <div class="form-create-group">
+                        <label for="product-info">Product Information</label>
+                        <textarea id="product-info" name="product-info" maxlength="4000" required><?php echo isset($product_info) ? $product_info : ''; ?></textarea>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="right-align">
+                <div class="close-edit-modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                        <g fill="#212121" class="nc-icon-wrapper">
+                            <line x1="14" y1="4" x2="4" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" data-color="color-2"></line>
+                            <line x1="4" y1="4" x2="14" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></line>
+                        </g>
+                    </svg>
+                </div>
+                <div class="text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                        <g fill="#212121" class="nc-icon-wrapper">
+                            <path d="M13.194,8.384c-1.072-1.072-2.816-1.072-3.889,0L3.196,14.494c.367,.457,.923,.756,1.554,.756H13.25c1.105,0,2-.896,2-2v-2.811l-2.056-2.056Z" fill="#212121" data-color="color-2"></path>
+                            <circle cx="6.25" cy="7.25" r="1.25" fill="#212121" data-color="color-2"></circle>
+                            <path d="M13.25,16H4.75c-1.517,0-2.75-1.233-2.75-2.75V4.75c0-1.517,1.233-2.75,2.75-2.75H13.25c1.517,0,2.75,1.233,2.75,2.75V13.25c0,1.517-1.233,2.75-2.75,2.75ZM4.75,3.5c-.689,0-1.25,.561-1.25,1.25V13.25c0,.689,.561,1.25,1.25,1.25H13.25c.689,0,1.25-.561,1.25-1.25V4.75c0-.689-.561-1.25-1.25-1.25H4.75Z" fill="#212121"></path>
+                        </g>
+                    </svg>
+                    <div class="text-content">
+                        Provide the product image below.
+                    </div>
+                    <div class="form-create-group">
+                        <input type="file" id="fileInput" name="fileInput" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -367,8 +424,6 @@ if (isset($_GET['trv_product_id'])) {
                 });
             })
         });
-
-        //I need you to add some RETRIEVE to display VALUES to input...
     </script>
 
 
