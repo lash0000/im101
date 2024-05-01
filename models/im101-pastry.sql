@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2024 at 12:00 AM
+-- Generation Time: May 02, 2024 at 01:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -97,6 +97,42 @@ INSERT INTO `treiven_category` (`trv_category_id`, `trv_category_name`, `trv_cat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `treiven_orders`
+--
+
+CREATE TABLE `treiven_orders` (
+  `trv_order_id` int(11) NOT NULL,
+  `treiven_id` int(11) DEFAULT NULL,
+  `trv_category_name` varchar(255) DEFAULT NULL,
+  `trv_total_amounts` varchar(255) DEFAULT NULL,
+  `trv_order_status` varchar(255) DEFAULT NULL,
+  `shipping_address` varchar(255) DEFAULT NULL,
+  `shipping_longtitude` varchar(255) DEFAULT NULL,
+  `shipping_method` varchar(255) DEFAULT NULL,
+  `payment_method` varchar(255) DEFAULT NULL,
+  `trv_createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `treiven_order_items`
+--
+
+CREATE TABLE `treiven_order_items` (
+  `order_item_id` int(11) NOT NULL,
+  `trv_category_id` int(11) DEFAULT NULL,
+  `trv_product_id` int(11) DEFAULT NULL,
+  `total_qty` int(11) DEFAULT NULL,
+  `total_price` int(11) DEFAULT NULL,
+  `trv_status_title` varchar(255) DEFAULT NULL,
+  `trv_status_details` varchar(4000) DEFAULT NULL,
+  `trv_order_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `treiven_products`
 --
 
@@ -185,6 +221,20 @@ ALTER TABLE `treiven_category`
   ADD UNIQUE KEY `trv_category_name` (`trv_category_name`);
 
 --
+-- Indexes for table `treiven_orders`
+--
+ALTER TABLE `treiven_orders`
+  ADD PRIMARY KEY (`trv_order_id`),
+  ADD KEY `fk_orders_user_id` (`treiven_id`);
+
+--
+-- Indexes for table `treiven_order_items`
+--
+ALTER TABLE `treiven_order_items`
+  ADD PRIMARY KEY (`order_item_id`),
+  ADD KEY `fk_order_items_order_id` (`trv_order_id`);
+
+--
 -- Indexes for table `treiven_products`
 --
 ALTER TABLE `treiven_products`
@@ -222,6 +272,18 @@ ALTER TABLE `treiven_category`
   MODIFY `trv_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `treiven_orders`
+--
+ALTER TABLE `treiven_orders`
+  MODIFY `trv_order_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `treiven_order_items`
+--
+ALTER TABLE `treiven_order_items`
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `treiven_products`
 --
 ALTER TABLE `treiven_products`
@@ -245,6 +307,18 @@ ALTER TABLE `treiven_cart_items`
   ADD CONSTRAINT `fk_treiven_category_name` FOREIGN KEY (`trv_category_name`) REFERENCES `treiven_category` (`trv_category_name`),
   ADD CONSTRAINT `fk_treiven_user_accounts` FOREIGN KEY (`treiven_id`) REFERENCES `treiven_user_accounts` (`treiven_id`),
   ADD CONSTRAINT `fk_trv_product_id` FOREIGN KEY (`trv_product_id`) REFERENCES `treiven_products` (`trv_product_id`);
+
+--
+-- Constraints for table `treiven_orders`
+--
+ALTER TABLE `treiven_orders`
+  ADD CONSTRAINT `fk_orders_user_id` FOREIGN KEY (`treiven_id`) REFERENCES `treiven_user_accounts` (`treiven_id`);
+
+--
+-- Constraints for table `treiven_order_items`
+--
+ALTER TABLE `treiven_order_items`
+  ADD CONSTRAINT `fk_order_items_order_id` FOREIGN KEY (`trv_order_id`) REFERENCES `treiven_orders` (`trv_order_id`);
 
 --
 -- Constraints for table `treiven_products`
