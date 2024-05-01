@@ -18,6 +18,65 @@ $product_qty_stock = '';
 $product_info = '';
 $category_name = '';
 
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if it's an edit request
+    if (isset($_POST['edit_product'])) {
+        // Retrieve form data
+        $product_id = $_POST['trv_product_id'];
+        $product_category_id = $_POST['product-category'];
+        $product_name = $_POST['product-name'];
+        $product_price = $_POST['product-price'];
+        $product_min_qty = $_POST['product-min-quantity'];
+        $product_max_qty = $_POST['product-max-quantity'];
+        $product_info = $_POST['product-info'];
+
+        // Update product in database
+        $sql = "UPDATE `treiven_products`
+                SET trv_category_id = ?, 
+                    trv_product_name = ?, 
+                    trv_product_price = ?, 
+                    trv_minimum_stock = ?, 
+                    trv_maximum_stock = ?, 
+                    trv_product_info = ?
+                WHERE trv_product_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('isddisi', $product_category_id, $product_name, $product_price, $product_min_qty, $product_max_qty, $product_info, $product_id);
+
+        if ($stmt->execute()) {
+            echo "Product updated successfully!";
+            // Redirect to prevent form resubmission
+            header("Location: product-manage.php?trv_product_id=$product_id");
+            exit();
+        } else {
+            echo "Error updating product: " . mysqli_error($conn);
+        }
+    }
+}
+
+// Check if trv_product_id is provided
+if (isset($_GET['trv_product_id'])) {
+    $product_id = mysqli_real_escape_string($conn, $_GET['trv_product_id']);
+    
+    // Fetch product details from the database
+    $sql = "SELECT * FROM treiven_products WHERE trv_product_id = '$product_id'";
+    $result = mysqli_query($conn, $sql);
+    
+    if ($result && mysqli_num_rows($result) > 0) {
+        $product = mysqli_fetch_assoc($result);
+        // Assign retrieved values to variables
+        $product_name = $product['trv_product_name'];
+        $product_price = $product['trv_product_price'];
+        $product_min_qty = $product['trv_minimum_stock'];
+        $product_max_qty = $product['trv_maximum_stock'];
+        $product_info = $product['trv_product_info'];
+        $product_category_id = $product['trv_category_id'];
+        $product_image = $product['trv_product_image'];
+    } else {
+        echo "Product not found!";
+    }
+}
+
 //ADD FUNCTION BTCH!!
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -190,11 +249,13 @@ $product_available = '';
             <main class="header-body">
                 <label id="modal-label">Are you sure? You're about to delete this item?</label>
             </main>
-            <form action="delete_product.php" class="header-options" method="post">
-                <input type="hidden" name="delete_product_id" id="delete_product_id" value="">
-                <button id="submit-modal" class="proceed-active" type="submit">Proceed</button>
+            <div class="header-options">
+                <form action="delete_product.php" method="post">
+                    <input type="hidden" name="delete_product_id" id="delete_product_id" value="">
+                    <button id="submit-modal" class="proceed-active" type="submit">Proceed</button>
+                </form>
                 <button id="close-modal">Cancel</button>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -207,6 +268,7 @@ $product_available = '';
                     <p>Provide the input needed below...</p>
                 </header>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-create" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="trv_product_id" value="<?php echo htmlspecialchars($product_id); ?>">
                     <div class="form-create-group">
                         <label for="product-category">Product Category</label>
                         <select id="product-category" name="product-category">
@@ -280,7 +342,7 @@ $product_available = '';
     </div>
 
     <!-- Edit Item A$$ -->
-    
+
     <div class="edit-item-wrapper" style="pointer-events: none; opacity: 0;">
         <div class="edit-item-container">
             <div class="left-align">
