@@ -184,13 +184,15 @@
 }
 
 .treiven-badge {
-    background: #EBF8FF;
-    color: #2B6CB0;
+    margin-top: 0.5em;
+    background: #D1FAE5;
+    color: #065F46;
     padding: 0.25em;
     text-align: center;
-    width: 86px;
-    border-radius: 0.25em;
-    border: 1px solid #BFDBFE;
+    width: 80px;
+    border-radius: 999px;
+    font-size: 0.857em;
+    border: 1px solid #9AE6B4;
 }
 
 .treiven-product-price {

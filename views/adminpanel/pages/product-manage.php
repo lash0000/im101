@@ -120,6 +120,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_product_id'])) 
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
     <title>Treiven - Product Management</title>
 </head>
 
@@ -152,14 +154,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_product_id'])) 
                                 <p>Price: ₱<?= $product['trv_product_price'] ?></p>
                             </div>
                         </div>
-                        <form method="post" class="product-right-side">
+                        <div class="product-right-side">
                             <button class="edit-item">
                                 Edit Item
                             </button>
-                            <button class="delete-item">
+                            <button class="delete-item" data-product-id="<?= $product['trv_product_id'] ?>">
                                 Delete Item
                             </button>
-                        </form>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </section>
@@ -173,6 +175,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_product_id'])) 
             </div>
         </div>
     </main>
+
+    <!-- confirmation modal to delete -->
+    <div class="modal-container" id="delete-confirm" style="display: none; opacity: 0;">
+        <div class="modal-wrapper">
+            <header class="header-modal">
+                <span>Delete Item</span>
+                <button class="material-symbols-outlined" id="close-modal">
+                    close
+                </button>
+            </header>
+            <main class="header-body">
+                <label id="modal-label">Are you sure? You're about to delete this item?</label>
+            </main>
+            <footer class="header-options">
+                <button id="submit-modal" class="proceed-active">Proceed</button>
+                <button id="close-modal">Cancel</button>
+            </footer>
+        </div>
+    </div>
 
     <!-- Create / Add item modal -->
     <div class="create-item-wrapper" style="pointer-events: none; opacity: 0;">
@@ -346,6 +367,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_product_id'])) 
         document.addEventListener("DOMContentLoaded", function() {
             const successMessage = document.querySelector(".product-added-success");
             const errorMessage = document.querySelector(".product-added-error");
+            const confirmationModal = document.querySelector(".modal-container");
 
             function hideElement(element) {
                 gsap.to(element, {
@@ -423,6 +445,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_product_id'])) 
                     toggleModal(editItemWrapper);
                 });
             })
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const deleteButtons = document.querySelectorAll(".delete-item");
+            const deleteConfirmModal = document.getElementById("delete-confirm");
+            const closeModalButtons = document.querySelectorAll("#close-modal");
+            const submitModalButton = document.getElementById("submit-modal");
+
+            function toggleModal() {
+                if (deleteConfirmModal.style.display === "none" || deleteConfirmModal.style.opacity === "0") {
+                    gsap.to(deleteConfirmModal, {
+                        duration: 0.3,
+                        display: "block",
+                        opacity: 1
+                    });
+                } else {
+                    gsap.to(deleteConfirmModal, {
+                        duration: 0.3,
+                        display: "none",
+                        opacity: 0
+                    });
+                }
+            }
+
+            // Event listener for clicking delete buttons
+            deleteButtons.forEach(function(button) {
+                button.addEventListener("click", function() {
+                    toggleModal();
+                });
+            });
+
+            // Event listener for clicking close buttons
+            closeModalButtons.forEach(function(button) {
+                button.addEventListener("click", function() {
+                    toggleModal();
+                });
+            });
+
+            // Event listener for clicking submit button
+            submitModalButton.addEventListener("click", function() {
+                // Perform delete action here
+                toggleModal();
+            });
         });
     </script>
 

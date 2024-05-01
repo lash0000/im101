@@ -35,6 +35,9 @@
                 <a href="./pages/user-manage.php" class="option">
                     User Management
                 </a>
+                <a href="" class="option">
+                    Sales Report
+                </a>
             </div>
         </div>
         <div class="admin-session-wrapper">
