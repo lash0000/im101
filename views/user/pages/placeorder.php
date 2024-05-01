@@ -110,8 +110,10 @@
                             <input type="tel" id="contact-number" class="contact-field" disabled />
                         </div>
                     </div>
-                    <div class="cart-input checkmate">
-                        <input type="checkbox" id="affirmation-checkbox" />
+                    <div class="cart-input-checkbox">
+                        <div class="checkmate">
+                            <input type="checkbox" id="affirmation-checkbox" />
+                        </div>
                         <label for="affirmation-checkbox">We are committed to protecting your privacy. Your information will be used only in accordance with our Privacy Policy, which adheres to the Cybercrime Prevention Act of 2012.</label>
                     </div>
                 </div>

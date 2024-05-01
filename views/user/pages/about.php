@@ -100,6 +100,21 @@
                 <p>Within this virtual space, you'll have the opportunity to experiment with different e-commerce strategies, analyze customer behavior, and learn best practices for optimizing your online store's performance. This immersive experience allows you to make real-time decisions with simulated consequences, helping you develop critical thinking and problem-solving skills essential for the e-commerce landscape.</p>
                 <p>Whether you aspire to launch your own online business someday or simply want to gain a deeper understanding of this rapidly growing industry, This shop provides the perfect platform to learn, experiment, and succeed. Dive in, explore the possibilities, and discover the exciting world of e-commerce!</p>
             </div>
+            <div class="about-space">
+                <span>Frequency Asked Questions (FAQs)</span>
+                <div class="question-faq">
+                    <span>What are the limitations of this online shop?</span>
+                    <p>We currently offer Cash on Delivery (COD) for your convenience and security. This allows you to inspect your order upon delivery and make the payment in cash. We are constantly working to expand our payment options, and we hope to offer additional methods like credit card and online wallets in the future.</p>
+                </div>
+                <div class="question-faq">
+                    <span>Why this online shop does have only Cash on Delivery process?</span>
+                    <p>As a growing online shop, we are always working to improve our services. Currently, our limitations include: Limited Payment Option, Delivery Area and also Product Selection</p>
+                </div>
+                <div class="question-faq">
+                    <span>How long does the product to ship delivery?</span>
+                    <p>Our shipping and delivery times may vary depending on your location and the availability of the product. Generally, you can expect delivery within [Estimated timeframe] after your order confirmation. We will provide a more precise timeframe during checkout. You can also track your order status for updates.</p>
+                </div>
+            </div>
         </div>
     </main>
 

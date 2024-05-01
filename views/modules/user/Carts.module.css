@@ -137,6 +137,14 @@
 .cart-input-absolute input {
     width: 100%;
 }
+.cart-input-checkbox {
+  display: inline-flex;
+  align-items: baseline;
+}
+.cart-input-checkbox label {
+  font-size: 0.705em;
+  margin-left: 0.5em;
+}
 .cart-input label,
 .cart-input input {
     margin-bottom: 0.657em;

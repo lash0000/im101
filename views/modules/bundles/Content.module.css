@@ -150,10 +150,11 @@
 .grid-items-wrapper {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
+    gap: 20px;
     justify-content: center;
     margin: 0 auto;
     max-width: 1140px;
+    padding-top: 3em;
 }
 
 .treiven-pics {
@@ -177,13 +178,19 @@
 
 .treiven-product span,
 .treiven-product-price span {
-    font-size: 1.457em;
+    font-size: 1em;
     word-wrap: break-word;
     color: #000;
 }
 
-.treiven-product p {
-    color: #ADADAD;
+.treiven-badge {
+    background: #EBF8FF;
+    color: #2B6CB0;
+    padding: 0.25em;
+    text-align: center;
+    width: 86px;
+    border-radius: 0.25em;
+    border: 1px solid #BFDBFE;
 }
 
 .treiven-product-price {

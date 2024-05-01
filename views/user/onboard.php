@@ -101,7 +101,7 @@ $result = mysqli_query($conn, $sql);
     </header>
 
     <main class="main-content">
-        <div class="category-wrapper">
+        <!-- <div class="category-wrapper">
             <div class="category-btn">
                 Categories
             </div>
@@ -122,7 +122,7 @@ $result = mysqli_query($conn, $sql);
             <div class="category-btn">
                 Filters
             </div>
-        </div>
+        </div> -->
         <div class="grid-items-container">
             <div class="grid-items-wrapper">
                 <?php
@@ -142,7 +142,7 @@ $result = mysqli_query($conn, $sql);
                             <div class="treiven-infos">
                                 <div class="treiven-product">
                                     <span><?php echo $productName; ?></span>
-                                    <p>Category / <?php echo $categoryName; ?></p>
+                                    <p class="treiven-badge"><?php echo $categoryName; ?></p>
                                 </div>
                                 <div class="treiven-product-price">
                                     <span><?php echo '₱' . $productPrice; ?></span>

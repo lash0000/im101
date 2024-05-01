@@ -34,3 +34,8 @@
     word-break: normal;
     margin-bottom: 1em;
 }
+.question-faq span {
+    font-size: 1.257em;
+    font-weight: bold;
+    text-decoration: underline;
+}

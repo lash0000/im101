@@ -73,7 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$query = "SELECT p.trv_product_image, p.trv_product_name, c.trv_category_name, p.trv_product_price FROM treiven_products p INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
+//Display my gutss...
+
+$query = "SELECT p.trv_product_image, p.trv_product_name, c.trv_category_name, p.trv_product_price, p.trv_product_qty FROM treiven_products p INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
 $result = mysqli_query($conn, $query);
 
 $products = [];
