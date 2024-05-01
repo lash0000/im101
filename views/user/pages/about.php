@@ -104,11 +104,11 @@
                 <span>Frequency Asked Questions (FAQs)</span>
                 <div class="question-faq">
                     <span>What are the limitations of this online shop?</span>
-                    <p>We currently offer Cash on Delivery (COD) for your convenience and security. This allows you to inspect your order upon delivery and make the payment in cash. We are constantly working to expand our payment options, and we hope to offer additional methods like credit card and online wallets in the future.</p>
+                    <p>We currently offer Cash on Delivery (COD) for your convenience and security. This allows you to inspect your order upon delivery and make the payment in cash.</p>
                 </div>
                 <div class="question-faq">
                     <span>Why this online shop does have only Cash on Delivery process?</span>
-                    <p>As a growing online shop, we are always working to improve our services. Currently, our limitations include: Limited Payment Option, Delivery Area and also Product Selection</p>
+                    <p>As a growing online shop, we are always working to improve our services. Currently, our limitations include: Limited Payment Option, Delivery Area and also Product Selection.</p>
                 </div>
                 <div class="question-faq">
                     <span>How long does the product to ship delivery?</span>
