@@ -6,6 +6,7 @@ $mysql_database = "im101-pastry";
 
 $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
 
+//This has been used to retrieve and make dynamic content on my onboard.php
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $productId = $_GET['id'];
     $query = "SELECT * FROM treiven_products WHERE trv_product_id = $productId";
@@ -16,6 +17,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $productName = $row['trv_product_name'];
         $productInfo = $row['trv_product_info'];
         $productPrice = $row['trv_product_price'];
+        $productPrice2 = $row['trv_product_second_price'];
         $productQty = $row['trv_minimum_stock'];
         $productMaxQty = $row['trv_maximum_stock'];
         $categoryName = $row['trv_category_name'];
@@ -26,6 +28,57 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         exit;
     }
 }
+
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
+    $categoryId = $_POST['trv_category_id'];
+    $trv_item_boxes = $_POST['trv_item_boxes'];
+    $trv_item_qty = $_POST['trv_item_qty'];
+    $productId = $_POST['trv_product_id'];
+    $discount = $_POST['trv_discount_amount'];
+
+    // Retrieve product details from the database
+    $productQuery = "SELECT trv_product_price, trv_product_second_price FROM treiven_products WHERE trv_product_id = $productId";
+    $productResult = mysqli_query($conn, $productQuery);
+    if ($productResult && mysqli_num_rows($productResult) > 0) {
+        $productRow = mysqli_fetch_assoc($productResult);
+        $productPrice = $productRow['trv_product_price'];
+        $productPrice2 = $productRow['trv_product_second_price'];
+
+        // Determine the total amount based on the selected box
+        $trv_total_amount = 0;
+        if ($trv_item_boxes === 'Half Dozen') {
+            $trv_total_amount = $productPrice * $trv_item_qty;
+        } elseif ($trv_item_boxes === 'One Dozen') {
+            $trv_total_amount = $productPrice2 * $trv_item_qty;
+        }
+
+        // Retrieve product name from treiven_products based on trv_product_id
+        $productNameQuery = "SELECT trv_product_name FROM treiven_products WHERE trv_product_id = $productId";
+        $productNameResult = mysqli_query($conn, $productNameQuery);
+        if ($productNameResult && mysqli_num_rows($productNameResult) > 0) {
+            $row = mysqli_fetch_assoc($productNameResult);
+            $productName = $row['trv_product_name'];
+
+            // Insert data into the treiven_cart_items table
+            $query = "INSERT INTO treiven_cart_items (trv_category_id, trv_item_name, trv_item_qty, trv_product_id, trv_item_boxes, treiven_id, trv_discount_amount, trv_total_amount) 
+                      VALUES ('$categoryId', '$productName', '$trv_item_qty', '$productId','$trv_item_boxes', '10', '$discount', '$trv_total_amount')";
+            if (mysqli_query($conn, $query)) {
+                echo '<div class="product-added-success">The item has been added to cart successfully!</div>';
+            } else {
+                echo '<div class="product-added-error">Error: Unable to add item to cart. Please try again later.</div>';
+            }
+        } else {
+            echo '<div class="product-added-error">Error: Product not found.</div>';
+        }
+    } else {
+        echo '<div class="product-added-error">Error: Product details not found.</div>';
+    }
+    exit;
+}
+
+
 
 ?>
 
@@ -180,35 +233,37 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <div class="cart-modal-wrapper">
             <header class="header-modal">
                 <span>Add to Cart</span>
-                <button class="material-symbols-outlined" id="close-modal">
-                    close
-                </button>
+                <button class="material-symbols-outlined" id="close-modal">close</button>
             </header>
-            <form action="" method="post">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <input type="hidden" name="trv_discount_amount" value="<?php echo $discount; ?>">
+                <input type="hidden" name="trv_category_id" value="<?php echo $categoryId; ?>">
+                <input type="hidden" name="trv_product_id" value="<?php echo $productId; ?>">
+                <input type="hidden" name="treiven_id" value="<?php echo $accountId; ?>">
                 <div class="header-body">
                     <label id="modal-label">Specify Boxes</label>
                     <div class="cart-input-field">
                         <div class="cart-field">
-                            <input type="radio" id="box1" name="box" value="box1" required>
+                            <input type="radio" id="box1" name="trv_item_boxes" value="Half Dozen" required>
                             <label for="box1">Half Dozen</label>
                         </div>
                         <div class="dozen-price">
-                            <span>₱100.00</span>
+                            <span>₱<?php echo $productPrice; ?></span>
                         </div>
                     </div>
                     <div class="cart-input-field">
                         <div class="cart-field">
-                            <input type="radio" id="box2" name="box" value="box2" required>
+                            <input type="radio" id="box2" name="trv_item_boxes" value="One Dozen" required>
                             <label for="box2">One Dozen</label>
                         </div>
                         <div class="dozen-price">
-                            <span>₱100.00</span>
+                            <span>₱<?php echo $productPrice2; ?></span>
                         </div>
                     </div>
                     <div class="cart-qty-field">
                         <div class="cart-qty-mode">
-                            <label for="cart-qty">Quantity</label>
-                            <input type="number" id="box3" name="box" value="box3" required>
+                            <label for="box3">Quantity</label>
+                            <input type="number" id="box3" name="trv_item_qty" value="" required>
                         </div>
                         <div class="dozen-price">
                             <span>Note: You will be allowed to change it later via Cart Section for verifying your orders from scratch before proceeding to checkout.</span>
@@ -230,6 +285,16 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         const vatFeeElement = document.querySelectorAll('.total-price span')[3];
         const promoDiscountElement = document.querySelectorAll('.total-price span')[5];
         const totalAmountElement = document.querySelectorAll('.total-price span')[7];
+        const numberInputs = document.querySelectorAll('input[type="number"]');
+
+        numberInputs.forEach(function(input) {
+            input.addEventListener('input', function() {
+                // Prevent negative values during INPUT lmfao
+                if (this.value < 0) {
+                    this.value = 0;
+                }
+            });
+        });
 
         function updatePriceDetails() {
             const quantity = parseInt(quantityInput.value);
