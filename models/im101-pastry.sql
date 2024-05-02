@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2024 at 08:47 AM
+-- Generation Time: May 02, 2024 at 08:50 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,7 +57,8 @@ CREATE TABLE `treiven_cart_items` (
   `trv_total_amount` int(11) DEFAULT NULL,
   `trv_discount_amount` int(11) DEFAULT NULL,
   `treiven_id` int(11) DEFAULT NULL,
-  `trv_product_id` int(11) DEFAULT NULL
+  `trv_product_id` int(11) DEFAULT NULL,
+  `trv_item_boxes` enum('Half Dozen','One Dozen') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -97,7 +98,8 @@ CREATE TABLE `treiven_orders` (
   `shipping_address` varchar(255) DEFAULT NULL,
   `shipping_method` varchar(255) DEFAULT NULL,
   `payment_method` varchar(255) DEFAULT NULL,
-  `trv_createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `trv_createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `trv_item_boxes` enum('Half Dozen','One Dozen') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
