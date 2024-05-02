@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2024 at 01:03 AM
+-- Generation Time: May 02, 2024 at 07:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,20 +57,9 @@ CREATE TABLE `treiven_cart_items` (
   `trv_total_amount` int(11) DEFAULT NULL,
   `trv_discount_amount` int(11) DEFAULT NULL,
   `treiven_id` int(11) DEFAULT NULL,
-  `trv_product_id` int(11) DEFAULT NULL
+  `trv_product_id` int(11) DEFAULT NULL,
+  `trv_item_boxes` enum('Half Dozen','One Dozen') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `treiven_cart_items`
---
-
-INSERT INTO `treiven_cart_items` (`trv_cart_id`, `trv_category_id`, `trv_category_name`, `trv_item_name`, `trv_item_qty`, `trv_total_amount`, `trv_discount_amount`, `treiven_id`, `trv_product_id`) VALUES
-(1, 1, NULL, NULL, 12, 0, 20, 10, 1),
-(2, 1, NULL, NULL, 12, 0, 20, 10, 1),
-(3, 1, NULL, NULL, 34, 0, 20, 10, 1),
-(4, 1, NULL, NULL, 24, 0, 20, 10, 1),
-(5, 1, NULL, NULL, 1, 0, 20, 10, 1),
-(6, 1, NULL, NULL, 1, 0, 20, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -109,7 +98,8 @@ CREATE TABLE `treiven_orders` (
   `shipping_address` varchar(255) DEFAULT NULL,
   `shipping_method` varchar(255) DEFAULT NULL,
   `payment_method` varchar(255) DEFAULT NULL,
-  `trv_createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `trv_createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `trv_item_boxes` enum('Half Dozen','One Dozen') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -209,7 +199,8 @@ ALTER TABLE `treiven_cart_items`
   ADD KEY `fk_treiven_user_accounts` (`treiven_id`),
   ADD KEY `fk_treiven_category_id` (`trv_category_id`),
   ADD KEY `fk_treiven_category_name` (`trv_category_name`),
-  ADD KEY `fk_trv_product_id` (`trv_product_id`);
+  ADD KEY `fk_trv_product_id` (`trv_product_id`),
+  ADD KEY `trv_item_boxes` (`trv_item_boxes`);
 
 --
 -- Indexes for table `treiven_category`
@@ -223,6 +214,7 @@ ALTER TABLE `treiven_category`
 --
 ALTER TABLE `treiven_orders`
   ADD PRIMARY KEY (`trv_order_id`),
+  ADD UNIQUE KEY `trv_item_boxes` (`trv_item_boxes`),
   ADD KEY `fk_orders_user_id` (`treiven_id`);
 
 --
@@ -261,7 +253,7 @@ ALTER TABLE `treiven_adminpanel`
 -- AUTO_INCREMENT for table `treiven_cart_items`
 --
 ALTER TABLE `treiven_cart_items`
-  MODIFY `trv_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `trv_cart_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `treiven_category`
@@ -304,7 +296,8 @@ ALTER TABLE `treiven_cart_items`
   ADD CONSTRAINT `fk_treiven_category_id` FOREIGN KEY (`trv_category_id`) REFERENCES `treiven_category` (`trv_category_id`),
   ADD CONSTRAINT `fk_treiven_category_name` FOREIGN KEY (`trv_category_name`) REFERENCES `treiven_category` (`trv_category_name`),
   ADD CONSTRAINT `fk_treiven_user_accounts` FOREIGN KEY (`treiven_id`) REFERENCES `treiven_user_accounts` (`treiven_id`),
-  ADD CONSTRAINT `fk_trv_product_id` FOREIGN KEY (`trv_product_id`) REFERENCES `treiven_products` (`trv_product_id`);
+  ADD CONSTRAINT `fk_trv_product_id` FOREIGN KEY (`trv_product_id`) REFERENCES `treiven_products` (`trv_product_id`),
+  ADD CONSTRAINT `treiven_cart_items_ibfk_1` FOREIGN KEY (`trv_item_boxes`) REFERENCES `treiven_orders` (`trv_item_boxes`);
 
 --
 -- Constraints for table `treiven_orders`
