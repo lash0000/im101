@@ -1,3 +1,18 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+$query = "SELECT trv_cart_id, trv_item_name, trv_item_qty, trv_total_amount, trv_item_boxes FROM treiven_cart_items";
+$result = mysqli_query($conn, $query);
+
+$totalAmount = 0; // Initialize total amount
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +31,8 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
     <title>Treiven - Cart Section</title>
 </head>
 
@@ -72,7 +89,7 @@
     </header>
 
     <main class="main-content">
-        <form action="" class="main-wrapper" method="post">
+        <form action="" method="post" class="main-wrapper">
             <div class="cart-checkout-progress">
                 <div class="cart-mode">
                     <div class="cart-logo session-active"></div>
@@ -88,48 +105,140 @@
                 </div>
             </div>
             <div class="cart-catalog">
-
-                <div class="cart-items">
-                    <div class="cart-quantity">
-                        <input type="number" id="" value="1" />
-                    </div>
-                    <div class="cart-image-hero">
-                        <img src="../../../public/login-banner.jpg" alt="">
-                    </div>
-                    <div class="cart-details">
-                        <span>Brownies W/ Walnut</span>
-                        <div class="cart-divided">
-                            <p>Quantity: 1</p>
-                            <p>(Half Dozen / Price per head: ₱199)</p>
+                <?php
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                        <div class="cart-items">
+                            <input type="hidden" name="trv_item_name[]" value="<?php echo $row['trv_item_name']; ?>">
+                            <input type="hidden" name="trv_item_qty[]" value="<?php echo $row['trv_item_qty']; ?>">
+                            <input type="hidden" name="trv_item_boxes[]" value="<?php echo $row['trv_item_boxes']; ?>">
+                            <input type="hidden" name="trv_total_amount[]" value="<?php echo $row['trv_total_amount']; ?>">
+                            <div class="cart-quantity">
+                                <input type="number" value="<?php echo $row['trv_item_qty']; ?>" />
+                            </div>
+                            <div class="cart-image-hero">
+                                <img src="../../../public/men-shopping.webp" alt="">
+                            </div>
+                            <div class="cart-details">
+                                <span><?php echo $row['trv_item_name']; ?></span>
+                                <div class="cart-divided">
+                                    <p>Quantity: <?php echo $row['trv_item_qty']; ?></p>
+                                    <p>(<?php echo $row['trv_item_boxes']; ?> / Price per head: <?php echo $row['trv_total_amount']; ?>)</p>
+                                </div>
+                                <span>Total Amount: ₱<?php echo $row['trv_total_amount']; ?></span>
+                            </div>
                         </div>
-                        <span>Total Amount: ₱38.00 (from ₱199.00)</span>
-                    </div>
-                </div>
-
-                <!-- <div class="cart-notice-empty">
-                    <span>All of the items will be added here once you cart it.</span>
-                </div> -->
+                <?php
+                        // Accumulate total amount
+                        $totalAmount += $row['trv_total_amount'];
+                    }
+                } else {
+                    // No items found
+                    echo '<div class="cart-notice-empty">
+                            <span>All of the items will be added here once you cart it.</span>
+                        </div>';
+                }
+                ?>
             </div>
-            <div class="cart-total-amount">
-                <span>Total Amount: ₱0.00 (0% discount applied)</span>
+            <div class="cart-total-amount" id="cart-total-amount">
+                <span>Total Amount: ₱<?php echo number_format($totalAmount, 2); ?> (0% discount applied)</span>
             </div>
             <div class="cart-checkout">
-                <button class="cart-proceed" type="submit">
+                <button class="cart-proceed">
                     Checkout
                 </button>
             </div>
         </form>
     </main>
 
+    <!-- confirmation modal -->
+    <div class="modal-container" style="display: none; opacity: 0;">
+        <div class="modal-wrapper">
+            <header class="header-modal">
+                <span>Notice</span>
+                <button class="material-symbols-outlined" id="close-modal">
+                    close
+                </button>
+            </header>
+            <main class="header-body">
+                <label id="modal-label">You're about to checkout your listing cart items will you confirm?</label>
+            </main>
+            <footer class="header-options">
+                <button id="confirm-modal-button" class="proceed-active" type="submit">Proceed</button>
+                <button id="close-modal">Cancel</button>
+            </footer>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
         const numberInputs = document.querySelectorAll('input[type="number"]');
+        const closeButtons = document.querySelectorAll("#close-modal");
+        const confirmationModal = document.querySelector(".modal-container");
+        const submitFormButton = document.querySelector("#confirm-modal-button");
+        const proceedButton = document.querySelector(".cart-proceed");
+        const form = document.querySelector(".main-wrapper");
 
         numberInputs.forEach(function(input) {
             input.addEventListener('input', function() {
                 if (this.value < 0) {
                     this.value = 0;
                 }
+            });
+        });
+
+        function toggleModal(modal) {
+            if (modal.style.display === "none") {
+                gsap.to(modal, {
+                    duration: 0.3,
+                    display: "block",
+                    opacity: 1
+                });
+            } else {
+                gsap.to(modal, {
+                    duration: 0.3,
+                    display: "none",
+                    opacity: 0
+                });
+            }
+        }
+
+        closeButtons.forEach(function(closeButton) {
+            closeButton.addEventListener("click", function() {
+                toggleModal(confirmationModal);
+            });
+        });
+
+        proceedButton.addEventListener("click", function(e) {
+            e.preventDefault();
+            toggleModal(confirmationModal);
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.querySelector(".main-wrapper");
+
+            // Event listener for form submission
+            submitFormButton.addEventListener("click", function(event) {
+                event.preventDefault();
+
+                // Collect form data
+                const formData = new FormData(form);
+                const formDataObject = {};
+
+                // Convert FormData entries to arrays
+                for (let [key, value] of formData.entries()) {
+                    if (!formDataObject[key]) {
+                        formDataObject[key] = [];
+                    }
+                    formDataObject[key].push(value);
+                }
+
+                // Save form data to local storage
+                localStorage.setItem("cartFormData", JSON.stringify(formDataObject));
+
+                // Redirect to the next page
+                window.location.href = "./shipment.php";
             });
         });
     </script>

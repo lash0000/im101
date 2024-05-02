@@ -164,9 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         });
 
-        // Event listener for the submit button inside the modal
         submitFormButton.addEventListener("click", function() {
-            // Here you can trigger the form submission
             document.getElementById("loginForm").submit();
         });
 

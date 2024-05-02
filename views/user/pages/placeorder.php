@@ -110,6 +110,22 @@
                             <input type="tel" id="contact-number" class="contact-field" disabled />
                         </div>
                     </div>
+                    <div class="cart-input">
+                        <label>Reference Tracking Number</label>
+                        <input type="number" id="reference-track" class="ref-number-field" disabled />
+                    </div>
+                    <div class="cart-input">
+                        <label>Order ID Number</label>
+                        <input type="number" id="order-number" class="ref-number-field" disabled />
+                    </div>
+                    <div class="cart-input">
+                        <label>Payment Method</label>
+                        <input type="text" id="payment-method" class="ref-number-field" value="COD" disabled />
+                    </div>
+                    <div class="cart-input">
+                        <label for="payment-date">Date Ordered</label>
+                        <input type="date" id="payment-date" class="ref-number-field" value="<?php echo date('Y-m-d'); ?>" disabled />
+                    </div>
                     <div class="cart-input-checkbox">
                         <div class="checkmate">
                             <input type="checkbox" id="affirmation-checkbox" />
@@ -127,6 +143,9 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+        
+    </script>
 </body>
 
 </html>

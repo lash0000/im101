@@ -269,9 +269,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label for="box3">Quantity</label>
                             <input type="number" id="box3" name="trv_item_qty" value="" required>
                         </div>
-                        <div class="dozen-price">
+                        <!-- <div class="dozen-price">
                             <span>Note: You will be allowed to change it later via Cart Section for verifying your orders from scratch before proceeding to checkout.</span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <footer class="header-options">
