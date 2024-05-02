@@ -101,29 +101,6 @@
                         <label>Full Address</label>
                         <input type="text" id="recipent-address" class="char-field" required />
                     </div>
-                    <!-- <div class="cart-input">
-                        <div class="quick-guide">
-                            <label>Landmark Address</label>
-                            <div class="quick-btn">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
-                                    <title>Quick Guide with GMaps</title>
-                                    <g fill="#212121" class="nc-icon-wrapper">
-                                        <circle cx="9" cy="9" r="7.25" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></circle>
-                                        <line x1="9" y1="12.819" x2="9" y2="8.25" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" data-color="color-2"></line>
-                                        <path d="M9,6.75c-.552,0-1-.449-1-1s.448-1,1-1,1,.449,1,1-.448,1-1,1Z" fill="#212121" data-color="color-2" data-stroke="none" stroke="none"></path>
-                                    </g>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="cart-input space-top">
-                            <label>Latitude</label>
-                            <input type="number" id="latitude" class="char-field" min="-90" max="90" step="any">
-                        </div>
-                        <div class="cart-input">
-                            <label>Longtitude</label>
-                            <input type="number" id="latitude" class="char-field" min="-90" max="90" step="any">
-                        </div>
-                    </div> -->
                     <div class="cart-input">
                         <label>Contact Number (PH)</label>
                         <div class="cart-input-absolute">

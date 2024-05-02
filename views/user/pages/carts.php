@@ -89,26 +89,26 @@
             </div>
             <div class="cart-catalog">
 
-                    <!-- <div class="cart-items">
-                        <div class="cart-quantity">
-                            <input type="number" id="" value="1" />
+                <div class="cart-items">
+                    <div class="cart-quantity">
+                        <input type="number" id="" value="1" />
+                    </div>
+                    <div class="cart-image-hero">
+                        <img src="../../../public/login-banner.jpg" alt="">
+                    </div>
+                    <div class="cart-details">
+                        <span>Brownies W/ Walnut</span>
+                        <div class="cart-divided">
+                            <p>Quantity: 1</p>
+                            <p>(Half Dozen / Price per head: ₱199)</p>
                         </div>
-                        <div class="cart-image-hero">
-                            <img src="../../../public/login-banner.jpg" alt="">
-                        </div>
-                        <div class="cart-details">
-                            <span>Brownies W/ Walnut</span>
-                            <div class="cart-divided">
-                                <p>Quantity: 1</p>
-                                <p>(Half Dozen / Price per head: ₱199)</p>
-                            </div>
-                            <span>Total Amount: ₱38.00 (from ₱199.00)</span>
-                        </div>
-                    </div>  -->
-
-                <div class="cart-notice-empty">
-                    <span>All of the items will be added here once you cart it.</span>
+                        <span>Total Amount: ₱38.00 (from ₱199.00)</span>
+                    </div>
                 </div>
+
+                <!-- <div class="cart-notice-empty">
+                    <span>All of the items will be added here once you cart it.</span>
+                </div> -->
             </div>
             <div class="cart-total-amount">
                 <span>Total Amount: ₱0.00 (0% discount applied)</span>
@@ -122,6 +122,17 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+        const numberInputs = document.querySelectorAll('input[type="number"]');
+
+        numberInputs.forEach(function(input) {
+            input.addEventListener('input', function() {
+                if (this.value < 0) {
+                    this.value = 0;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
