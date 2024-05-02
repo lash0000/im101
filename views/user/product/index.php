@@ -6,7 +6,6 @@ $mysql_database = "im101-pastry";
 
 $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
 
-//This has been used to retrieve and make dynamic content on my onboard.php
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $productId = $_GET['id'];
     $query = "SELECT * FROM treiven_products WHERE trv_product_id = $productId";
@@ -29,7 +28,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     }
 }
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $categoryId = $_POST['trv_category_id'];
@@ -38,47 +36,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $productId = $_POST['trv_product_id'];
     $discount = $_POST['trv_discount_amount'];
 
-    // Retrieve product details from the database
-    $productQuery = "SELECT trv_product_price, trv_product_second_price FROM treiven_products WHERE trv_product_id = $productId";
+    // Query to get product details including name
+    $productQuery = "SELECT trv_product_name, trv_product_price, trv_product_second_price, trv_minimum_stock FROM treiven_products WHERE trv_product_id = $productId";
     $productResult = mysqli_query($conn, $productQuery);
     if ($productResult && mysqli_num_rows($productResult) > 0) {
         $productRow = mysqli_fetch_assoc($productResult);
+        $productName = $productRow['trv_product_name'];
         $productPrice = $productRow['trv_product_price'];
         $productPrice2 = $productRow['trv_product_second_price'];
+        $productQty = $productRow['trv_minimum_stock'];
 
-        // Determine the total amount based on the selected box
-        $trv_total_amount = 0;
-        if ($trv_item_boxes === 'Half Dozen') {
-            $trv_total_amount = $productPrice * $trv_item_qty;
-        } elseif ($trv_item_boxes === 'One Dozen') {
-            $trv_total_amount = $productPrice2 * $trv_item_qty;
-        }
+        // Check if the requested quantity is available in stock
+        if ($trv_item_qty <= $productQty) {
+            // Calculate total amount based on the selected box
+            $trv_total_amount = ($trv_item_boxes === 'Half Dozen') ? $productPrice * $trv_item_qty : $productPrice2 * $trv_item_qty;
 
-        // Retrieve product name from treiven_products based on trv_product_id
-        $productNameQuery = "SELECT trv_product_name FROM treiven_products WHERE trv_product_id = $productId";
-        $productNameResult = mysqli_query($conn, $productNameQuery);
-        if ($productNameResult && mysqli_num_rows($productNameResult) > 0) {
-            $row = mysqli_fetch_assoc($productNameResult);
-            $productName = $row['trv_product_name'];
+            // Decrement the stock count
+            $newStock = $productQty - $trv_item_qty;
+            $updateStockQuery = "UPDATE treiven_products SET trv_minimum_stock = $newStock WHERE trv_product_id = $productId";
+            mysqli_query($conn, $updateStockQuery);
 
             // Insert data into the treiven_cart_items table
             $query = "INSERT INTO treiven_cart_items (trv_category_id, trv_item_name, trv_item_qty, trv_product_id, trv_item_boxes, treiven_id, trv_discount_amount, trv_total_amount) 
                       VALUES ('$categoryId', '$productName', '$trv_item_qty', '$productId','$trv_item_boxes', '10', '$discount', '$trv_total_amount')";
             if (mysqli_query($conn, $query)) {
-                echo '<div class="product-added-success">The item has been added to cart successfully!</div>';
+                header("Refresh:2; URL=../onboard.php");
+                echo '<div class="product-added-success">
+                    The item has been added to cart successfully!
+                </div>';
             } else {
-                echo '<div class="product-added-error">Error: Unable to add item to cart. Please try again later.</div>';
+                echo '<div class="product-added-error">
+                    Error: Unable to add item to cart. Please try again later.
+                </div>';
             }
         } else {
-            echo '<div class="product-added-error">Error: Product not found.</div>';
+            // Quantity exceeds available stock
+            echo '<div class="product-added-error">
+                Error: Requested quantity exceeds available stock.
+            </div>';
         }
     } else {
-        echo '<div class="product-added-error">Error: Product details not found.</div>';
+        // Product details not found
+        echo '<div class="product-added-error">
+            Error: Product details not found.
+        </div>';
     }
     exit;
 }
-
-
 
 ?>
 
