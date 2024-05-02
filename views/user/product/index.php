@@ -53,8 +53,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <title>Treiven - <?php echo $productName; ?></title>
 </head>
 
-<body style="overflow: hidden;">
-
+<body style="overflow: auto;">
     <header class="user-nav-container">
         <div class="user-nav-wrapper">
             <ul class="user-link-wrapper">
@@ -266,36 +265,46 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         }
 
         //FOR GSAP LOOL
-
         document.addEventListener("DOMContentLoaded", function() {
-            const modalInfo = document.querySelector(".user-wrapper");
-            const modalOptions = document.querySelector(".modal-option-wrapper");
+            const confirmationModal = document.querySelector(".modal-container");
+            const cartModal = document.querySelector(".cart-modal-container");
+            const addToCartButton = document.querySelector(".add-to-cart");
 
-            function closeModal() {
-                gsap.to(modalOptions, {
-                    duration: 0.1,
-                    display: "none",
-                    opacity: 0
-                });
-            }
-
-            modalInfo.addEventListener("click", function() {
-                if (modalOptions.style.display === "none") {
-                    gsap.to(modalOptions, {
+            function toggleModal(modalWrapper) {
+                if (modalWrapper.style.display === "none") {
+                    document.body.style.overflow = "hidden";
+                    gsap.to(modalWrapper, {
                         duration: 0.1,
                         display: "block",
-                        opacity: 1
+                        opacity: 1,
+                        onComplete: function() {
+                            if (modalWrapper === cartModal) {
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }
                     });
                 } else {
-                    closeModal();
+                    document.body.style.overflow = "auto";
+                    gsap.to(modalWrapper, {
+                        duration: 0.3,
+                        display: "none",
+                        opacity: 0
+                    });
                 }
+            }
+
+            addToCartButton.addEventListener("click", function() {
+                toggleModal(cartModal);
             });
 
-            window.addEventListener("scroll", function() {
-                closeModal();
-            });
-            window.addEventListener("resize", function() {
-                closeModal();
+            const closeModalButtons = document.querySelectorAll("#close-modal");
+            closeModalButtons.forEach(function(button) {
+                button.addEventListener("click", function() {
+                    toggleModal(cartModal);
+                });
             });
         });
     </script>
