@@ -177,43 +177,49 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
     <!-- Add to Cart Modal again -->
 
-    <div class="cart-modal-container">
+    <div class="cart-modal-container" style="display: none; opacity: 0;">
         <div class="cart-modal-wrapper">
             <header class="header-modal">
-                <span>Are you sure?</span>
+                <span>Add to Cart</span>
                 <button class="material-symbols-outlined" id="close-modal">
                     close
                 </button>
             </header>
-            <form class="header-body">
-                <label id="modal-label">Specify Boxes</label>
-                <div class="cart-input-field">
-                    <div class="cart-field">
-                        <input type="radio" id="box1" name="box" value="box1">
-                        <label for="box1">Half Dozen</label>
+            <form action="" method="post">
+                <div class="header-body">
+                    <label id="modal-label">Specify Boxes</label>
+                    <div class="cart-input-field">
+                        <div class="cart-field">
+                            <input type="radio" id="box1" name="box" value="box1" required>
+                            <label for="box1">Half Dozen</label>
+                        </div>
+                        <div class="dozen-price">
+                            <span>₱100.00</span>
+                        </div>
                     </div>
-                    <div class="dozen-price">
-                        <span>₱100.00</span>
+                    <div class="cart-input-field">
+                        <div class="cart-field">
+                            <input type="radio" id="box2" name="box" value="box2" required>
+                            <label for="box2">One Dozen</label>
+                        </div>
+                        <div class="dozen-price">
+                            <span>₱100.00</span>
+                        </div>
+                    </div>
+                    <div class="cart-qty-field">
+                        <div class="cart-qty-mode">
+                            <label for="cart-qty">Quantity</label>
+                            <input type="number" id="box3" name="box" value="box3" required>
+                        </div>
+                        <div class="dozen-price">
+                            <span>Note: You will be allowed to change it later via Cart Section for verifying your orders from scratch before proceeding to checkout.</span>
+                        </div>
                     </div>
                 </div>
-                <div class="cart-input-field">
-                    <div class="cart-field">
-                        <input type="radio" id="box1" name="box" value="box1">
-                        <label for="box1">One Dozen</label>
-                    </div>
-                    <div class="dozen-price">
-                        <span>₱100.00</span>
-                    </div>
-                </div>
-                <div class="cart-qty-field">
-                    <div class="cart-field">
-                        <label for="box1">One Dozen</label>
-                        <input type="number" id="box1" name="box" value="box1">
-                    </div>
-                    <div class="dozen-price">
-                        <span>₱100.00</span>
-                    </div>
-                </div>
+                <footer class="header-options">
+                    <button id="submit-modal" class="proceed-active" type="submit">Submit</button>
+                    <button id="close-modal">Cancel</button>
+                </footer>
             </form>
         </div>
     </div>

@@ -20,6 +20,7 @@
     transform: translate(-50%, -50%);
     width: 500px;
     border-radius: 12px;
+    user-select: none;
 }
 
 .header-modal {
@@ -111,6 +112,10 @@
     box-shadow: 0px 0px 0px 8px #FCCBB0;
 }
 
+.proceed-active:hover {
+    box-shadow: 0px 0px 0px 8px #FCCBB0;
+}
+
 /* .header-options button:nth-child(2) {
     background: #F3F3F3;
     border: 1px solid #D2D2D2;
@@ -121,6 +126,34 @@
 } */
 
 
+/** MODAL DESIGN FOR CART T_T **/
+
+.cart-input-field {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+.cart-field {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 0.467em;
+}
+#modal-label {
+    margin-bottom: 0.567em;
+}
+.cart-field input[type="radio"] {
+    margin-right: 0.475em;
+}
+.cart-qty-mode input[type="number"] {
+    width: 100%;
+    padding: 0.657em;
+    border: 1px solid #D2D2D2;
+    border-radius: 0.25em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+}
 
 /** **/
 
