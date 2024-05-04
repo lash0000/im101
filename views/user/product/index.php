@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </a>
             </div>
             <div class="right-column">
-                <div class="user-search">
+                <div class="user-search" style="opacity: 0; pointer-events: none;">
                     <input type="text" id="search-input" maxlength="60" placeholder="Search...">
                 </div>
                 <div class="user-wrapper">
