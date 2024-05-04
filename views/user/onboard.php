@@ -64,7 +64,7 @@ $result = mysqli_query($conn, $sql);;
             </div>
             <div class="right-column">
                 <form action="./pages/search-page.php" method="post" class="user-search">
-                    <input type="text" id="search-input" maxlength="60" placeholder="Search...">
+                    <input type="text" name="search" id="search-input" maxlength="60" placeholder="Search...">
                 </form>
                 <div class="user-wrapper">
                     <div class="user-option">
@@ -134,7 +134,6 @@ $result = mysqli_query($conn, $sql);;
                         $categoryName = $row['trv_category_name'];
                         $productImage = $row['trv_product_image'];
                         $maxStock = $row['trv_maximum_stock'];
-
                         $availabilityClass = ($maxStock == 0) ? 'out-of-stock' : 'available';
                 ?>
 
