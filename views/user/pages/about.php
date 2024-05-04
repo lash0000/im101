@@ -68,6 +68,14 @@
                     </div>
                 </div>
             </div>
+            <div class="modal-option-wrapper" style="display: none; opacity: 0;">
+                <li class="modal-links">
+                    <a href="../../client/login/index.php">Sign Out</a>
+                </li>
+                <li class="modal-links">
+                    <a href="https://github.com/lash0000/im101" target="_blank">GitHub Repository</a>
+                </li>
+            </div>
         </div>
     </header>
 
@@ -119,6 +127,41 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.querySelector(".main-wrapper");
+            const modalInfo = document.querySelector(".user-wrapper");
+            const modalOptions = document.querySelector(".modal-option-wrapper");
+
+            function closeModal() {
+                gsap.to(modalOptions, {
+                    duration: 0.1,
+                    display: "none",
+                    opacity: 0
+                });
+            }
+
+            modalInfo.addEventListener("click", function() {
+                if (modalOptions.style.display === "none") {
+                    gsap.to(modalOptions, {
+                        duration: 0.1,
+                        display: "block",
+                        opacity: 1
+                    });
+                } else {
+                    closeModal();
+                }
+            });
+
+            //Close your modal automatically lol this good enough.
+            window.addEventListener("scroll", function() {
+                closeModal();
+            });
+            window.addEventListener("resize", function() {
+                closeModal();
+            });
+        });
+    </script>
 </body>
 
 </html>

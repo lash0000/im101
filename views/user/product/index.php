@@ -374,6 +374,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             const cartModal = document.querySelector(".cart-modal-container");
             const addToCartButton = document.querySelector(".add-to-cart");
             const productUnavailableModal = document.querySelector(".product-unavailable-container");
+            const modalInfo = document.querySelector(".user-wrapper");
+            const modalOptions = document.querySelector(".modal-option-wrapper");
 
             function toggleModal(modalWrapper) {
                 if (modalWrapper.style.display === "none") {
@@ -400,6 +402,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     });
                 }
             }
+
+            function closeModal() {
+                gsap.to(modalOptions, {
+                    duration: 0.1,
+                    display: "none",
+                    opacity: 0
+                });
+            }
+
+            modalInfo.addEventListener("click", function() {
+                if (modalOptions.style.display === "none") {
+                    gsap.to(modalOptions, {
+                        duration: 0.1,
+                        display: "block",
+                        opacity: 1
+                    });
+                } else {
+                    closeModal();
+                }
+            });
+
+            //Close your modal automatically lol this good enough.
+            window.addEventListener("scroll", function() {
+                closeModal();
+            });
+            window.addEventListener("resize", function() {
+                closeModal();
+            });
 
             addToCartButton.addEventListener("click", function() {
                 toggleModal(cartModal);
