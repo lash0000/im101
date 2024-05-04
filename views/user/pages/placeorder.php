@@ -1,15 +1,3 @@
-<?php
-$mysql_hostname = "localhost";
-$mysql_username = "root";
-$mysql_password = "";
-$mysql_database = "im101-pastry";
-
-$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
-
-// Check if form is submitted
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
