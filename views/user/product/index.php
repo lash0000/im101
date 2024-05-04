@@ -283,7 +283,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="cart-qty-field">
                         <div class="cart-qty-mode">
-                            <label for="box3">Quantity</label>
+                            <label for="box3">Initial Quantity</label>
                             <input type="number" id="box3" name="trv_item_qty" value="" required>
                         </div>
                         <!-- <div class="dozen-price">
