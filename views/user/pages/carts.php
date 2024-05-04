@@ -61,9 +61,9 @@ $totalAmount = 0; // Initialize total amount
                 </a>
             </div>
             <div class="right-column">
-                <div class="user-search">
+                <form action="search-page.php" method="post" class="user-search">
                     <input type="text" id="search-input" maxlength="60" placeholder="Search...">
-                </div>
+                </form>
                 <div class="user-wrapper">
                     <div class="user-option">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">

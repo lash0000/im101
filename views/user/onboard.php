@@ -63,7 +63,7 @@ $result = mysqli_query($conn, $sql);;
                 </a>
             </div>
             <div class="right-column">
-                <form action="" method="post" class="user-search">
+                <form action="./pages/search-page.php" method="post" class="user-search">
                     <input type="text" id="search-input" maxlength="60" placeholder="Search...">
                 </form>
                 <div class="user-wrapper">

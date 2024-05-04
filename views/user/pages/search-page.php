@@ -79,13 +79,43 @@
         </div>
     </header>
 
-    <main class="public-cart-container">
-        
+    <main class="search-page-container">
+        <div class="search-page-wrapper">
+            <header class="search-titles">
+                <span>Search results for</span>
+                <h1>Desired output...</h1>
+            </header>
+            <!-- <div class="search-index-wrapper">
+                <a href="" class="search-index">
+                    <div class="search-image">
+                        <img src="../../adminpanel/pages/uploads/brown2.png" alt="">
+                    </div>
+                    <div class="search-content">
+                        <div class="search-left-align">
+                            <span>Lava Biscuit</span>
+                            <p style="color: #adadad;">Category / Biscuit</p>
+                        </div>
+                        <div class="search-right-align">
+                            <span>₱50.00</span>
+                            <p class="avail-stocks">Available</p>
+                        </div>
+                    </div>
+                </a>
+            </div> -->
+            <!-- <div class="search-null">
+                <div class="null-image">
+                    <img src="../../../public/panda-shock.png" alt="">
+                </div>
+                <div class="null-message">
+                    <span>The page you requested was not found.</span>
+                </div>
+            </div> -->
+        </div>
     </main>
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="../../../views/client/responsive.js"></script>
+
 </body>
 
 </html>
