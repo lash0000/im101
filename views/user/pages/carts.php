@@ -6,7 +6,9 @@ $mysql_database = "im101-pastry";
 
 $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
 
-$query = "SELECT trv_cart_id, trv_item_name, trv_item_qty, trv_total_amount, trv_item_boxes FROM treiven_cart_items";
+$query = "SELECT tci.trv_cart_id, tci.trv_item_name, tci.trv_item_qty, tci.trv_item_boxes, tci.trv_total_amount, tp.trv_product_price, tp.trv_product_second_price 
+          FROM treiven_cart_items tci 
+          JOIN treiven_products tp ON tci.trv_product_id = tp.trv_product_id";
 $result = mysqli_query($conn, $query);
 
 $totalAmount = 0; // Initialize total amount
@@ -108,6 +110,8 @@ $totalAmount = 0; // Initialize total amount
                 <?php
                 if ($result && mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
+                        $pricePerHead = $row['trv_item_boxes'] === 'One Dozen' ? $row['trv_product_second_price'] : $row['trv_product_price'];
+
                 ?>
                         <div class="cart-items">
                             <input type="hidden" name="trv_item_name[]" value="<?php echo $row['trv_item_name']; ?>">
@@ -124,13 +128,12 @@ $totalAmount = 0; // Initialize total amount
                                 <span><?php echo $row['trv_item_name']; ?></span>
                                 <div class="cart-divided">
                                     <p>Quantity: <?php echo $row['trv_item_qty']; ?></p>
-                                    <p>(<?php echo $row['trv_item_boxes']; ?> / Price per head: <?php echo $row['trv_total_amount']; ?>)</p>
+                                    <p>(<?php echo $row['trv_item_boxes']; ?> / Price per head: ₱<?php echo $pricePerHead; ?>)</p>
                                 </div>
                                 <span>Total Amount: ₱<?php echo $row['trv_total_amount']; ?></span>
                             </div>
                         </div>
                 <?php
-                        // Accumulate total amount
                         $totalAmount += $row['trv_total_amount'];
                     }
                 } else {
@@ -218,15 +221,12 @@ $totalAmount = 0; // Initialize total amount
         document.addEventListener("DOMContentLoaded", function() {
             const form = document.querySelector(".main-wrapper");
 
-            // Event listener for form submission
             submitFormButton.addEventListener("click", function(event) {
                 event.preventDefault();
 
-                // Collect form data
                 const formData = new FormData(form);
                 const formDataObject = {};
 
-                // Convert FormData entries to arrays
                 for (let [key, value] of formData.entries()) {
                     if (!formDataObject[key]) {
                         formDataObject[key] = [];
@@ -234,10 +234,8 @@ $totalAmount = 0; // Initialize total amount
                     formDataObject[key].push(value);
                 }
 
-                // Save form data to local storage
                 localStorage.setItem("cartFormData", JSON.stringify(formDataObject));
 
-                // Redirect to the next page
                 window.location.href = "./shipment.php";
             });
         });

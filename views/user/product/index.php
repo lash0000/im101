@@ -28,6 +28,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     }
 }
 
+//Just make a changes here....
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $categoryId = $_POST['trv_category_id'];
@@ -37,23 +38,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $discount = $_POST['trv_discount_amount'];
 
     // Query to get product details including name
-    $productQuery = "SELECT trv_product_name, trv_product_price, trv_product_second_price, trv_minimum_stock FROM treiven_products WHERE trv_product_id = $productId";
+    $productQuery = "SELECT trv_product_name, trv_product_price, trv_product_second_price, trv_maximum_stock FROM treiven_products WHERE trv_product_id = $productId";
     $productResult = mysqli_query($conn, $productQuery);
     if ($productResult && mysqli_num_rows($productResult) > 0) {
         $productRow = mysqli_fetch_assoc($productResult);
         $productName = $productRow['trv_product_name'];
         $productPrice = $productRow['trv_product_price'];
         $productPrice2 = $productRow['trv_product_second_price'];
-        $productQty = $productRow['trv_minimum_stock'];
+        $productMaxQty = $productRow['trv_maximum_stock'];
 
         // Check if the requested quantity is available in stock
-        if ($trv_item_qty <= $productQty) {
+        if ($trv_item_qty <= $productMaxQty) {
             // Calculate total amount based on the selected box
             $trv_total_amount = ($trv_item_boxes === 'Half Dozen') ? $productPrice * $trv_item_qty : $productPrice2 * $trv_item_qty;
 
             // Decrement the stock count
-            $newStock = $productQty - $trv_item_qty;
-            $updateStockQuery = "UPDATE treiven_products SET trv_minimum_stock = $newStock WHERE trv_product_id = $productId";
+            $newStock = $productMaxQty - $trv_item_qty;
+            $updateStockQuery = "UPDATE treiven_products SET trv_maximum_stock = $newStock WHERE trv_product_id = $productId";
             mysqli_query($conn, $updateStockQuery);
 
             // Insert data into the treiven_cart_items table
@@ -195,8 +196,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="product-price">
                             <span class="pricey">₱<?php echo $productPrice; ?></span>
                             <div class="product-status">
-                                <div class="just-circle"></div>
-                                <span>Minimum Stock: <?php echo $productQty; ?> (Available)</span>
+                                <?php if ($productMaxQty == 20) : ?>
+                                    <div style="background: #e6183f;" class="just-circle"></div>
+                                    <span style="color: #e6183f; font-weight: bolder;">Maximum Stock: <?php echo $productMaxQty; ?> (Only a few left...)</span>
+                                <?php elseif ($productMaxQty == 0) : ?>
+                                    <div style="background: #e6183f;" class="just-circle"></div>
+                                    <span style="color: #000; font-weight: bolder; text-decoration: underline;">Maximum Stock: <?php echo $productMaxQty; ?> (Out of stock)</span>
+                                <?php else : ?>
+                                    <div class="just-circle"></div>
+                                    <span>Maximum Stock: <?php echo $productMaxQty; ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="product-status">
+                                <!-- <div class="just-circle"></div> -->
+                                <?php if ($productMaxQty == 0) : ?>
+                                    <span style="color: #0fa968; font-weight: bolder;">Minimum Stock: <?php echo $productQty; ?> per day (Out of stock)</span>
+                                <?php else : ?>
+                                <span style="color: #0fa968; font-weight: bolder;">Minimum Stock: <?php echo $productQty; ?> per day (Available)</span>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="quantity-input">
@@ -282,6 +299,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
+    <!-- Product Out of Stock base on $productMaxQty -->
+
+    <div class="product-unavailable-container" style="display: none; opacity: 0;">
+        <div class="product-unavailable-wrapper">
+            <header class="header-modal">
+                <span>Product Unavailable</span>
+            </header>
+            <div class="header-body">
+                <label id="modal-label">This item has already been out of stock.</label>
+            </div>
+            <footer class="header-options">
+                <a href="../onboard.php">
+                    <button class="proceed-active">Go Back</button>
+                </a>
+            </footer>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
         const quantityInput = document.getElementById('quantity');
@@ -338,6 +373,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             const confirmationModal = document.querySelector(".modal-container");
             const cartModal = document.querySelector(".cart-modal-container");
             const addToCartButton = document.querySelector(".add-to-cart");
+            const productUnavailableModal = document.querySelector(".product-unavailable-container");
 
             function toggleModal(modalWrapper) {
                 if (modalWrapper.style.display === "none") {
@@ -375,6 +411,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     toggleModal(cartModal);
                 });
             });
+
+            // Show the product unavailable modal if the product's maximum quantity is 0
+            if (<?php echo $productMaxQty; ?> === 0) {
+                toggleModal(productUnavailableModal);
+            }
         });
     </script>
 </body>

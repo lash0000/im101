@@ -9,27 +9,36 @@ $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    //query1
-    $user_query = "SELECT * FROM treiven_user_accounts WHERE trv_user_email = '$email' AND trv_user_pwd = '$password'";
+
+    $hashed_password = hash('sha256', $password); // Assuming SHA-256
+    $user_query = "SELECT * FROM treiven_user_accounts WHERE trv_user_email = '$email'";
     $user_result = mysqli_query($conn, $user_query);
-    //query2
-    $admin_query = "SELECT * FROM treiven_adminpanel WHERE trv_admin_email = '$email' AND trv_admin_pwd = '$password'";
+    $admin_query = "SELECT * FROM treiven_adminpanel WHERE trv_admin_email = '$email'";
     $admin_result = mysqli_query($conn, $admin_query);
 
     if (mysqli_num_rows($user_result) > 0) {
-        session_start();
-        $_SESSION['user_role'] = 'user';
-        header("Location: ../../auth/index.php");
-        exit();
+        $row = mysqli_fetch_assoc($user_result);
+        $stored_password = $row['trv_user_pwd'];
+        if ($hashed_password === $stored_password) {
+            session_start();
+            $_SESSION['user_role'] = 'customer';
+            header("Location: ../../auth/index.php");
+            exit();
+        }
+    } elseif (mysqli_num_rows($admin_result) > 0) {
+        $admin_row = mysqli_fetch_assoc($admin_result);
+        $admin_stored_password = $admin_row['trv_admin_pwd'];
+
+        if ($hashed_password === $admin_stored_password) {
+            session_start();
+            $_SESSION['user_role'] = 'admin/seller';
+            header("Location: ../../adminpanel/index.php");
+            exit();
+        }
     }
-    elseif (mysqli_num_rows($admin_result) > 0) {
-        session_start();
-        $_SESSION['user_role'] = 'admin';
-        header("Location: ../../adminpanel/index.php");
-        exit();
-    } else {
-        echo "Invalid email or password. Please try again.";
-    }
+
+    // If no matching user or admin found
+    echo "Invalid email or password. Please try again.";
 
     mysqli_close($conn);
 }
@@ -106,4 +115,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
 </html>

@@ -69,8 +69,9 @@
     margin-right: 16px;
 }
 .order-divide {
-    display: inline-flex;
-    align-items: center;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
 }
 .order-divide p {
     color: #8e8e8e;

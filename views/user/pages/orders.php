@@ -80,15 +80,14 @@
                 <section class="order-items">
                     <div class="item-list">
                         <div class="order-item-hero">
-                            <img src="../../../public/login-banner.jpg" alt="">
+                            <img src="../../../public/chad.PNG" alt="">
                         </div>
                         <div class="order-details">
-                            <span>Brownies W/ Walnut</span>
+                            <span>Order Item 1</span>
                             <div class="order-divide">
-                                <p>Quantity: 12</p>
-                                <p>(Half Dozen / Price per head: ₱199)</p>
+                                <p>Total Quantity: 12</p>
                             </div>
-                            <p>Total Amount: ₱1194.00 (from ₱2388.00)</p>
+                            <p>Total Amount: ₱1194.00 (0% discount)</p>
                         </div>
                     </div>
                     <!-- <div class="item-empty">
@@ -102,17 +101,17 @@
                     <p>Ref: N/A</p>
                 </header>
                 <section class="timeline">
-                    <div class="timeline-status">
+                    <!-- <div class="timeline-status">
                         <div class="circle-small circle-active"></div>
                         <div class="timeline-message">
+                            <label class="timeline-current">In progress</label>
                             <span>Order recieved</span>
                             <p>On DD/MM/YYYY (October 25, 2023)</p>
                         </div>
                     </div>
                     <div class="timeline-status">
-                        <div class="circle-long circle-active"></div>
+                        <div class="circle-long circle-unactive"></div>
                         <div class="timeline-message">
-                            <label class="timeline-current">In progress</label>
                             <span>Waiting to be shipped by the seller</span>
                             <p>The seller has until October 28, 2023 to ship the item. Otherwise, if it didn't come on time then you will gonna have to wait after all.</p>
                         </div>
@@ -133,10 +132,10 @@
                     </div>
                     <div class="timeline-status end">
                         <div class="circle-end"></div>
-                    </div>
-                    <!-- <div class="item-empty">
-                        <span>Same goes here brr brr.</span>
                     </div> -->
+                    <div class="item-empty">
+                        <span>Same goes here brr brr.</span>
+                    </div>
                 </section>
             </div>
         </div>

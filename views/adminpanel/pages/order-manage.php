@@ -24,7 +24,7 @@
         <div class="product-manage-wrapper">
             <header class="manage-head">
                 <div class="left-head">
-                    <span>Ordering List (Pendings)</span>
+                    <span>Ordering List</span>
                 </div>
                 <div class="right-head">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
@@ -41,14 +41,14 @@
                 </div>
             </header>
             <section class="product-items-wrapper">
-                <!-- <div class="product-item">
+                <div class="product-item">
                     <div class="product-left-side">
                         <div class="product-hero">
-                            <img src="../../../public/product-test/brown1.png" alt="" />
+                            <img src="../../../public/chad.PNG" alt="" />
                         </div>
                         <div class="product-first-detail">
-                            <span>Brownies W/ Walnuts</span>
-                            <p style="color: #A6A6A6;">Quantity: 12 (Ordered by user_id: 1234567890)</p>
+                            <span>Order Item 1</span>
+                            <p style="color: #A6A6A6;">Total_QTY: 12 (Ordered by user_id: 10)</p>
                             <p>Total Amount: ₱1194.00 (no discount)</p>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                             View Item
                         </button>
                     </div>
-                </div> -->
+                </div>
             </section>
             <div class="admin-session-wrapper">
                 <a class="admin-session admin-option" href="../index.php">
@@ -98,6 +98,18 @@
                     <p style="color: #8e8e8e;">#1234567890</p>
                 </li>
                 <li class="generated-number">
+                    <span>Customer's Name</span>
+                    <p style="color: #8e8e8e;">VARCHAR</p>
+                </li>
+                <li class="generated-number">
+                    <span>Customer's Address</span>
+                    <p style="color: #8e8e8e;">VARCHAR</p>
+                </li>
+                <li class="generated-number">
+                    <span>Customer's Phone Number</span>
+                    <p style="color: #8e8e8e;">09INT</p>
+                </li>
+                <li class="generated-number">
                     <span>Date ordered</span>
                     <p style="color: #8e8e8e;">DD/MM/YYYY at TIMESTAMP</p>
                 </li>
@@ -116,7 +128,7 @@
     <!-- Another Modal lool -->
 
     <div class="update-item-wrapper" style="pointer-events: none; opacity: 0;">
-        <div class="view-item-container">
+        <div class="update-item-container">
             <header class="view-item-header">
                 <div class="view-item-detail">
                     <span>Update Item</span>
@@ -190,7 +202,6 @@
             const closeIcons = document.querySelectorAll(".close-icon");
             closeIcons.forEach(function(closeIcon) {
                 closeIcon.addEventListener("click", function() {
-                    // Determine which modal is associated with the close icon
                     const modalWrapper = closeIcon.closest('.view-item-wrapper') || closeIcon.closest('.update-item-wrapper');
                     toggleModal(modalWrapper);
                 });

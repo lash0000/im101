@@ -1,3 +1,14 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,40 +101,54 @@
             <div class="cart-catalog">
                 <div class="form-group-cart">
                     <div class="cart-input">
-                        <label>First Name</label>
-                        <input type="text" id="first-name" class="char-field" required />
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" class="char-field" required />
                     </div>
                     <div class="cart-input">
-                        <label>Last Name</label>
-                        <input type="text" id="last-name" class="char-field" required />
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" class="char-field" required />
                     </div>
                     <div class="cart-input">
-                        <label>Full Address</label>
-                        <input type="text" id="recipent-address" class="char-field" required />
+                        <label for="recipent-address">Full Address</label>
+                        <input type="text" id="recipent-address" name="recipent-address" class="char-field" required />
                     </div>
                     <div class="cart-input">
-                        <label>Contact Number (PH)</label>
+                        <label for="contact-number">Contact Number (PH)</label>
                         <div class="cart-input-absolute">
-                            <span class="country-code">
-                                (+63)
-                            </span>
-                            <input type="tel" id="contact-number" class="contact-field" required />
+                            <span class="country-code">(+63)</span>
+                            <input type="tel" id="contact-number" name="contact-number" class="contact-field" required />
                         </div>
                     </div>
                 </div>
             </div>
             <div class="cart-checkout">
-                <button class="cart-proceed" type="submit">
-                    Proceed
-                </button>
+                <button class="cart-proceed" type="submit">Proceed</button>
             </div>
         </form>
     </main>
-
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
-        
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.querySelector(".main-wrapper");
+            const submitButton = document.querySelector(".cart-proceed");
+
+            // Event listener for form submission
+            submitButton.addEventListener("click", function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+                const formDataObject = {};
+                formData.forEach((value, key) => {
+                    formDataObject[key] = value;
+                });
+
+                localStorage.setItem("shipmentForm", JSON.stringify(formDataObject));
+
+                window.location.href = "./placeorder.php";
+            });
+        });
     </script>
+
 </body>
 
 </html>

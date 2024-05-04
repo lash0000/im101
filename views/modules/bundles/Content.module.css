@@ -162,6 +162,7 @@
     overflow: hidden;
     margin-bottom: 8px;
     height: 320px;
+    border: 1px solid #ddd;
 }
 
 .treiven-pics img {
@@ -205,6 +206,12 @@
 
 .avail-stocks {
     color: #5EAF1F;
+    font-weight: bolder;
+}
+
+.out-of-stock {
+    color: #e6183f;
+    font-weight: bolder;
 }
 
 @media (max-width: 1024px) and (min-width: 768px) {

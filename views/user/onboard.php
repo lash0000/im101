@@ -10,10 +10,10 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT p.trv_product_id, p.trv_product_name, p.trv_product_price, c.trv_category_name, p.trv_product_image 
+$sql = "SELECT p.trv_product_id, p.trv_product_name, p.trv_product_price, c.trv_category_name, p.trv_product_image, p.trv_maximum_stock
         FROM treiven_products p
         INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql);;
 
 
 ?>
@@ -128,13 +128,16 @@ $result = mysqli_query($conn, $sql);
                 <?php
                 if ($result && mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        // var_dump($row);
                         $productId = $row['trv_product_id'];
                         $productName = $row['trv_product_name'];
                         $productPrice = $row['trv_product_price'];
                         $categoryName = $row['trv_category_name'];
                         $productImage = $row['trv_product_image'];
+                        $maxStock = $row['trv_maximum_stock'];
+
+                        $availabilityClass = ($maxStock == 0) ? 'out-of-stock' : 'available';
                 ?>
+
                         <a href="./product?id=<?php echo $productId; ?>" class="treiven-items">
                             <div class="treiven-pics">
                                 <img src="../adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
@@ -146,7 +149,7 @@ $result = mysqli_query($conn, $sql);
                                 </div>
                                 <div class="treiven-product-price">
                                     <span><?php echo '₱' . $productPrice; ?></span>
-                                    <p class="avail-stocks">Available</p>
+                                    <p class="avail-stocks <?php echo $availabilityClass; ?>"><?php echo ($maxStock == 0) ? 'Out of stock' : 'Available'; ?></p>
                                 </div>
                             </div>
                         </a>

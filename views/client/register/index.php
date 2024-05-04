@@ -11,7 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $registration_date = date('Y-m-d');
 
-    $sql = "INSERT INTO treiven_user_accounts (retrieval_id, trv_user_email, trv_user_pwd, trv_user_active, trv_registration_date) VALUES (1, '$email', '$password', 'T', '$registration_date')";
+    // Hash the password using SHA-256 algorithm
+    $hashed_password = hash('sha256', $password);
+
+    $sql = "INSERT INTO treiven_user_accounts (retrieval_id, trv_user_email, trv_user_pwd, trv_user_active, trv_registration_date) VALUES (1, '$email', '$hashed_password', 'T', '$registration_date')";
 
     if (mysqli_query($conn, $sql)) {
         echo '<div class="modal-container">
@@ -152,16 +155,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidPassword(password) {
+            const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/;
+            return passwordRegex.test(password);
+        }
+
         proceedButton.addEventListener("click", function(e) {
             e.preventDefault();
             const emailInput = document.getElementById("email");
             const passwordInput = document.getElementById("password");
 
-            if (emailInput.value !== "" && passwordInput.value !== "") {
-                toggleModal(confirmationModal);
-            } else {
-                alert("Please fill in both email and password fields.");
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!isValidEmail(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            } else if (!isValidPassword(password)) {
+                alert("Please enter an alphanumeric password (at least one letter and one digit).");
+                return;
             }
+
+            toggleModal(confirmationModal);
         });
 
         submitFormButton.addEventListener("click", function() {
@@ -171,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         closeButtons.forEach(function(closeButton) {
             closeButton.addEventListener("click", function() {
                 toggleModal(confirmationModal);
-                toggleModal(successModal); // Hide the success modal if open
+                toggleModal(successModal);
             });
         });
     });

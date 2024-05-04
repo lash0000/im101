@@ -1,4 +1,4 @@
-/** APPLICABLE FOR PUBLIC SIDE **/
+/** APPLICABLE FOR GUESS SIDE **/
 @import url("./bundles/Navbar.module.css");
 @import url("./bundles/Login.module.css");
 @import url("./bundles/Modal.module.css");
@@ -14,6 +14,7 @@
 @import url("./user/Main.module.css");
 @import url("./user/Carts.module.css");
 @import url("./user/Orders.module.css");
+@import url("./user/Search.module.css");
 
 /** APPLICABLE FOR ADMIN SIDE **/
 @import url("./admin/Landing.module.css");

@@ -35,7 +35,7 @@
                 <a href="./pages/user-manage.php" class="option">
                     User Management
                 </a>
-                <a href="" class="option">
+                <a href="./pages/sales_report.php" class="option">
                     Sales Report
                 </a>
             </div>
