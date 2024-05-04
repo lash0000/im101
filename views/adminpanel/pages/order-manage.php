@@ -1,3 +1,53 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$selectQuery = "SELECT trv_order_id, trv_total_amounts, shipping_address, treiven_id, trv_order_number, trv_ref_number, trv_customer_name, trv_contact_number, trv_total_qty, trv_createdAt FROM treiven_orders";
+
+$result = mysqli_query($conn, $selectQuery);
+
+$orders = [];
+$orderDetails = [];
+
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $orders[] = $row;
+    }
+
+    mysqli_free_result($result);
+
+    if (isset($_GET['trv_order_id'])) {
+        $trv_order_id = mysqli_real_escape_string($conn, $_GET['trv_order_id']);
+        $selectQuery = "SELECT trv_order_id, trv_total_amounts, shipping_address, treiven_id, trv_order_number, trv_ref_number, trv_customer_name, trv_contact_number, trv_total_qty, trv_createdAt FROM treiven_orders WHERE trv_order_id = $trv_order_id";
+        $result = mysqli_query($conn, $selectQuery);
+
+        if ($result) {
+            $orderDetails = mysqli_fetch_assoc($result);
+        } else {
+            echo "Error fetching order details: " . mysqli_error($conn);
+        }
+
+        // Free result set
+        mysqli_free_result($result);
+    }
+} else {
+    echo "Error fetching orders: " . mysqli_error($conn);
+}
+
+mysqli_close($conn);
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,24 +91,26 @@
                 </div>
             </header>
             <section class="product-items-wrapper">
-                <div class="product-item">
-                    <div class="product-left-side">
-                        <div class="product-hero">
-                            <img src="../../../public/chad.PNG" alt="" />
+                <?php foreach ($orders as $order) : ?>
+                    <div class="product-item">
+                        <div class="product-left-side">
+                            <div class="product-hero">
+                                <img src="../../../public/chad.PNG" alt="" />
+                            </div>
+                            <div class="product-first-detail">
+                                <span>Order Item <?php echo $order['trv_order_id']; ?></span>
+                                <p style="color: #A6A6A6;">Total_QTY: <?php echo $order['trv_total_qty']; ?> (Ordered by user_id: <?php echo $order['treiven_id']; ?>)</p>
+                                <p>Total Amount: ₱<?php echo $order['trv_total_amounts']; ?> (no discount)</p>
+                            </div>
                         </div>
-                        <div class="product-first-detail">
-                            <span>Order Item 1</span>
-                            <p style="color: #A6A6A6;">Total_QTY: 12 (Ordered by user_id: 10)</p>
-                            <p>Total Amount: ₱1194.00 (no discount)</p>
+                        <div class="product-right-side">
+                            <span>Status: Order recieved...</span>
+                            <button class="view-item" style="color: black;">
+                                View Item
+                            </button>
                         </div>
                     </div>
-                    <div class="product-right-side">
-                        <span>Status: Waiting to be shipped...</span>
-                        <button class="view-item" style="color: black;">
-                            View Item
-                        </button>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </section>
             <div class="admin-session-wrapper">
                 <a class="admin-session admin-option" href="../index.php">
@@ -91,27 +143,27 @@
             <ul class="view-details">
                 <li class="generated-number">
                     <span>Order number</span>
-                    <p style="color: #8e8e8e;">#1234567890</p>
+                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['trv_order_number']) ? '#' . $orderDetails['trv_order_number'] : ''; ?></p>
                 </li>
                 <li class="generated-number">
                     <span>Reference tracking number</span>
-                    <p style="color: #8e8e8e;">#1234567890</p>
+                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['trv_ref_number']) ? '#' . $orderDetails['trv_ref_number'] : ''; ?></p>
                 </li>
                 <li class="generated-number">
                     <span>Customer's Name</span>
-                    <p style="color: #8e8e8e;">VARCHAR</p>
+                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['trv_customer_name']) ? $orderDetails['trv_customer_name'] : ''; ?></p>
                 </li>
                 <li class="generated-number">
                     <span>Customer's Address</span>
-                    <p style="color: #8e8e8e;">VARCHAR</p>
+                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['shipping_address']) ? $orderDetails['shipping_address'] : ''; ?></p>
                 </li>
                 <li class="generated-number">
                     <span>Customer's Phone Number</span>
-                    <p style="color: #8e8e8e;">09INT</p>
+                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['trv_contact_number']) ? $orderDetails['trv_contact_number'] : ''; ?></p>
                 </li>
                 <li class="generated-number">
                     <span>Date ordered</span>
-                    <p style="color: #8e8e8e;">DD/MM/YYYY at TIMESTAMP</p>
+                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['trv_createdAt']) ? date('d/m/Y \a\t H:i:s', strtotime($orderDetails['trv_createdAt'])) : ''; ?></p>
                 </li>
             </ul>
             <div class="view-item-options">
@@ -124,6 +176,8 @@
             </div>
         </div>
     </div>
+
+
 
     <!-- Another Modal lool -->
 
@@ -175,31 +229,32 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const viewItemButton = document.querySelector(".view-item");
+            const viewItemButtons = document.querySelectorAll(".view-item");
+            const closeIcons = document.querySelectorAll(".close-icon");
+            const updateButton = document.querySelector(".update-item");
+            const viewCancelButton = document.querySelectorAll(".view-cancel");
+            const updateCancelButton = document.querySelector(".update-item-cancel");
+
             const viewItemWrapper = document.querySelector(".view-item-wrapper");
             const updateItemWrapper = document.querySelector(".update-item-wrapper");
 
             function toggleModal(modalWrapper) {
-                if (modalWrapper.style.pointerEvents === "none") {
-                    gsap.to(modalWrapper, {
-                        duration: 0.2,
-                        pointerEvents: "auto",
-                        opacity: 1
-                    });
-                } else {
-                    gsap.to(modalWrapper, {
-                        duration: 0.2,
-                        pointerEvents: "none",
-                        opacity: 0
-                    });
-                }
+                const modalOpacity = modalWrapper.style.opacity === "0" ? "1" : "0";
+                const modalPointerEvents = modalWrapper.style.pointerEvents === "none" ? "auto" : "none";
+
+                gsap.to(modalWrapper, {
+                    duration: 0.2,
+                    pointerEvents: modalPointerEvents,
+                    opacity: modalOpacity
+                });
             }
 
-            viewItemButton.addEventListener("click", function() {
-                toggleModal(viewItemWrapper);
+            viewItemButtons.forEach(function(viewItemButton) {
+                viewItemButton.addEventListener("click", function() {
+                    toggleModal(viewItemWrapper);
+                });
             });
 
-            const closeIcons = document.querySelectorAll(".close-icon");
             closeIcons.forEach(function(closeIcon) {
                 closeIcon.addEventListener("click", function() {
                     const modalWrapper = closeIcon.closest('.view-item-wrapper') || closeIcon.closest('.update-item-wrapper');
@@ -207,18 +262,17 @@
                 });
             });
 
-            const updateButton = document.querySelector(".update-item");
             updateButton.addEventListener("click", function() {
                 toggleModal(updateItemWrapper);
                 toggleModal(viewItemWrapper);
             });
 
-            const viewCancelButton = document.querySelector(".view-cancel");
-            viewCancelButton.addEventListener("click", function() {
-                toggleModal(viewItemWrapper);
+            viewCancelButton.forEach(function(button) {
+                button.addEventListener("click", function() {
+                    toggleModal(viewItemWrapper);
+                });
             });
 
-            const updateCancelButton = document.querySelector(".update-item-cancel");
             updateCancelButton.addEventListener("click", function(event) {
                 event.preventDefault();
                 toggleModal(updateItemWrapper);
@@ -228,6 +282,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>
