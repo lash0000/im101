@@ -42,7 +42,7 @@
                 </a>
             </div>
             <div class="right-column">
-                <div class="user-search">
+                <div class="user-search" style="opacity: 0; pointer-events: none;">
                     <input type="text" id="search-input" maxlength="60" placeholder="Search...">
                 </div>
                 <div class="user-wrapper">
@@ -87,7 +87,7 @@
             <div class="public-cart">
                 <span>Place Order Success!</span>
                 <p>Kindly access the Orders tab to see their status.</p>
-                <p style="color: #000;">For your feedbacks kindly message our <a href="" style="color: #000; text-decoration: underline;">Facebook page.</a></p>
+                <p style="color: #000;">For your feedbacks kindly message our <a href="https://www.facebook.com/profile.php?id=100091824182246" target="_blank" style="color: #000; text-decoration: underline;">Facebook page.</a></p>
                 <p style="color: #000;">Email: <a style="color: #000; text-decoration: underline;" href="mailto:treivenscrumptious.cal@gmail.com">treivenscrumptious.cal@gmail.com</a></p>
             </div>
         </div>
@@ -137,7 +137,34 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="../../../views/client/responsive.js"></script>
+    <script>
+        const modalInfo = document.querySelector(".user-wrapper");
+        const modalOptions = document.querySelector(".modal-option-wrapper");
+
+        function closeModal() {
+            gsap.to(modalOptions, {
+                duration: 0.1,
+                display: "none",
+                opacity: 0,
+            });
+        }
+
+        modalInfo.addEventListener("click", function() {
+            if (modalOptions.style.display === "none") {
+                gsap.to(modalOptions, {
+                    duration: 0.1,
+                    display: "block",
+                    opacity: 1,
+                });
+            } else {
+                closeModal();
+            }
+        });
+
+        //Just remove the existing items when doing per transactions..
+        localStorage.removeItem("cartFormData");
+        localStorage.removeItem("shipmentForm");
+    </script>
 </body>
 
 </html>

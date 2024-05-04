@@ -11,7 +11,7 @@ $query = "SELECT tci.trv_cart_id, tci.trv_item_name, tci.trv_item_qty, tci.trv_i
           JOIN treiven_products tp ON tci.trv_product_id = tp.trv_product_id";
 $result = mysqli_query($conn, $query);
 
-$totalAmount = 0; // Initialize total amount
+$totalAmount = 0;
 
 ?>
 
@@ -266,10 +266,28 @@ $totalAmount = 0; // Initialize total amount
                 const formDataObject = {};
 
                 for (let [key, value] of formData.entries()) {
-                    if (!formDataObject[key]) {
-                        formDataObject[key] = [];
+                    let newKey;
+                    switch (key) {
+                        case 'trv_item_boxes[]':
+                            newKey = 'item_boxes';
+                            break;
+                        case 'trv_item_name[]':
+                            newKey = 'item_name';
+                            break;
+                        case 'trv_item_qty[]':
+                            newKey = 'total_qty';
+                            break;
+                        case 'trv_total_amount[]':
+                            newKey = 'total_amount';
+                            break;
+                        default:
+                            newKey = key;
                     }
-                    formDataObject[key].push(value);
+
+                    if (!formDataObject[newKey]) {
+                        formDataObject[newKey] = [];
+                    }
+                    formDataObject[newKey].push(value);
                 }
 
                 localStorage.setItem("cartFormData", JSON.stringify(formDataObject));
@@ -278,7 +296,6 @@ $totalAmount = 0; // Initialize total amount
             });
         });
 
-        //Escape characters typing prevention
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('search-input');
 

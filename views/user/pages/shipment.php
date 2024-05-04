@@ -53,7 +53,7 @@ $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql
                 </a>
             </div>
             <div class="right-column">
-                <div class="user-search">
+                <div class="user-search" style="opacity: 0; pointer-events: none;">
                     <input type="text" id="search-input" maxlength="60" placeholder="Search...">
                 </div>
                 <div class="user-wrapper">
@@ -78,6 +78,14 @@ $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql
                         </svg>
                     </div>
                 </div>
+            </div>
+            <div class="modal-option-wrapper" style="display: none; opacity: 0;">
+                <li class="modal-links">
+                    <a href="../../client/login/index.php">Sign Out</a>
+                </li>
+                <li class="modal-links">
+                    <a href="https://github.com/lash0000/im101" target="_blank">GitHub Repository</a>
+                </li>
             </div>
         </div>
     </header>
@@ -131,6 +139,28 @@ $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql
         document.addEventListener("DOMContentLoaded", function() {
             const form = document.querySelector(".main-wrapper");
             const submitButton = document.querySelector(".cart-proceed");
+            const modalInfo = document.querySelector(".user-wrapper");
+            const modalOptions = document.querySelector(".modal-option-wrapper");
+
+            function closeModal() {
+                gsap.to(modalOptions, {
+                    duration: 0.1,
+                    display: "none",
+                    opacity: 0
+                });
+            }
+
+            modalInfo.addEventListener("click", function() {
+                if (modalOptions.style.display === "none") {
+                    gsap.to(modalOptions, {
+                        duration: 0.1,
+                        display: "block",
+                        opacity: 1
+                    });
+                } else {
+                    closeModal();
+                }
+            });
 
             // Event listener for form submission
             submitButton.addEventListener("click", function(event) {

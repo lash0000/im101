@@ -1,3 +1,15 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+// Check if form is submitted
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +56,7 @@
                 </a>
             </div>
             <div class="right-column">
-                <div class="user-search">
+                <div class="user-search" style="opacity: 0; pointer-events: none;">
                     <input type="text" id="search-input" maxlength="60" placeholder="Search...">
                 </div>
                 <div class="user-wrapper">
@@ -69,12 +81,20 @@
                         </svg>
                     </div>
                 </div>
+                <div class="modal-option-wrapper" style="display: none; opacity: 0;">
+                    <li class="modal-links">
+                        <a href="../../client/login/index.php">Sign Out</a>
+                    </li>
+                    <li class="modal-links">
+                        <a href="https://github.com/lash0000/im101" target="_blank">GitHub Repository</a>
+                    </li>
+                </div>
             </div>
         </div>
     </header>
 
     <main class="main-content">
-        <form action="" class="main-wrapper" method="post">
+        <div class="main-wrapper">
             <div class="cart-checkout-progress">
                 <div class="cart-mode">
                     <div class="cart-logo session-active"></div>
@@ -89,167 +109,86 @@
                     <label>Place Order</label>
                 </div>
             </div>
-            <div class="cart-catalog">
-                <div class="form-group-cart">
-                    <div class="cart-input">
-                        <label>First Name</label>
-                        <input type="text" id="first-name" class="char-field" value="" disabled />
-                    </div>
-                    <div class="cart-input">
-                        <label>Last Name</label>
-                        <input type="text" id="last-name" class="char-field" value="" disabled />
-                    </div>
-                    <div class="cart-input">
-                        <label>Full Address</label>
-                        <input type="text" id="recipent-address" class="char-field" value="" disabled />
-                    </div>
-                    <div class="cart-input">
-                        <label>Contact Number (PH)</label>
-                        <div class="cart-input-absolute">
-                            <span class="country-code">
-                                (+63)
-                            </span>
-                            <input type="tel" id="contact-number" class="contact-field" value="" disabled />
+            <form action="" method="post">
+                <div class="cart-catalog">
+                    <div class="form-group-cart">
+                        <div class="cart-input">
+                            <label>First Name</label>
+                            <input type="text" id="first-name" class="char-field" value="" disabled />
                         </div>
-                    </div>
-                    <div class="cart-input">
-                        <label>Reference Tracking Number</label>
-                        <input type="number" id="reference-track" class="ref-number-field" value="" disabled />
-                    </div>
-                    <div class="cart-input">
-                        <label>Order ID Number</label>
-                        <input type="number" id="order-number" class="ref-number-field" value="" disabled />
-                    </div>
-                    <div class="cart-input">
-                        <label>Payment Method</label>
-                        <input type="text" id="payment-method" class="ref-number-field" value="COD" disabled />
-                    </div>
-                    <div class="cart-input">
-                        <label for="payment-date">Date Ordered</label>
-                        <input type="date" id="payment-date" class="ref-number-field" value="<?php echo date('Y-m-d'); ?>" disabled />
-                    </div>
-                    <div class="cart-input-checkbox">
-                        <div class="checkmate">
-                            <input type="checkbox" id="affirmation-checkbox" required />
+                        <div class="cart-input">
+                            <label>Last Name</label>
+                            <input type="text" id="last-name" class="char-field" value="" disabled />
                         </div>
-                        <label for="affirmation-checkbox">We are committed to protecting your privacy. Your information will be used only in accordance with our Privacy Policy, which adheres to the Cybercrime Prevention Act of 2012.</label>
+                        <div class="cart-input">
+                            <label>Full Address</label>
+                            <input type="text" id="recipent-address" class="char-field" value="" disabled />
+                        </div>
+                        <div class="cart-input">
+                            <label>Contact Number (PH)</label>
+                            <div class="cart-input-absolute">
+                                <span class="country-code">
+                                    (+63)
+                                </span>
+                                <input type="tel" id="contact-number" class="contact-field" value="" disabled />
+                            </div>
+                        </div>
+                        <div class="cart-input">
+                            <label>Reference Tracking Number</label>
+                            <input type="number" id="reference-track" class="ref-number-field" value="" disabled />
+                        </div>
+                        <div class="cart-input">
+                            <label>Order ID Number</label>
+                            <input type="number" id="order-number" class="ref-number-field" value="" disabled />
+                        </div>
+                        <div class="cart-input">
+                            <label>Payment Method</label>
+                            <input type="text" id="payment-method" class="ref-number-field" value="COD" disabled />
+                        </div>
+                        <div class="cart-input">
+                            <label for="payment-date">Date Ordered</label>
+                            <input type="date" id="payment-date" class="ref-number-field" value="<?php echo date('Y-m-d'); ?>" disabled />
+                        </div>
+                        <div class="cart-input-checkbox">
+                            <div class="checkmate">
+                                <input type="checkbox" id="affirmation-checkbox" required />
+                            </div>
+                            <label for="affirmation-checkbox">We are committed to protecting your privacy. Your information will be used only in accordance with our Privacy Policy, which adheres to the Cybercrime Prevention Act of 2012.</label>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <!-- confirmation modal -->
+                <div class="modal-container" style="display: none; opacity: 0;">
+                    <div class="modal-wrapper">
+                        <header class="header-modal">
+                            <span>Place Order Confirm?</span>
+                            <button class="material-symbols-outlined" id="close-modal">
+                                close
+                            </button>
+                        </header>
+                        <main class="header-body">
+                            <label id="modal-label">This action is irreversible.</label>
+                        </main>
+                        <footer class="header-options">
+                            <button id="confirm-modal-button" class="proceed-active" type="submit">Proceed</button>
+                            <button id="close-modal">Cancel</button>
+                        </footer>
+                    </div>
+                </div>
+            </form>
             <div class="cart-total-amount" id="cart-total-amount">
                 <span>This is the partial pre-ordered..</span>
             </div>
             <div class="cart-checkout">
-                <button class="cart-proceed" type="submit">
+                <button class="cart-proceed">
                     Proceed
                 </button>
             </div>
-        </form>
+        </div>
     </main>
 
-    <!-- confirmation modal -->
-    <div class="modal-container" style="display: none; opacity: 0;">
-        <div class="modal-wrapper">
-            <header class="header-modal">
-                <span>Place Order Confirm?</span>
-                <button class="material-symbols-outlined" id="close-modal">
-                    close
-                </button>
-            </header>
-            <main class="header-body">
-                <label id="modal-label">This action is irreversible.</label>
-            </main>
-            <footer class="header-options">
-                <button id="confirm-modal-button" class="proceed-active" type="submit">Proceed</button>
-                <button id="close-modal">Cancel</button>
-            </footer>
-        </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script>
-        const confirmationModal = document.querySelector(".modal-container");
-        const closeButtons = document.querySelectorAll("#close-modal");
-        const proceedButton = document.querySelector(".cart-proceed");
-        const affirmationCheckbox = document.getElementById("affirmation-checkbox");
-        const submitFormButton = document.querySelector("#confirm-modal-button"); //This is not used
-
-        function toggleModal(modal) {
-            if (modal.style.display === "none") {
-                gsap.to(modal, {
-                    duration: 0.3,
-                    display: "block",
-                    opacity: 1
-                });
-            } else {
-                gsap.to(modal, {
-                    duration: 0.3,
-                    display: "none",
-                    opacity: 0
-                });
-            }
-        }
-
-        closeButtons.forEach(function(closeButton) {
-            closeButton.addEventListener("click", function() {
-                toggleModal(confirmationModal);
-            });
-        });
-
-        proceedButton.addEventListener("click", function(e) {
-            e.preventDefault();
-
-            if (!affirmationCheckbox.checked) {
-                alert("Please check the affirmation checkbox before proceeding.");
-            } else {
-                // Show the confirmation modal
-                toggleModal(confirmationModal);
-            }
-        });
-
-        function handleFormSubmission() {
-            document.querySelector(".main-wrapper").submit();
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const shipmentFormData = localStorage.getItem("shipmentForm");
-            const formDataObject = JSON.parse(shipmentFormData);
-
-            document.getElementById("first-name").value = formDataObject["first-name"];
-            document.getElementById("last-name").value = formDataObject["last-name"];
-            document.getElementById("recipent-address").value = formDataObject["recipent-address"];
-            document.getElementById("contact-number").value = formDataObject["contact-number"];
-
-            function generateRandomNumber() {
-                return Math.floor(100000000 + Math.random() * 900000000);
-            }
-
-            document.getElementById("reference-track").value = generateRandomNumber();
-            document.getElementById("order-number").value = generateRandomNumber();
-        });
-
-        //When leaving the Place Order Page
-        window.addEventListener("beforeunload", function(event) {
-            event.returnValue = "Are you sure you want to leave this page? Your order data will be lost.";
-
-            localStorage.removeItem("shipmentForm");
-            localStorage.removeItem("cartFormData");
-        });
-
-        //Escape characters typing prevention
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('search-input');
-
-            searchInput.addEventListener('input', function(event) {
-                const inputValue = event.target.value;
-                const sanitizedValue = inputValue.replace(/[^\w\s]/gi, '');
-
-                if (inputValue !== sanitizedValue) {
-                    event.target.value = sanitizedValue;
-                }
-            });
-        });
-    </script>
+    <script src="./PlaceOrder.js"></script>
 </body>
 
 </html>
