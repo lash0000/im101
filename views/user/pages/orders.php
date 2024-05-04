@@ -43,7 +43,7 @@
             </div>
             <div class="right-column">
                 <form action="search-page.php" method="post" class="user-search">
-                    <input type="text" id="search-input" maxlength="60" placeholder="Search...">
+                    <input type="text" name="search" id="search-input" maxlength="60" placeholder="Search...">
                 </form>
                 <div class="user-wrapper">
                     <div class="user-option">
@@ -182,6 +182,20 @@
             });
             window.addEventListener("resize", function() {
                 closeModal();
+            });
+        });
+
+        //Escape characters typing prevention
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search-input');
+
+            searchInput.addEventListener('input', function(event) {
+                const inputValue = event.target.value;
+                const sanitizedValue = inputValue.replace(/[^\w\s]/gi, '');
+
+                if (inputValue !== sanitizedValue) {
+                    event.target.value = sanitizedValue;
+                }
             });
         });
     </script>

@@ -197,6 +197,19 @@ $result = mysqli_query($conn, $sql);;
                 closeModal();
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search-input');
+
+            searchInput.addEventListener('input', function(event) {
+                const inputValue = event.target.value;
+                const sanitizedValue = inputValue.replace(/[^\w\s]/gi, '');
+
+                if (inputValue !== sanitizedValue) {
+                    event.target.value = sanitizedValue;
+                }
+            });
+        });
     </script>
 </body>
 

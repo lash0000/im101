@@ -1,3 +1,21 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+$query = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+    $keyword = $_POST['search'];
+    $query = "SELECT trv_product_id, trv_category_id, trv_product_name, trv_product_price, trv_product_image FROM treiven_products WHERE trv_product_name LIKE '%$keyword%'";
+    $result = mysqli_query($conn, $query);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,9 +60,6 @@
                 </a>
             </div>
             <div class="right-column">
-                <div class="user-search">
-                    <input type="text" id="search-input" maxlength="60" placeholder="Search...">
-                </div>
                 <div class="user-wrapper">
                     <div class="user-option">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
@@ -83,36 +98,49 @@
         <div class="search-page-wrapper">
             <header class="search-titles">
                 <span>Search results for</span>
-                <h1>Desired output...</h1>
+                <h1><?php echo isset($_POST['search']) ? $_POST['search'] : 'Desired output...'; ?></h1>
             </header>
-            <!-- <div class="search-index-wrapper">
-                <a href="" class="search-index">
-                    <div class="search-image">
-                        <img src="../../adminpanel/pages/uploads/brown2.png" alt="">
-                    </div>
-                    <div class="search-content">
-                        <div class="search-left-align">
-                            <span>Lava Biscuit</span>
-                            <p style="color: #adadad;">Category / Biscuit</p>
+            <div class="search-index-wrapper">
+                <?php
+                if (isset($result) && $result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $productId = $row['trv_product_id'];
+                        $categoryId = $row['trv_category_id'];
+                        $productName = $row['trv_product_name'];
+                        $productPrice = $row['trv_product_price'];
+                        $productImage = $row['trv_product_image'];
+
+                        echo '<a href="../product/?id='.$productId.'" class="search-index">
+                        <div class="search-image">
+                            <img src="../../adminpanel/pages/uploads/'.$productImage.'" alt="">
                         </div>
-                        <div class="search-right-align">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
+                        <div class="search-content">
+                            <div class="search-left-align">
+                                <span>'.$productName.'</span>
+                                <p style="color: #adadad;">Category / '.$categoryId.'</p>
+                            </div>
+                            <div class="search-right-align">
+                                <span>₱'.$productPrice.'</span>
+                                <p class="avail-stocks">Available</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div> -->
-            <!-- <div class="search-null">
-                <div class="null-image">
-                    <img src="../../../public/panda-shock.png" alt="">
-                </div>
-                <div class="null-message">
-                    <span>The page you requested was not found.</span>
-                </div>
-            </div> -->
+                    </a>';
+                    }
+                } else {
+                    echo '<div class="search-null">
+                        <div class="null-image">
+                            <img src="../../../public/panda-shock.png" alt="">
+                        </div>
+                        <div class="null-message">
+                            <span>No products found matching your search.</span>
+                        </div>
+                    </div>';
+                }
+                ?>
+
+            </div>
         </div>
     </main>
-
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
