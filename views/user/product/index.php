@@ -196,15 +196,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="product-price">
                             <span class="pricey">₱<?php echo $productPrice; ?></span>
                             <div class="product-status">
-                                <?php if ($productMaxQty == 20) : ?>
+                                <?php if ($productMaxQty == 10) : ?>
                                     <div style="background: #e6183f;" class="just-circle"></div>
                                     <span style="color: #e6183f; font-weight: bolder;">Maximum Stock: <?php echo $productMaxQty; ?> (Only a few left...)</span>
                                 <?php elseif ($productMaxQty == 0) : ?>
                                     <div style="background: #e6183f;" class="just-circle"></div>
                                     <span style="color: #000; font-weight: bolder; text-decoration: underline;">Maximum Stock: <?php echo $productMaxQty; ?> (Out of stock)</span>
                                 <?php else : ?>
-                                    <div class="just-circle"></div>
-                                    <span>Maximum Stock: <?php echo $productMaxQty; ?></span>
+                                    <div style="background: #0fa968;" class="just-circle"></div>
+                                    <span style="color: #0fa968;">Maximum Stock: <?php echo $productMaxQty; ?></span>
                                 <?php endif; ?>
                             </div>
                             <div class="product-status">
