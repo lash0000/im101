@@ -1,3 +1,19 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+$sql = "SELECT p.trv_product_id, p.trv_product_name, p.trv_product_price, c.trv_category_name, p.trv_product_image, p.trv_maximum_stock
+        FROM treiven_products p
+        INNER JOIN treiven_category c ON p.trv_category_id = c.trv_category_id";
+$result = mysqli_query($conn, $sql);;
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -149,37 +165,40 @@
         </div>
         <div class="grid-items-container">
             <div class="grid-items-wrapper">
-                <a href="./views/product/" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="./public/signup-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Brownies W/ Walnuts</span>
-                            <p>Brownies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="" class="treiven-items">
-                    <div class="treiven-pics">
-                        <img src="./public/login-banner.jpg" alt="">
-                    </div>
-                    <div class="treiven-infos">
-                        <div class="treiven-product">
-                            <span>Lava Biscuit</span>
-                            <p>Cookies</p>
-                        </div>
-                        <div class="treiven-product-price">
-                            <span>₱50.00</span>
-                            <p class="avail-stocks">Available</p>
-                        </div>
-                    </div>
-                </a>
-                
+            <?php
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $productId = $row['trv_product_id'];
+                        $productName = $row['trv_product_name'];
+                        $productPrice = $row['trv_product_price'];
+                        $categoryName = $row['trv_category_name'];
+                        $productImage = $row['trv_product_image'];
+                        $maxStock = $row['trv_maximum_stock'];
+
+                        $availabilityClass = ($maxStock == 0) ? 'out-of-stock' : 'available';
+                ?>
+
+                        <a href="./views/product?id=<?php echo $productId; ?>" class="treiven-items">
+                            <div class="treiven-pics">
+                                <img src="./views/adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
+                            </div>
+                            <div class="treiven-infos">
+                                <div class="treiven-product">
+                                    <span><?php echo $productName; ?></span>
+                                    <p class="treiven-badge"><?php echo $categoryName; ?></p>
+                                </div>
+                                <div class="treiven-product-price">
+                                    <span><?php echo '₱' . $productPrice; ?></span>
+                                    <p class="avail-stocks <?php echo $availabilityClass; ?>"><?php echo ($maxStock == 0) ? 'Out of stock' : 'Available'; ?></p>
+                                </div>
+                            </div>
+                        </a>
+                <?php
+                    }
+                } else {
+                    echo "No products found.";
+                }
+                ?>
             </div>
         </div>
     </main>

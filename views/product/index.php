@@ -1,3 +1,35 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $productId = $_GET['id'];
+    $query = "SELECT * FROM treiven_products WHERE trv_product_id = $productId";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $productName = $row['trv_product_name'];
+        $productInfo = $row['trv_product_info'];
+        $productPrice = $row['trv_product_price'];
+        $productPrice2 = $row['trv_product_second_price'];
+        $productQty = $row['trv_minimum_stock'];
+        $productMaxQty = $row['trv_maximum_stock'];
+        $categoryName = $row['trv_category_name'];
+        $productImage = $row['trv_product_image'];
+        $categoryId = $row['trv_category_id'];
+    } else {
+        echo "basta error";
+        exit;
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +51,7 @@
     <title>Treiven - Brownies W/ Walnuts</title>
 </head>
 
-<body>
+<body style="overflow: auto;">
     <header class="nav-container">
         <nav class="nav-wrapper">
             <div class="nav-logo">
@@ -121,43 +153,54 @@
         <div class="product-wrapper">
             <div class="product-header">
                 <div class="product-title">
-                    <h1>Brownies W/ Walnuts</h1>
+                    <h1><?php echo $productName; ?></h1>
                 </div>
-                <a href="./img-view/" class="product-portrait">
+                <a href="./img-view/?id=<?php echo $productId; ?>" class="product-portrait">
                     <div class="node-one">
-                        <img src="../../public/product-test/brown1.png" alt="">
+                        <img src="../../views/adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
                     </div>
                     <div class="node-two">
-                        <img src="../../public/product-test/brown2.png" alt="">
+                        <img src="../../views/adminpanel/pages/uploads/<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
                     </div>
                 </a>
             </div>
             <div class="product-grid-column">
                 <div class="product-description">
-                    <span>The Perfect Bite: Brownies with Walnuts</span>
-                    <p>Brownies, those decadent squares of chocolatey goodness, have been a beloved treat for generations. But what elevates them to pure bliss? The addition of crunchy, toasted walnuts! Our Brownies with Walnuts offer the perfect marriage of textures and flavors, making them an irresistible indulgence.</p>
-                    <p>The exact origin of the brownie is a bit of a mystery, with some stories tracing them back to 19th century American kitchens. Perhaps they were a result of a baker accidentally forgetting to add leavening to a chocolate cake batter. Regardless of their origin, brownies quickly rose to fame, and the addition of walnuts became a popular variation, adding a delightful textural contrast.</p>
-                    <p>Our Brownies with Walnuts are crafted using only the finest ingredients. Rich, dark chocolate forms the base, delivering a deep, satisfying flavor. We then fold in generous amounts of toasted walnuts, their nutty aroma and satisfying crunch perfectly complementing the chocolatey richness. Every bite is a delightful symphony of textures and flavors.</p>
-                    <p>The beauty of our Brownies with Walnuts lies in the perfect balance between the decadent chocolate and the nutty crunch. We use only the finest Belgian chocolate, known for its rich and intense flavor. The toasted walnuts add a delightful textural contrast, creating a truly unforgettable experience.</p>
-                    <p>These brownies are more than just a delicious treat. They are perfect for sharing with loved ones, bringing a touch of joy to any occasion. Whether you're celebrating a special event or simply enjoying a quiet moment of self-care, Treiven's Brownies with Walnuts are the perfect indulgence..</p>
-                    <p>Here at Treiven, we believe in using only the highest quality ingredients and time-tested techniques to create our baked goods. Each brownie is a labor of love, crafted with passion to deliver a taste sensation that will leave you wanting more. Order yours today and experience the difference Treiven makes!</p>
+                    <span>The Perfect Bite: <?php echo $productName; ?></span>
+                    <p><?php echo $productInfo; ?></p>
                 </div>
                 <div class="product-option">
                     <div class="product-first-column">
                         <div class="product-price">
-                            <span class="pricey">₱50.00</span>
+                            <span class="pricey">₱<?php echo $productPrice; ?></span>
                             <div class="product-status">
-                                <div class="just-circle"></div>
-                                <span>Avaiable stocks</span>
+                                <?php if ($productMaxQty == 20) : ?>
+                                    <div style="background: #e6183f;" class="just-circle"></div>
+                                    <span style="color: #e6183f; font-weight: bolder;">Maximum Stock: <?php echo $productMaxQty; ?> (Only a few left...)</span>
+                                <?php elseif ($productMaxQty == 0) : ?>
+                                    <div style="background: #e6183f;" class="just-circle"></div>
+                                    <span style="color: #000; font-weight: bolder; text-decoration: underline;">Maximum Stock: <?php echo $productMaxQty; ?> (Out of stock)</span>
+                                <?php else : ?>
+                                    <div class="just-circle"></div>
+                                    <span>Maximum Stock: <?php echo $productMaxQty; ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="product-status">
+                                <!-- <div class="just-circle"></div> -->
+                                <?php if ($productMaxQty == 0) : ?>
+                                    <span style="color: #0fa968; font-weight: bolder;">Minimum Stock: <?php echo $productQty; ?> per day (Out of stock)</span>
+                                <?php else : ?>
+                                    <span style="color: #0fa968; font-weight: bolder;">Minimum Stock: <?php echo $productQty; ?> per day (Available)</span>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="quantity-input">
                             <label>Quantity</label>
-                            <input type="number" class="quantity" id="quantity" value="1" min="1">
+                            <input type="number" class="quantity" id="quantity" name="quantity" value="0" min="0">
                         </div>
-                        <button class="add-to-cart">
-                            Add to Cart
-                        </button>
+                        <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+                        <input type="hidden" name="category_id" value="<?php echo $categoryId; ?>">
+                        <button class="add-to-cart">Proceed</button>
                     </div>
                     <div class="product-last-column">
                         <span class="last-header">Price details</span>
@@ -181,11 +224,145 @@
                 </div>
             </div>
         </div>
-        </div>
     </main>
+
+    <!-- Product Out of Stock base on $productMaxQty -->
+
+    <div class="product-unavailable-container" style="display: none; opacity: 0;">
+        <div class="product-unavailable-wrapper">
+            <header class="header-modal">
+                <span>Product Unavailable</span>
+            </header>
+            <div class="header-body">
+                <label id="modal-label">This item has already been out of stock.</label>
+            </div>
+            <footer class="header-options">
+                <a href="../../index.php">
+                    <button class="proceed-active">Go Back</button>
+                </a>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Sign In First HAHAHAA -->
+
+    <div id="sign-in-required" class="product-unavailable-container" style="display: none; opacity: 0;">
+        <div class="product-unavailable-wrapper">
+            <header class="header-modal">
+                <span>Sign In Required</span>
+            </header>
+            <div class="header-body">
+                <label id="modal-label">You need to be signed in to add items to your cart. Please sign in or create an account to continue.</label>
+            </div>
+            <footer class="header-options">
+                <a href="../index.php">
+                    <button class="proceed-active">Go Back</button>
+                </a>
+            </footer>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="../../views/client/responsive.js"></script>
+    <script>
+        const quantityInput = document.getElementById('quantity');
+        const totalPriceElement = document.querySelector('.total-price span:nth-child(2)');
+        const vatFeeElement = document.querySelectorAll('.total-price span')[3];
+        const promoDiscountElement = document.querySelectorAll('.total-price span')[5];
+        const totalAmountElement = document.querySelectorAll('.total-price span')[7];
+        const numberInputs = document.querySelectorAll('input[type="number"]');
+
+        numberInputs.forEach(function(input) {
+            input.addEventListener('input', function() {
+                // Prevent negative values during INPUT lmfao
+                if (this.value < 0) {
+                    this.value = 0;
+                }
+            });
+        });
+
+        function updatePriceDetails() {
+            const quantity = parseInt(quantityInput.value);
+            const productPrice = <?php echo $productPrice; ?>;
+
+            const totalPrice = productPrice * quantity;
+            totalPriceElement.textContent = '₱' + totalPrice.toLocaleString();
+
+            const vatFee = totalPrice * 0.12;
+            vatFeeElement.textContent = '₱' + vatFee.toLocaleString();
+
+            const promoDiscount = totalPrice * 0.20;
+            promoDiscountElement.textContent = '₱' + promoDiscount.toLocaleString();
+
+            const totalAmount = totalPrice - promoDiscount;
+            totalAmountElement.textContent = '₱' + totalAmount.toLocaleString();
+        }
+
+        quantityInput.addEventListener('input', updatePriceDetails);
+
+        function validateForm() {
+            var quantity = document.getElementById("quantity").value;
+            if (quantity <= 0) {
+                alert("Please specify a valid quantity.");
+                return false;
+            }
+
+            var selectedCategoryId = "";
+            document.getElementById("category_id").value = selectedCategoryId;
+            alert("Product will be added to cart.");
+
+            return true;
+        }
+
+        //FOR GSAP LOOL
+        document.addEventListener("DOMContentLoaded", function() {
+            const confirmationModal = document.querySelector(".modal-container");
+            const cartModal = document.querySelector(".cart-modal-container");
+            const addToCartButton = document.querySelector(".add-to-cart");
+            const productUnavailableModal = document.querySelector(".product-unavailable-container");
+
+            function toggleModal(modalWrapper) {
+                if (modalWrapper.style.display === "none") {
+                    document.body.style.overflow = "hidden";
+                    gsap.to(modalWrapper, {
+                        duration: 0.1,
+                        display: "block",
+                        opacity: 1,
+                        onComplete: function() {
+                            if (modalWrapper === cartModal) {
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    document.body.style.overflow = "auto";
+                    gsap.to(modalWrapper, {
+                        duration: 0.3,
+                        display: "none",
+                        opacity: 0
+                    });
+                }
+            }
+
+            addToCartButton.addEventListener("click", function() {
+                toggleModal(cartModal);
+            });
+
+            const closeModalButtons = document.querySelectorAll("#close-modal");
+            closeModalButtons.forEach(function(button) {
+                button.addEventListener("click", function() {
+                    toggleModal(cartModal);
+                });
+            });
+
+            if (<?php echo $productMaxQty; ?> === 0) {
+                toggleModal(productUnavailableModal);
+            }
+        });
+    </script>
 </body>
 
 </html>

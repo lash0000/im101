@@ -1,3 +1,12 @@
+<?php
+$productId = isset($_GET['id']) ? $_GET['id'] : null;
+
+if (!$productId) {
+    echo "Invalid product ID.";
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +34,7 @@
     <header class="nav-container">
         <nav class="nav-wrapper">
             <div class="nav-logo">
-                <a href="../">
+                <a href="../?id=<?php echo $productId; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 18 18">
                         <g fill="#212121" class="nc-icon-wrapper">
                             <line x1="14" y1="4" x2="4" y2="14" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" data-color="color-2"></line>
