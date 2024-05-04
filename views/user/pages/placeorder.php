@@ -228,6 +228,7 @@
             document.getElementById("order-number").value = generateRandomNumber();
         });
 
+        //When leaving the Place Order Page
         window.addEventListener("beforeunload", function(event) {
             event.returnValue = "Are you sure you want to leave this page? Your order data will be lost.";
 
