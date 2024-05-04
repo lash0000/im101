@@ -30,14 +30,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
 //Just make a changes here....
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
     $categoryId = $_POST['trv_category_id'];
     $trv_item_boxes = $_POST['trv_item_boxes'];
     $trv_item_qty = $_POST['trv_item_qty'];
     $productId = $_POST['trv_product_id'];
     $discount = $_POST['trv_discount_amount'];
 
-    // Query to get product details including name
     $productQuery = "SELECT trv_product_name, trv_product_price, trv_product_second_price, trv_maximum_stock FROM treiven_products WHERE trv_product_id = $productId";
     $productResult = mysqli_query($conn, $productQuery);
     if ($productResult && mysqli_num_rows($productResult) > 0) {
@@ -47,17 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $productPrice2 = $productRow['trv_product_second_price'];
         $productMaxQty = $productRow['trv_maximum_stock'];
 
-        // Check if the requested quantity is available in stock
         if ($trv_item_qty <= $productMaxQty) {
-            // Calculate total amount based on the selected box
             $trv_total_amount = ($trv_item_boxes === 'Half Dozen') ? $productPrice * $trv_item_qty : $productPrice2 * $trv_item_qty;
-
-            // Decrement the stock count
             $newStock = $productMaxQty - $trv_item_qty;
             $updateStockQuery = "UPDATE treiven_products SET trv_maximum_stock = $newStock WHERE trv_product_id = $productId";
             mysqli_query($conn, $updateStockQuery);
 
-            // Insert data into the treiven_cart_items table
             $query = "INSERT INTO treiven_cart_items (trv_category_id, trv_item_name, trv_item_qty, trv_product_id, trv_item_boxes, treiven_id, trv_discount_amount, trv_total_amount) 
                       VALUES ('$categoryId', '$productName', '$trv_item_qty', '$productId','$trv_item_boxes', '10', '$discount', '$trv_total_amount')";
             if (mysqli_query($conn, $query)) {
@@ -71,13 +64,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>';
             }
         } else {
-            // Quantity exceeds available stock
             echo '<div class="product-added-error">
                 Error: Requested quantity exceeds available stock.
             </div>';
         }
     } else {
-        // Product details not found
         echo '<div class="product-added-error">
             Error: Product details not found.
         </div>';
