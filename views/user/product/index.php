@@ -217,7 +217,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                         </div>
                         <div class="quantity-input">
-                            <label>Quantity</label>
+                            <label>Partial Quantity</label>
                             <input type="number" class="quantity" id="quantity" name="quantity" value="0" min="0">
                         </div>
                         <input type="hidden" name="product_id" value="<?php echo $productId; ?>">

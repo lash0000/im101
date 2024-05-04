@@ -195,7 +195,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             </div>
                         </div>
                         <div class="quantity-input">
-                            <label>Quantity</label>
+                            <label>Partial Quantity</label>
                             <input type="number" class="quantity" id="quantity" name="quantity" value="0" min="0">
                         </div>
                         <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
@@ -255,7 +255,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 <label id="modal-label">You need to be signed in to add items to your cart. Please sign in or create an account to continue.</label>
             </div>
             <footer class="header-options">
-                <a href="../index.php">
+                <a href="../../index.php">
                     <button class="proceed-active">Go Back</button>
                 </a>
             </footer>
@@ -317,8 +317,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         //FOR GSAP LOOL
         document.addEventListener("DOMContentLoaded", function() {
             const confirmationModal = document.querySelector(".modal-container");
-            const cartModal = document.querySelector(".cart-modal-container");
-            const addToCartButton = document.querySelector(".add-to-cart");
+            const cartModal = document.querySelector("#sign-in-required");
+            const signInReq = document.querySelector(".add-to-cart");
             const productUnavailableModal = document.querySelector(".product-unavailable-container");
 
             function toggleModal(modalWrapper) {
@@ -347,7 +347,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 }
             }
 
-            addToCartButton.addEventListener("click", function() {
+            signInReq.addEventListener("click", function() {
                 toggleModal(cartModal);
             });
 
