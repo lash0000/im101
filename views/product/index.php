@@ -48,7 +48,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
-    <title>Treiven - Brownies W/ Walnuts</title>
+    <title>Treiven - <?php echo $productName; ?></title>
 </head>
 
 <body style="overflow: auto;">
