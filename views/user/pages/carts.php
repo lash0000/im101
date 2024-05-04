@@ -127,7 +127,7 @@ $totalAmount = 0;
                             <input type="hidden" name="trv_item_boxes[]" value="<?php echo $row['trv_item_boxes']; ?>">
                             <input type="hidden" name="trv_total_amount[]" value="<?php echo $row['trv_total_amount']; ?>">
                             <div class="cart-quantity">
-                                <input type="number" value="<?php echo $row['trv_item_qty']; ?>" />
+                                <input type="number" value="<?php echo $row['trv_item_qty']; ?>" disabled />
                             </div>
                             <div class="cart-image-hero">
                                 <img src="../../../public/men-shopping.webp" alt="">
