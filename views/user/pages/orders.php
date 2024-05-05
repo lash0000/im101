@@ -1,3 +1,28 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+$orders = [];
+
+$selectAllQuery = "SELECT trv_order_id, trv_total_amounts, shipping_address, treiven_id, trv_order_number, trv_ref_number, trv_customer_name, trv_contact_number, trv_total_qty, trv_createdAt FROM treiven_orders";
+$allOrdersResult = mysqli_query($conn, $selectAllQuery);
+
+if ($allOrdersResult) {
+    while ($row = mysqli_fetch_assoc($allOrdersResult)) {
+        $orders[] = $row;
+    }
+    mysqli_free_result($allOrdersResult);
+} else {
+    echo "Error fetching all orders: " . mysqli_error($conn);
+}
+
+mysqli_close($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,18 +111,21 @@
                     <span>My Orders</span>
                 </header>
                 <section class="order-items">
-                    <div class="item-list">
-                        <div class="order-item-hero">
-                            <img src="../../../public/chad.PNG" alt="">
-                        </div>
-                        <div class="order-details">
-                            <span>Order Item 1</span>
-                            <div class="order-divide">
-                                <p>Total Quantity: 12</p>
+                    <!-- DISPLAY HERE WITH PHPFOREACH -->
+                    <?php foreach ($orders as $order) : ?>
+                        <div class="item-list">
+                            <div class="order-item-hero">
+                                <img src="../../../public/chad.PNG" alt="">
                             </div>
-                            <p>Total Amount: ₱1194.00 (0% discount)</p>
+                            <div class="order-details">
+                                <span>Order Item <?php echo $order['trv_order_id']; ?></span>
+                                <div class="order-divide">
+                                    <p>Total Quantity: <?php echo $order['trv_total_qty']; ?></p>
+                                </div>
+                                <p>Total Amount: ₱<?php echo $order['trv_total_amounts']; ?> (0% discount)</p>
+                            </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                     <!-- <div class="item-empty">
                         <span>The items will be added here once you've done to checkout.</span>
                     </div> -->
@@ -109,19 +137,19 @@
                     <p>Ref: N/A</p>
                 </header>
                 <section class="timeline">
-                    <!-- <div class="timeline-status">
+                    <div class="timeline-status">
                         <div class="circle-small circle-active"></div>
                         <div class="timeline-message">
                             <label class="timeline-current">In progress</label>
                             <span>Order recieved</span>
-                            <p>On DD/MM/YYYY (October 25, 2023)</p>
+                            <p>On May 5,2024</p>
                         </div>
                     </div>
                     <div class="timeline-status">
                         <div class="circle-long circle-unactive"></div>
                         <div class="timeline-message">
                             <span>Waiting to be shipped by the seller</span>
-                            <p>The seller has until October 28, 2023 to ship the item. Otherwise, if it didn't come on time then you will gonna have to wait after all.</p>
+                            <p>The seller has until May 8, 2024 to ship the item. Otherwise, if it didn't come on time then you will gonna have to wait after all.</p>
                         </div>
                     </div>
                     <div class="timeline-status">
@@ -140,7 +168,7 @@
                     </div>
                     <div class="timeline-status end">
                         <div class="circle-end"></div>
-                    </div> -->
+                    </div>
                     <div class="item-empty">
                         <span>Same goes here brr brr.</span>
                     </div>
