@@ -162,7 +162,6 @@ $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql
                 }
             });
 
-            // Event listener for form submission
             submitButton.addEventListener("click", function(event) {
                 event.preventDefault();
 
