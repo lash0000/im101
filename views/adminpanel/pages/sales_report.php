@@ -1,3 +1,16 @@
+<?php
+$mysql_hostname = "localhost";
+$mysql_username = "root";
+$mysql_password = "";
+$mysql_database = "im101-pastry";
+
+$conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
+
+mysqli_close($conn);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,26 +54,18 @@
                 </div>
             </header>
             <section class="product-items-wrapper">
-                <!-- <div class="product-item">
-                    <div class="product-left-side">
-                        <div class="product-hero">
-                            <img src="../../../public/product-test/brown1.png" alt="" />
-                        </div>
-                        <div class="product-first-detail">
-                            <span>Brownies W/ Walnuts</span>
-                            <p style="color: #A6A6A6;">Category / Special Treats</p>
-                            <p>Price: ₱50.00 (discount applied: FALSE)</p>
-                        </div>
-                    </div>
-                    <div class="product-right-side">
-                        <button class="edit-item">
-                            Edit Item
-                        </button>
-                        <button class="delete-item">
-                            Delete Item
-                        </button>
-                    </div>
-                </div> -->
+                <div class="product-text">
+                    <span>Sales Amount</span>
+                    <p>₱800</p>
+                </div>
+                <div class="product-text">
+                    <span>Sales Tax (12% VAT)</span>
+                    <p>₱800</p>
+                </div>
+                <div class="product-text">
+                    <span>Sales Total</span>
+                    <p>₱800</p>
+                </div>
             </section>
             <div class="admin-session-wrapper">
                 <a class="admin-session admin-option" href="../index.php">
@@ -69,11 +74,6 @@
                 <div class="admin-session">
                     log out
                 </div>
-            </div>
-            <div class="product-sales">
-                <a href="./sales_report.php">
-                    <button>Compute Sales</button>
-                </a>
             </div>
         </div>
     </main>

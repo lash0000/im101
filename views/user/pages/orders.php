@@ -169,9 +169,9 @@ mysqli_close($conn);
                     <div class="timeline-status end">
                         <div class="circle-end"></div>
                     </div>
-                    <div class="item-empty">
+                    <!-- <div class="item-empty">
                         <span>Same goes here brr brr.</span>
-                    </div>
+                    </div> -->
                 </section>
             </div>
         </div>

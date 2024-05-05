@@ -292,3 +292,18 @@
 .product-sales button:hover {
     background: #cacaca;
 }
+.product-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 0.765em;
+}
+.product-text span {
+    font-weight: bold;
+    font-size: 2em;
+}
+.product-text p {
+    font-size: 1.457em;
+    color: #ADADAD;
+}
