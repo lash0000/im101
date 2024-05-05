@@ -6,9 +6,24 @@ $mysql_database = "im101-pastry";
 
 $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
 
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$selectQuery = "SELECT SUM(trv_total_amounts) AS total_sales_amount FROM treiven_orders";
+$result = mysqli_query($conn, $selectQuery);
+
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $totalSalesAmount = $row['total_sales_amount'];
+} else {
+    $totalSalesAmount = 0;
+}
+
+$salesTax = $totalSalesAmount * 0.12;
+$salesTotal = $totalSalesAmount + $salesTax;
+
 mysqli_close($conn);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -54,17 +69,17 @@ mysqli_close($conn);
                 </div>
             </header>
             <section class="product-items-wrapper">
-                <div class="product-text">
+                <div class="product-text" id="sales-amount">
                     <span>Sales Amount</span>
-                    <p>₱800</p>
+                    <p><?php echo $totalSalesAmount; ?></p>
                 </div>
-                <div class="product-text">
+                <div class="product-text" id="sales-tax">
                     <span>Sales Tax (12% VAT)</span>
-                    <p>₱800</p>
+                    <p><?php echo $salesTax; ?></p>
                 </div>
-                <div class="product-text">
+                <div class="product-text" id="sales-total">
                     <span>Sales Total</span>
-                    <p>₱800</p>
+                    <p><?php echo $salesTotal; ?></p>
                 </div>
             </section>
             <div class="admin-session-wrapper">
@@ -79,6 +94,18 @@ mysqli_close($conn);
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const salesAmountElement = document.getElementById("sales-amount").querySelector("p");
+            const salesTaxElement = document.getElementById("sales-tax").querySelector("p");
+            const salesTotalElement = document.getElementById("sales-total").querySelector("p");
+
+            // balagbag na ronnie
+            salesAmountElement.textContent = "₱<?php echo $totalSalesAmount; ?>";
+            salesTaxElement.textContent = "₱<?php echo $salesTax; ?>";
+            salesTotalElement.textContent = "₱<?php echo $salesTotal; ?>";
+        });
+    </script>
 </body>
 
 </html>

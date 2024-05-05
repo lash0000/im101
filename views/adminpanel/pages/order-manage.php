@@ -23,20 +23,6 @@ if ($allOrdersResult) {
     echo "Error fetching all orders: " . mysqli_error($conn);
 }
 
-if (isset($_GET['trv_order_id'])) {
-    $trv_order_id = mysqli_real_escape_string($conn, $_GET['trv_order_id']);
-    $selectQuery = "SELECT trv_order_id, trv_total_amounts, shipping_address, treiven_id, trv_order_number, trv_ref_number, trv_customer_name, trv_contact_number, trv_total_qty, trv_createdAt FROM treiven_orders WHERE trv_order_id = $trv_order_id";
-    $result = mysqli_query($conn, $selectQuery);
-
-    if ($result) {
-        // Fetch the order details for the selected trv_order_id
-        $orderDetails = mysqli_fetch_assoc($result);
-        mysqli_free_result($result);
-    } else {
-        echo "Error fetching order details: " . mysqli_error($conn);
-    }
-}
-
 mysqli_close($conn);
 ?>
 
@@ -136,27 +122,27 @@ mysqli_close($conn);
             <ul class="view-details">
                 <li class="generated-number">
                     <span>Order number</span>
-                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['trv_order_number']) ? '#' . $orderDetails['trv_order_number'] : ''; ?></p>
+                    <p style="color: #8e8e8e;"><?php echo $order['trv_order_number']; ?></p>
                 </li>
                 <li class="generated-number">
                     <span>Reference tracking number</span>
-                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['trv_ref_number']) ? '#' . $orderDetails['trv_ref_number'] : ''; ?></p>
+                    <p style="color: #8e8e8e;"><?php echo $order['trv_ref_number']; ?></p>
                 </li>
                 <li class="generated-number">
                     <span>Customer's Name</span>
-                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['trv_customer_name']) ? $orderDetails['trv_customer_name'] : ''; ?></p>
+                    <p style="color: #8e8e8e;"><?php echo $order['trv_customer_name']; ?></p>
                 </li>
                 <li class="generated-number">
                     <span>Customer's Address</span>
-                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['shipping_address']) ? $orderDetails['shipping_address'] : ''; ?></p>
+                    <p style="color: #8e8e8e;"><?php echo $order['shipping_address']; ?></p>
                 </li>
                 <li class="generated-number">
                     <span>Customer's Phone Number</span>
-                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['trv_contact_number']) ? $orderDetails['trv_contact_number'] : ''; ?></p>
+                    <p style="color: #8e8e8e;"><?php echo $order['trv_contact_number']; ?></p>
                 </li>
                 <li class="generated-number">
                     <span>Date ordered</span>
-                    <p style="color: #8e8e8e;"><?php echo isset($orderDetails['trv_createdAt']) ? date('d/m/Y \a\t H:i:s', strtotime($orderDetails['trv_createdAt'])) : ''; ?></p>
+                    <p style="color: #8e8e8e;"><?php echo $order['trv_createdAt']; ?></p>
                 </li>
             </ul>
             <div class="view-item-options">
