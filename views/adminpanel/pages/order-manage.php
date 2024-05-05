@@ -9,43 +9,44 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$selectQuery = "SELECT trv_order_id, trv_total_amounts, shipping_address, treiven_id, trv_order_number, trv_ref_number, trv_customer_name, trv_contact_number, trv_total_qty, trv_createdAt FROM treiven_orders";
-
-$result = mysqli_query($conn, $selectQuery);
-
 $orders = [];
-$orderDetails = [];
+$orderDetails = []; // Initialize orderDetails array
+
+$selectQuery = "SELECT trv_order_id, trv_total_amounts, shipping_address, treiven_id, trv_order_number, trv_ref_number, trv_customer_name, trv_contact_number, trv_total_qty, trv_createdAt FROM treiven_orders";
+$result = mysqli_query($conn, $selectQuery);
 
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
         $orders[] = $row;
     }
-
     mysqli_free_result($result);
-
-    if (isset($_GET['trv_order_id'])) {
-        $trv_order_id = mysqli_real_escape_string($conn, $_GET['trv_order_id']);
-        $selectQuery = "SELECT trv_order_id, trv_total_amounts, shipping_address, treiven_id, trv_order_number, trv_ref_number, trv_customer_name, trv_contact_number, trv_total_qty, trv_createdAt FROM treiven_orders WHERE trv_order_id = $trv_order_id";
-        $result = mysqli_query($conn, $selectQuery);
-
-        if ($result) {
-            $orderDetails = mysqli_fetch_assoc($result);
-        } else {
-            echo "Error fetching order details: " . mysqli_error($conn);
-        }
-
-        // Free result set
-        mysqli_free_result($result);
-    }
 } else {
     echo "Error fetching orders: " . mysqli_error($conn);
 }
 
+// Check if trv_order_id is set
+if (isset($_GET['trv_order_id'])) {
+    $trv_order_id = mysqli_real_escape_string($conn, $_GET['trv_order_id']);
+
+    // Fetch order details for the specified trv_order_id
+    $selectQuery = "SELECT trv_order_id, trv_total_amounts, shipping_address, treiven_id, trv_order_number, trv_ref_number, trv_customer_name, trv_contact_number, trv_total_qty, trv_createdAt FROM treiven_orders WHERE trv_order_id = $trv_order_id";
+    $result = mysqli_query($conn, $selectQuery);
+
+    if ($result) {
+        // Check if any row is fetched
+        if (mysqli_num_rows($result) > 0) {
+            $orderDetails = mysqli_fetch_assoc($result);
+        } else {
+            echo "Order not found";
+        }
+        mysqli_free_result($result);
+    } else {
+        echo "Error fetching order details: " . mysqli_error($conn);
+    }
+}
+
 mysqli_close($conn);
 ?>
-
-
-
 
 
 <!DOCTYPE html>
