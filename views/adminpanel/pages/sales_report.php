@@ -70,6 +70,11 @@
                     log out
                 </div>
             </div>
+            <div class="product-sales">
+                <a href="./sales_report.php">
+                    <button>Compute Sales</button>
+                </a>
+            </div>
         </div>
     </main>
 

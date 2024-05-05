@@ -9,7 +9,7 @@
     flex-direction: column;
     margin: 0 auto;
     max-width: 800px;
-    height: 80vh;
+    height: 85vh;
 }
 
 .manage-head {
@@ -273,4 +273,22 @@
 .product-flex p:nth-child(1),
 .product-flex p:nth-child(2) {
     margin-right: 0.5em;
+}
+.product-sales {
+    margin-top: 0.765em;
+}
+.product-sales button {
+    border: 1px solid #cacaca;
+    padding: 1em;
+    background: white;
+    border-radius: 6px;
+    color: #000;
+    overflow: hidden;
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+    width: 240px;
+}
+.product-sales button:hover {
+    background: #cacaca;
 }
