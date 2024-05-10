@@ -1,12 +1,25 @@
-# im101
-update as of 05/05/24
-- putangina bukas na deadline juskoo T_T
+# IM101 (Pastry E-Commerce)
 
-## Starting Command PHP idk?
-```bash
-composer install
-```
+This system only dedicates to me cheers to my stupid groupmates :thread:
 
-```bash
-https://www.figma.com/file/8X2DBJQCi4kXQuTagEexW0/IMIPT---Prototype?type=design&node-id=526%3A435&mode=design&t=447BvfqFvtIB9Sm1-1
-```
+## Softwares I used during development
+
+1. XAMPP / PHP
+2. SQL / phpmyadmin
+3. ChatGPT 
+4. Excalidraw + DrawIO (Database Design)
+5. Git (only me)
+
+## Requirements to run
+
+1. Just import my sql file which can be found thru this directory `models/im101-pastry.sql`
+2. Make sure that your database name should be this `im101-pastry` and nothing else.
+3. Shut the fuck up just google it to find more solution.
+
+## Realtime Status
+
+This system only relies to Academic Activity so as expected the system itself cannot guarantee to engage for real in short it has so many lack of important features such as general ideal of CRUD.
+
+Don't fucking consider this has good taste I hate programming in PHP for some reason
+
+Written by Kenneth Obsequio (@lash0000)
