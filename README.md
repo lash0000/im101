@@ -18,8 +18,8 @@ This system only dedicates to me cheers to my stupid groupmates :thread:
 
 ## Realtime Status
 
-This system only relies to Academic Activity so as expected the system itself cannot guarantee to engage for real in short it has so many lack of important features such as general ideal of CRUD.
+This system only relies to Academic Activities therefore this kind is written by PHP form so for latest status I decided to rewrite this kind written in Ruby on Rails.
 
-Don't fucking consider this has good taste I hate programming in PHP for some reason
+Please refer <a href="https://gitlab.com/kenbusano/treiven">here</a> for latest kind.
 
-Written by Kenneth Obsequio (@lash0000)
+Written by Kenneth O. (@lash0000)
